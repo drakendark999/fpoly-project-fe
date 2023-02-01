@@ -12,7 +12,7 @@ function App() {
       <Route path='/home/*' element={<Home />} />
       
 
-      {/* <Route path={``} element={<Navigate replace to='demo' />} /> */}
+      <Route path={``} element={<Navigate replace to='home' />} />
       
     </Routes>
   )
