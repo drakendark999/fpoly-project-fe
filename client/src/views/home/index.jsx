@@ -1,12 +1,9 @@
 import React from 'react'
-import Layout from './layout/layout'
-import { ChakraProvider } from '@chakra-ui/react'
+import Layout from './components/layout/Layout'
 
 const Home = () => {
   return (
-    <ChakraProvider>
       <Layout/>
-    </ChakraProvider>
   )
 }
 
