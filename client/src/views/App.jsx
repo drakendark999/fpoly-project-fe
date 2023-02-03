@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { Container } from "@chakra-ui/react";
 import { ChakraProvider } from "@chakra-ui/react";
 
+
 import Home from "./home";
 function App() {
     return (

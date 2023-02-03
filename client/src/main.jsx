@@ -4,6 +4,7 @@ import App from "./views/App";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 
+
 // const router = createBrowserRouter([
 //     {
 //         path: "/",
