@@ -63,7 +63,7 @@ const Table = () => {
             <GridItem colSpan={8}>
                 <Grid templateColumns="repeat(8, 1fr)">
                     {arrayA.map((e, index) => {
-                        return <TableBox {...height} datalist={e} key={index} {...style} />;
+                        return <TableBox  datalist={e} key={index} {...style} />;
                     })}
                 </Grid>
             </GridItem>
