@@ -5,9 +5,9 @@ import ContentBox from '../content-box/ContentBox'
 const Header = () => {
   const value = {
     coso : 'Cơ sở Hồ Chí Minh',
-    user : 'user là ...',
+    user : 'user longnv36',
     hocky: 'Học kỳ Spring 2023',
-    hockyh: 'học kỳ H',
+    hockyh: 'Học kỳ H',
     color:'red'
   }
   
