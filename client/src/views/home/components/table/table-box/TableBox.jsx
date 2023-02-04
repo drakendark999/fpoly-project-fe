@@ -27,9 +27,6 @@ const TableBox = (props) =>
                     <p id="giangVien">{data.gv1}</p>
                 </Box>
                 <div>
-                    {/* {if(data.stt == 'waiting') {
-                        <Box color='#FED049' mt={1} id="giangVien2">{data.gv2}</Box>
-                    }} */}
                     <Box   color={data.stt=='waiting'?colorDefaults.waiting:data.stt=='confirm'?colorDefaults.confirm:colorDefaults.refuse} mt={1} id="giangVien2" onClick={acceptClick}>{data.gv2}</Box>    
                 </div>
             </GridItem>
