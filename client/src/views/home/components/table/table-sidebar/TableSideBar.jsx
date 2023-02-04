@@ -1,14 +1,14 @@
-import React from 'react'
-import { Flex, Grid,GridItem} from '@chakra-ui/react'
+import React from "react";
+import { Flex, Grid, GridItem } from "@chakra-ui/react";
 
 const TableSideBar = (props) => {
-  return (
-    <Grid>
-      <Flex {...props} alignItems='center'>
-        <strong>Phòng {props.count}</strong>
-      </Flex>
-    </Grid>
-  )
-}
+    return (
+        <GridItem>
+            <Flex {...props} h='100%' justifyContent='center' alignItems="center">
+                <strong>Phòng {props.count}</strong>
+            </Flex>
+        </GridItem>
+    );
+};
 
-export default TableSideBar
+export default TableSideBar;

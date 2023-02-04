@@ -5,21 +5,35 @@ import Table from "../table/Table";
 import FormSelect from "../form-select/FormSelect";
 import ImportFile from "../import-file/ImportFile";
 
+import { useState } from "react";
+import { OutTable, ExcelRenderer } from "react-excel-renderer";
 
 const Layout = () => {
+    const [table, setTable] = useState({});
+    const fileHandler = (event) => {
+        let fileObj = event.target.files[0];
+
+        //just pass the fileObj as parameter
+        ExcelRenderer(fileObj, (err, resp) => {
+            if (err) {
+                console.log(err);
+            } else {
+                setTable({
+                    cols: resp.cols,
+                    rows: resp.rows,
+                });
+                console.log(table.cols)
+            }
+        });
+    };
     return (
-        <Grid templateColumns='repeat(4, 1fr)' gap={4}>
-            <GridItem colSpan={3}>
-                <Header />
-                <FormSelect />
-                <Table />
-            </GridItem>
-            <GridItem colSpan={1}>
-                <Box textAlign='right'>
-                    <ImportFile title="Import file"/>
-                </Box>
-            </GridItem>
-        </Grid>
+        <Flex flexDirection="column">
+            <Header />
+            <FormSelect />
+            <Table />
+            {console.log(table)}
+            <input type="file" onChange={fileHandler} style={{ padding: "10px" }} />
+        </Flex>
     );
 };
 
