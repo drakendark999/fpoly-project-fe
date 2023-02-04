@@ -8,7 +8,7 @@ import Home from "./home";
 function App() {
     return (
         <ChakraProvider>
-            <Container maxW="1200px" >
+            <Container maxW="1519px" >
                 <Routes>
                     <Route path="/home/*" element={<Home />} />
                     <Route path={``} element={<Navigate replace to="home" />} />
