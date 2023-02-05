@@ -1,39 +1,27 @@
 import React from "react";
-import { Box, Flex, Grid, GridItem } from "@chakra-ui/react";
+import { Grid, GridItem } from "@chakra-ui/react";
 import Header from "../header/Header";
 import Table from "../table/Table";
 import FormSelect from "../form-select/FormSelect";
 import ImportFile from "../import-file/ImportFile";
+import SelectList from "../select-list/SelectList";
 
-import { useState } from "react";
-import { OutTable, ExcelRenderer } from "react-excel-renderer";
 
 const Layout = () => {
-    const [table, setTable] = useState({});
-    const fileHandler = (event) => {
-        let fileObj = event.target.files[0];
-
-        //just pass the fileObj as parameter
-        ExcelRenderer(fileObj, (err, resp) => {
-            if (err) {
-                console.log(err);
-            } else {
-                setTable({
-                    cols: resp.cols,
-                    rows: resp.rows,
-                });
-                console.log(table.cols)
-            }
-        });
-    };
     return (
-        <Flex flexDirection="column">
-            <Header />
-            <FormSelect />
-            <Table />
-            {console.log(table)}
-            <input type="file" onChange={fileHandler} style={{ padding: "10px" }} />
-        </Flex>
+        <>
+            <Grid templateColumns='repeat(5, 1fr)' gap={4}>
+                <GridItem colSpan={4}>
+                    <Header />
+                    <FormSelect />
+                    <Table />
+                </GridItem>
+                <GridItem colSpan={1} >
+                    <ImportFile />
+                    <SelectList />
+                </GridItem>
+            </Grid> 
+        </>
     );
 };
 
