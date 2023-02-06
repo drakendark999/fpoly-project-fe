@@ -3,9 +3,12 @@ import React from 'react'
 import { Box, Flex, Text } from '@chakra-ui/react'
 import Select from 'react-select';
 import SelectBox from './select-box/SelectBox';
+import { useState } from "react";
 import ImportFile from '../import-file/ImportFile';
 
 const SelectList = () => {
+  const [table, setTable] = useState({});
+
     const options =[
         {value:'cung chuyen mon',label:"Cùng chuyên môn"},
         {value:'cung bo mon',label:"Cùng bộ môn"},
@@ -23,13 +26,26 @@ const SelectList = () => {
         {name: 'longnv26', bomon: "UDPM", caRanh: '1,3,4,6'},
         {name: 'longnv26', bomon: "UDPM", caRanh: '1,3,4,6'},
     ]
+    console.log(table)
     return (
         <> 
-            <Select maxMenuHeight={120} options={options} style={{ width: '100%' }} />
+            <Select maxMenuHeight={120}  options={options} style={{ width: '100%' }} />
                         
-            <Flex direction='column' borderLeft='1px' borderColor='gray' pl={4} ml={3}>
-                <ImportFile />
-                <Text as='b' fontSize='md' textTransform='uppercase' textAlign='center' display='block'>
+            <Flex 
+                direction='column' 
+                borderLeft='1px' 
+                borderColor='gray' 
+                pl={4} 
+                ml={3}
+            >
+                <ImportFile   setTable={setTable} />
+                <Text 
+                    as='b' 
+                    fontSize='md' 
+                    textTransform='uppercase' 
+                    textAlign='center' 
+                    display='block'
+                >
                     Danh sách giảng viên rảnh
                 </Text>
 
