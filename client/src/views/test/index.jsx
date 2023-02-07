@@ -59,7 +59,7 @@ const Test = () => {
                    
                 </div>
             </Flex> */}
-            <h2>List of Items</h2>
+            <h2>List of Itemsdwadwaddwadwad</h2>
             <Flex justifyContent='space-between' w='500px'>
                 <div className="items-container" onDragOver={onDrag} onDrop={(index) => onDrop(index)}  >
                     {items.map((item, index) => (
