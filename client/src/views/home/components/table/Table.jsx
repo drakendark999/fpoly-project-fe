@@ -82,7 +82,7 @@ const Table = (props) => {
                 </Grid>
             </GridItem>
             {/* Body content box */}
-            <GridItem autoRows colSpan={8} >
+            <GridItem  colSpan={8} >
                 
                 <Grid templateColumns="repeat(8, 1fr)">
                     {arrayA.map((e, index) => {
