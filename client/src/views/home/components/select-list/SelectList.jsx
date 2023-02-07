@@ -5,6 +5,7 @@ import Select from 'react-select';
 import SelectBox from './select-box/SelectBox';
 import { useState } from "react";
 import ImportFile from '../import-file/ImportFile';
+import './selectList.scss';
 
 const SelectList = () => {
   const [table, setTable] = useState({});
@@ -29,23 +30,11 @@ const SelectList = () => {
     console.log(table)
     return (
         <> 
-            <Select maxMenuHeight={120}  options={options} style={{ width: '100%' }} />
                         
-            <Flex 
-                direction='column' 
-                borderLeft='1px' 
-                borderColor='gray' 
-                pl={4} 
-                ml={3}
-            >
-                <ImportFile   setTable={setTable} />
-                <Text 
-                    as='b' 
-                    fontSize='md' 
-                    textTransform='uppercase' 
-                    textAlign='center' 
-                    display='block'
-                >
+            <Flex direction='column'>
+
+                <Select maxMenuHeight={120} options={options} style={{ width: '100%' }} />
+                <Text as='b' fontSize='md' textTransform='uppercase' textAlign='center' display='block' my={3}>
                     Danh sách giảng viên rảnh
                 </Text>
 

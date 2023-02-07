@@ -72,8 +72,7 @@ const Layout = () => {
                     {/* <Table arrayA={data} /> */}
                     <Paginator arrayA={arrayA}  itemsPerPage={24} />
                 </GridItem>
-                <GridItem colSpan={1}>
-                    <ImportFile />
+                <GridItem colSpan={1} borderLeft='1px' borderColor='black' ml={2} pl={2} py={2} >
                     <SelectList />
                 </GridItem>
             </Grid>
