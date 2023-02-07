@@ -4,8 +4,12 @@ import { Box, Flex, Text } from "@chakra-ui/react";
 import Select from "react-select";
 import SelectBox from "./select-box/SelectBox";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import ImportFile from "../import-file/ImportFile";
 import "./selectList.scss";
+import { importFileSelector } from "../../redux/selectors";
+
+
 
 const SelectList = () => {
   const [table, setTable] = useState({});
@@ -31,21 +35,23 @@ const SelectList = () => {
     { name: "longnv26", bomon: "UDPM", caRanh: "1,3,4,6" },
   ];
 
-  let { rows, cols } = table;
-  let teachers = [];
-  if (rows) {
-    teachers = rows.map((item, index) => {
-      return { name: item[2], bomon: item[4], caRanh: "1,3,4,6" };
-    });
+  // let { rows, cols } = table;
+  // let teachers = [];
+  // if (rows) {
+  //   teachers = rows.map((item, index) => {
+  //     return { name: item[2], bomon: item[4], caRanh: "1,3,4,6" };
+  //   });
 
-    // Loại bỏ tên các cột A, B, C, D, E và các trường IDNV, Mã NV, Họ Và Tên, Đối tượng (loại Hơp đồng), Bộ Môn, Ghi Chú
-    teachers = teachers.slice(3, teachers.length - 1);
+  // Loại bỏ tên các cột A, B, C, D, E và các trường IDNV, Mã NV, Họ Và Tên, Đối tượng (loại Hơp đồng), Bộ Môn, Ghi Chú
+  // teachers = teachers.slice(3, teachers.length - 1);
 
-    // Loại bỏ item vô nghĩa tên rỗng, undefined, ...
-    teachers = teachers.filter(
-      (teacher) => teacher.name && teacher.name.length
-    );
-  }
+  // Loại bỏ item vô nghĩa tên rỗng, undefined, ...
+  // teachers = teachers.filter(
+  //   (teacher) => teacher.name && teacher.name.length
+  // );
+  // }
+
+  let teachers = useSelector(importFileSelector);
 
   return (
     <>

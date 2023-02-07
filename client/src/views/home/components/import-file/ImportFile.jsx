@@ -2,24 +2,52 @@ import React from "react";
 import { FormControl, Input } from "@chakra-ui/react";
 import { useState } from "react";
 import { ExcelRenderer } from "react-excel-renderer";
+import { useDispatch } from "react-redux";
+import importFileSlice from "./importFileSlice";
+
 // import * as XLSX from "xlsx";
 
 const ImportFile = (props) => {
+  const dispatch = useDispatch();
+
   const { setTable } = props;
   // const [table, setTable] = useState({});
 
   const fileHandler = (event) => {
     let fileObj = event.target.files[0];
+    let teachers = [];
 
     //just pass the fileObj as parameter
     ExcelRenderer(fileObj, (err, resp) => {
       if (err) {
         console.log(err);
       } else {
-        setTable({
-          cols: resp.cols,
-          rows: resp.rows,
+        // setTable({
+        //   cols: resp.cols,
+        //   rows: resp.rows,
+        // });
+
+        teachers = resp.rows.map((item, index) => {
+          return { name: item[1], bomon: item[4], caRanh: "1,3,4,6" };
         });
+
+        // Loại bỏ tên các cột A, B, C, D, E và các trường IDNV, Mã NV, Họ Và Tên, Đối tượng (loại Hơp đồng), Bộ Môn, Ghi Chú
+        teachers = teachers.slice(3, teachers.length - 1);
+
+        // Loại bỏ item vô nghĩa tên rỗng, undefined, ...
+        teachers = teachers.reduce((list, teacher) => {
+          if (
+            teacher.name &&
+            teacher.name.length &&
+            teacher.bomon &&
+            teacher.name.length
+          ) {
+            list.push(teacher);
+            //Dispatch kết nối đến actions push state vào
+            dispatch(importFileSlice.actions.freeTimeTeachers(teacher));
+          }
+          return list;
+        }, []);
       }
     });
   };

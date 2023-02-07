@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@chakra-ui/react": "^2.4.9",
+    "@reduxjs/toolkit": "^1.9.2",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
     "moment": "^2.29.4",
@@ -20,6 +21,7 @@
     "react-dom": "^18.2.0",
     "react-excel-renderer": "^1.1.0",
     "react-paginate": "^8.1.4",
+    "react-redux": "^8.0.5",
     "react-router-dom": "^6.8.0",
     "react-select": "^5.7.0",
     "sass": "^1.58.0",
