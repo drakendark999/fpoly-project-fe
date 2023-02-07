@@ -2,10 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const importFileSlice = createSlice({
     name: "importFile",
-    initialState: [],
+    initialState: {
+        freeTimeTeachers: [] 
+    },
     reducers: {
         freeTimeTeachers: (state, action) => { 
-            state.push(action.payload)
+            state.freeTimeTeachers.push(action.payload)
         }
     }
 })

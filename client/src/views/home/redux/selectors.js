@@ -1,1 +1,1 @@
-export const importFileSelector = (state) => state.importFile;
+export const freeTimeTeachersSelector = (state) => state.importFile.freeTimeTeachers;

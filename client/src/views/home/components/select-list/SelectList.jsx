@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import ImportFile from "../import-file/ImportFile";
 import "./selectList.scss";
-import { importFileSelector } from "../../redux/selectors";
+import { freeTimeTeachersSelector } from "../../redux/selectors";
 
 
 
@@ -51,7 +51,7 @@ const SelectList = () => {
   // );
   // }
 
-  let teachers = useSelector(importFileSelector);
+  let teachers = useSelector(freeTimeTeachersSelector);
 
   return (
     <>
