@@ -6,8 +6,8 @@ const importFileSlice = createSlice({
         freeTimeTeachers: [] 
     },
     reducers: {
-        freeTimeTeachers: (state, action) => { 
-            state.freeTimeTeachers.push(action.payload)
+        freeTimeTeachers: (state, {payload}) => { 
+            state.freeTimeTeachers = payload
         }
     }
 })

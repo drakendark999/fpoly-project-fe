@@ -35,19 +35,14 @@ const ImportFile = (props) => {
         teachers = teachers.slice(3, teachers.length - 1);
 
         // Loại bỏ item vô nghĩa tên rỗng, undefined, ...
-        teachers = teachers.reduce((list, teacher) => {
-          if (
+        teachers = teachers.filter(
+          (teacher) =>
             teacher.name &&
             teacher.name.length &&
             teacher.bomon &&
             teacher.name.length
-          ) {
-            list.push(teacher);
-            //Dispatch kết nối đến actions push state vào
-            dispatch(importFileSlice.actions.freeTimeTeachers(teacher));
-          }
-          return list;
-        }, []);
+        );
+        dispatch(importFileSlice.actions.freeTimeTeachers(teachers));
       }
     });
   };
