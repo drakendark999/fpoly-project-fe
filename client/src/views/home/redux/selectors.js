@@ -1,0 +1,1 @@
+export const freeTimeTeachersSelector = (state) => state.importFile.freeTimeTeachers;
