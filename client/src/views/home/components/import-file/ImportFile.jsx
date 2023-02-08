@@ -3,18 +3,19 @@ import { FormControl, Input } from "@chakra-ui/react";
 import { useState } from "react";
 import { ExcelRenderer } from "react-excel-renderer";
 import { useDispatch } from "react-redux";
-import importFileSlice from "./importFileSlice";
+import importFileSlice from "../../redux/slices/importFileSlice";
 
 // import * as XLSX from "xlsx";
 
 const ImportFile = (props) => {
   const dispatch = useDispatch();
 
-  const { setTable } = props;
+  // const { setTable } = props;
   // const [table, setTable] = useState({});
 
   const fileHandler = (event) => {
     let fileObj = event.target.files[0];
+    console.log(fileObj.type);
     let teachers = [];
 
     //just pass the fileObj as parameter
@@ -63,7 +64,13 @@ const ImportFile = (props) => {
 
   return (
     <FormControl>
-      <input type="file" onChange={fileHandler} style={{ padding: "10px" }} />
+      <input
+        type="file"
+        accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,
+      application/vnd.ms-excel"
+        onChange={fileHandler}
+        style={{ padding: "10px" }}
+      />
     </FormControl>
   );
 };
