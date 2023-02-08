@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import ImportFile from "../import-file/ImportFile";
 import "./selectList.scss";
-import { freeTimeTeachersSelector } from "../../redux/selectors";
+import { freeTimeTeachersSelector } from "../../../../selectors/selectors";
 
 
 
@@ -23,17 +23,7 @@ const SelectList = () => {
       label: "Giảng viên đang được phân ít giờ",
     },
   ];
-  const giangVien = [
-    { name: "longnv26", bomon: "UDPM", caRanh: "1,3,4,6" },
-    { name: "longnv26", bomon: "UDPM", caRanh: "1,3,4,6" },
-    { name: "longnv26", bomon: "UDPM", caRanh: "1,3,4,6" },
-    { name: "longnv26", bomon: "UDPM", caRanh: "1,3,4,6" },
-    { name: "longnv26", bomon: "UDPM", caRanh: "1,3,4,6" },
-    { name: "longnv26", bomon: "UDPM", caRanh: "1,3,4,6" },
-    { name: "longnv26", bomon: "UDPM", caRanh: "1,3,4,6" },
-    { name: "longnv26", bomon: "UDPM", caRanh: "1,3,4,6" },
-    { name: "longnv26", bomon: "UDPM", caRanh: "1,3,4,6" },
-  ];
+  
 
   // let { rows, cols } = table;
   // let teachers = [];

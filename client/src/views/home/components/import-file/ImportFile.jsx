@@ -3,7 +3,7 @@ import { FormControl, Input } from "@chakra-ui/react";
 import { useState } from "react";
 import { ExcelRenderer } from "react-excel-renderer";
 import { useDispatch } from "react-redux";
-import importFileSlice from "../../redux/slices/importFileSlice";
+import importFileSlice from "../../../../stores/slices/importFileSlice";
 
 // import * as XLSX from "xlsx";
 
