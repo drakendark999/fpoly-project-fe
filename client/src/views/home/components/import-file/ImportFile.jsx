@@ -1,6 +1,6 @@
 import React from "react";
 import { FormControl, Input } from "@chakra-ui/react";
-import { useState } from "react";
+
 import { ExcelRenderer } from "react-excel-renderer";
 import { useDispatch } from "react-redux";
 import importFileSlice from "../../../../stores/slices/importFileSlice";
@@ -10,9 +10,7 @@ import importFileSlice from "../../../../stores/slices/importFileSlice";
 const ImportFile = (props) => {
   const dispatch = useDispatch();
 
-  // const { setTable } = props;
-  // const [table, setTable] = useState({});
-
+  
   const fileHandler = (event) => {
     let fileObj = event.target.files[0];
     console.log(fileObj.type);
@@ -48,19 +46,7 @@ const ImportFile = (props) => {
     });
   };
 
-  // const handleFileSelect = (e) => {
-  //   const files = e.target.files;
-  //   const reader = new FileReader();
-  //   reader.onload = (e) => {
-  //     const bstr = e.target.result;
-  //     const wb = XLSX.read(bstr, { type: "binary" });
-  //     const wsname = wb.SheetNames[0];
-  //     const ws = wb.Sheets[wsname];
-  //     const data = XLSX.utils.sheet_to_json(ws, { header: 1 });
-  //     setTable(data);
-  //   };
-  //   reader.readAsBinaryString(files[0]);
-  // };
+  
 
   return (
     <FormControl>
