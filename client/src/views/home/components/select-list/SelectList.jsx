@@ -8,12 +8,13 @@ import { useSelector } from "react-redux";
 import ImportFile from "../import-file/ImportFile";
 import "./selectList.scss";
 import { freeTimeTeachersSelector } from "../../../../selectors/selectors";
-
-
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { useDispatch } from "react-redux";
+import importFileSlice from "../../../../stores/slices/importFileSlice";
 
 const SelectList = () => {
   const [table, setTable] = useState({});
-
+  const dispatch = useDispatch();
   const options = [
     { value: "cung chuyen mon", label: "Cùng chuyên môn" },
     { value: "cung bo mon", label: "Cùng bộ môn" },
@@ -23,7 +24,6 @@ const SelectList = () => {
       label: "Giảng viên đang được phân ít giờ",
     },
   ];
-  
 
   // let { rows, cols } = table;
   // let teachers = [];
@@ -41,7 +41,28 @@ const SelectList = () => {
   // );
   // }
 
+
+
   let teachers = useSelector(freeTimeTeachersSelector);
+
+  // console.log(teachers);
+
+  // Hàm handleOnDragEnd
+  const handleOnDragEnd = (result) => {
+    // console.log(result)
+    if (!result.destination) return;
+
+    const { source, destination } = result;
+    const arr = Array.from(teachers)
+    console.log(arr)
+    // console.log(source, destination)
+    const [remove] = arr.splice(source.index,1)
+    console.log(remove)
+    
+    arr.splice(destination.index,0,remove);
+    dispatch(importFileSlice.actions.dropDragInColGV2(arr))
+    console.log(arr)
+  }
 
   return (
     <>
@@ -62,12 +83,59 @@ const SelectList = () => {
         >
           Danh sách giảng viên rảnh
         </Text>
+        <DragDropContext onDragEnd={result => {
+          handleOnDragEnd(result)
+        }}>
+          {/* {teachers.map((e, index) => {
+              return <SelectBox draggable key={index} datalist={e} />;
+            })} */}
 
-        <Box h={600} overflowY="auto">
-          {teachers.map((e, index) => {
-            return <SelectBox draggable key={index} datalist={e} />;
-          })}
-        </Box>
+          <Droppable droppableId="listGV2">
+            {(provided, snapshot) => {
+              return (
+                <Box
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
+                  className="listGV2"
+                  h={600}
+
+                  overflowY="auto"
+                >
+                  {teachers.map((e, index) => {
+                    {
+                      return (
+                        <Draggable
+                          key={e.name}
+                          draggableId={e.name}
+                          index={index}
+                        >
+                          {(provided) => (
+                            <Box
+                              border='1px' borderColor='gray' borderRadius='base' py={3} px={5} m={3} cursor='pointer'
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                            >
+                              <Flex justify='space-between'>
+                                <Text id='tenGV' as='b'>{e.name}</Text>
+                                <Text id='boMon' as='abbr'>
+                                  Bộ môn: <span>{e.bomon}</span>
+                                </Text>
+                              </Flex>
+                              <Text id='caRanh' as='i' fontSize='sm' display='block'>
+                                Ca rảnh: {e.caRanh}
+                              </Text>
+                            </Box>
+                          )}
+                        </Draggable>
+                      )
+                    }
+                  })}{provided.placeholder}
+                </Box>
+              );
+            }}
+          </Droppable>
+        </DragDropContext>
       </Flex>
     </>
   );

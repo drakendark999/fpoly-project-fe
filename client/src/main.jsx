@@ -13,11 +13,10 @@ import store from "./stores/store";
 //     },
 // ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
-    <React.StrictMode>
         <BrowserRouter>
             <Provider store={store}>
+                {console.log(store.getState())}
                 <App />
             </Provider>
         </BrowserRouter>
-    </React.StrictMode>
 );
