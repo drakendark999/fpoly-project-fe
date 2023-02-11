@@ -6,6 +6,7 @@ import FormSelect from "../form-select/FormSelect";
 import ImportFile from "../import-file/ImportFile";
 import SelectList from "../select-list/SelectList";
 import Paginator from "../paginator/Paginator";
+import DragDrop from "../drag-drop/DragDrop";
 
 const Layout = () => {
     const arrayA = [
@@ -69,13 +70,15 @@ const Layout = () => {
                 <GridItem colSpan={4}>
                     <Header />
                     <FormSelect />
-                    {/* <Table arrayA={data} /> */}
+                    {/* <Table arrayA={data} /> cmt sẵn */} 
                     <Paginator arrayA={arrayA}  itemsPerPage={24} />
                 </GridItem>
                 <GridItem colSpan={1} borderLeft='1px' borderColor='black' ml={2} pl={2} py={2} >
                     <SelectList />
                 </GridItem>
             </Grid>
+
+            <DragDrop />
         </>
     );
 };
