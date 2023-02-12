@@ -36,10 +36,10 @@ const TableBox = (props) => {
         })
     }));
     const addGv2=(name,index) =>{
-        console.log(name)
+       
         
         dispatch(dragAndDrogSlice.actions.addGv2({name,index}))
-        // dispatch(importFileSlice.actions.deleteFreeTimeTeachers({name}))
+        dispatch(importFileSlice.actions.deleteFreeTimeTeachers(name))
     }
     return (
         <>

@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const importFileSlice = createSlice({
   name: "importFile",
   initialState: {
+    filterValue:'',
     freeTimeTeachers: [
       // [
       //     {},
@@ -15,10 +16,9 @@ const importFileSlice = createSlice({
       state.freeTimeTeachers = payload;
     },
 
-    deleteFreeTimeTeachers: (state,action) => {
-      console.log(action.payload);
-      state.freeTimeTeachers = state.freeTimeTeachers.filter(data => data.name!=action.payload.name)
-    }
+    // deleteFreeTimeTeachers: (state,action) => {
+    //   state.filterValue = action.payload
+    // }
   },
 });
 

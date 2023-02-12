@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 // import {Select} from  "chakra-react-select"
 import { Box, Flex, Text } from "@chakra-ui/react";
 import Select from "react-select";
@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import ImportFile from "../import-file/ImportFile";
 import "./selectList.scss";
 import { freeTimeTeachersSelector } from "../../../../selectors/selectors";
+
 import { useDispatch } from "react-redux";
 // import importFileSlice from "../../../../stores/slices/importFileSlice";
 
@@ -41,10 +42,10 @@ const SelectList = () => {
     // }
 
     let teachers = useSelector(freeTimeTeachersSelector);
+    let [listTeacher, setListTeacher] = useState(teachers);
+    useEffect(()=>{
 
-    // console.log(teachers);
-
-    
+    },[listTeacher])
 
     return (
         <>
