@@ -15,9 +15,10 @@ const importFileSlice = createSlice({
       state.freeTimeTeachers = payload;
     },
 
-    dropDragInColGV2: (state, { payload }) => {
-      state.freeTimeTeachers = payload;
-    },
+    deleteFreeTimeTeachers: (state,action) => {
+      console.log(action.payload);
+      state.freeTimeTeachers = state.freeTimeTeachers.filter(data => data.name!=action.payload.name)
+    }
   },
 });
 
