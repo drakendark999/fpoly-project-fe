@@ -300,20 +300,15 @@ const arrayA = [
 const dragAndDrogSlice = createSlice({
     name: "lichThi",
     initialState: {
-        arrayA: arrayA
+        arrayA: arrayA,
     },
     reducers: {
-       
         addGv2: (state, action) => {
-            state.arrayA[action.payload.index].gv2 = action.payload.name;
+            state.arrayA.find(e=>e.id==action.payload.id).gv2 = action.payload.name;
         },
         editGv2: (state, action) => {
-            
-            console.log(arrayA.find(e=>e.id==action.payload.idFirst).gv2);
-            state.arrayA.find(e=>e.id==action.payload.idSecond).gv2 =state.arrayA.find(e=>e.id==action.payload.idFirst).gv2
-            state.arrayA.find(e=>e.id==action.payload.idFirst).gv2=''
-            
-            
+            state.arrayA.find((e) => e.id == action.payload.idSecond).gv2 = state.arrayA.find((e) => e.id == action.payload.idFirst).gv2;
+            state.arrayA.find((e) => e.id == action.payload.idFirst).gv2 = "";
         },
     },
 });

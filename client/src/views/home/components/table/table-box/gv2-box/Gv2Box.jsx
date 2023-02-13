@@ -2,8 +2,8 @@ import { Box, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useDrag } from "react-dnd";
 
-const Gv2Box = ({ gv2, index, id }) => {
-    const [changeGv2, setChangeGv2] = useState(gv2);
+const Gv2Box = ({ gv2, id }) => {
+    
     const [{ isDragging }, dragFix] = useDrag(() => ({
         type:'boxFix',
         item :{id:id},

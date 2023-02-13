@@ -3,12 +3,13 @@ import { Box, GridItem, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import { useDrop, useDrag } from "react-dnd";
 import dragAndDrogSlice from "../../../../../stores/slices/dragAndDrogSlice";
-import importFileSlice from "../../../../../stores/slices/importFileSlice";
+// import importFileSlice from "../../../../../stores/slices/importFileSlice";
 import { useDispatch } from "react-redux";
 import Gv2Box from "./gv2-box/Gv2Box";
 const TableBox = (props) => {
     let { index } = props;
     let data = props.datalist;
+    console.log(data)
     
 
     const dispatch = useDispatch();
@@ -33,7 +34,7 @@ const TableBox = (props) => {
     const [{ isOver }, drop] = useDrop(() => ({
         accept: "box",
         drop: (item) => {
-            addGv2(item.name, index);
+            addGv2(item.name, data.id);
         },
         collect: (monitor) => ({
             isOver: !!monitor.isOver(),
@@ -51,9 +52,9 @@ const TableBox = (props) => {
         }),
     }));
 
-    const addGv2 = (name, index) => {
+    const addGv2 = (name, id) => {
         console.log(name);
-        dispatch(dragAndDrogSlice.actions.addGv2({ name, index }));
+        dispatch(dragAndDrogSlice.actions.addGv2({ name, id }));
         // dispatch(importFileSlice.actions.deleteFreeTimeTeachers(name))
     };
     const editGv2 = (idFirst,idSecond) => {
@@ -70,7 +71,7 @@ const TableBox = (props) => {
                 </Box>
                 <div ref={dropFix}>
                     <Box style={{ minHeight: "20px" }} color={colorDefaults[data.stt]} mt={1} id="giangVien2" onClick={acceptClick}>
-                        <Gv2Box id={data.id} gv2={data.gv2} index={index} />
+                        <Gv2Box id={data.id} gv2={data.gv2} />
                     </Box>
                 </div>
             </GridItem>
