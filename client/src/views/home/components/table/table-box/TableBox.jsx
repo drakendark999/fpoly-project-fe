@@ -7,10 +7,7 @@ import dragAndDrogSlice from "../../../../../stores/slices/dragAndDrogSlice";
 import { useDispatch } from "react-redux";
 import Gv2Box from "./gv2-box/Gv2Box";
 const TableBox = (props) => {
-    let { index } = props;
     let data = props.datalist;
-    console.log(data)
-    
 
     const dispatch = useDispatch();
     const [color, setColor] = useState("#FED049");
@@ -49,7 +46,7 @@ const TableBox = (props) => {
     const [{ isOverFix }, dropFix] = useDrop(() => ({
         accept: "boxFix",
         drop: (item) => {
-            editGv2(item.id,item['nowId']=data.id);
+            editGv2(item.id, (item["nowId"] = data.id));
         },
         collect: (monitor) => ({
             isOverFix: !!monitor.isOver(),
@@ -61,9 +58,9 @@ const TableBox = (props) => {
         dispatch(dragAndDrogSlice.actions.addGv2({ name, id }));
         // dispatch(importFileSlice.actions.deleteFreeTimeTeachers(name))
     };
-    const editGv2 = (idFirst,idSecond) => {
-        console.log({ idFirst,idSecond})
-        dispatch(dragAndDrogSlice.actions.editGv2({ idFirst,idSecond}));
+    const editGv2 = (idFirst, idSecond) => {
+        // console.log({ idFirst,idSecond})
+        dispatch(dragAndDrogSlice.actions.editGv2({ idFirst, idSecond }));
     };
     return (
         <>
