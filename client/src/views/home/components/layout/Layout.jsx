@@ -25,7 +25,7 @@ const Layout = () => {
                     <Header />
                     <FormSelect />
                     {/* <Table arrayA={data} /> cmt sẵn */} 
-                    <Paginator arrayA={arrayA}  itemsPerPage={24} />
+                    <Paginator arrayA={arrayA}  itemsPerPage={32} />
                 </GridItem>
                 <GridItem colSpan={1} borderLeft='1px' borderColor='black' ml={2} pl={2} py={2} >
                     <SelectList />
