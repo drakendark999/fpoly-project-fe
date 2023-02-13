@@ -15,7 +15,7 @@ import { getLichThi } from "../../../../selectors/selectors";
 const Layout = () => {
 
     // Get data
-    const arrayA = useSelector(getLichThi)
+    let arrayA = useSelector(getLichThi)
   
     
     return (
