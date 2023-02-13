@@ -56,9 +56,11 @@ const SelectList = () => {
                     Danh sách giảng viên rảnh
                 </Text>
 
-                {teachers.map((e, index) => {
+                <Box h={600} overflowY="auto">
+                    {teachers.map((e, index) => {
                     return <SelectBox key={index} datalist={e} />;
                 })}
+                </Box>
             </Flex>
         </>
     );

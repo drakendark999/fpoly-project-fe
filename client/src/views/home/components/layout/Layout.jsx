@@ -20,7 +20,7 @@ const Layout = () => {
     
     return (
         <DndProvider backend={HTML5Backend} >
-            <Grid templateColumns="repeat(5, 1fr)" gap={4}>
+            <Grid templateColumns="repeat(5, 1fr)" gap={4} mt={1}>
                 <GridItem colSpan={4}>
                     <Header />
                     <FormSelect />
