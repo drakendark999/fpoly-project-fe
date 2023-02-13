@@ -469,7 +469,7 @@ const dragAndDrogSlice = createSlice({
     reducers: {
 
         addGv2: (state, action) => {
-            state.arrayA[action.payload.index].gv2 = action.payload.name;
+            state.arrayA.find(e=>e.id==action.payload.id).gv2 = action.payload.name;
         },
         editGv2: (state, action) => {
 

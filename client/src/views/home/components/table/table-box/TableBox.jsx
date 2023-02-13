@@ -54,7 +54,7 @@ const TableBox = (props) => {
     }));
 
     const addGv2 = (name, id) => {
-        console.log(name);
+       
         dispatch(dragAndDrogSlice.actions.addGv2({ name, id }));
         // dispatch(importFileSlice.actions.deleteFreeTimeTeachers(name))
     };
