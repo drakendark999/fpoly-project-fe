@@ -5,7 +5,7 @@ const indexRouter = Router();
 
 indexRouter.get("/", async ( req,res) => {
   
-  res.send('123');
+  res.send("123");
 });
 
 export default indexRouter;
