@@ -472,7 +472,6 @@ const dragAndDrogSlice = createSlice({
             state.arrayA.find(e=>e.id==action.payload.id).gv2 = action.payload.name;
         },
         editGv2: (state, action) => {
-
             console.log(arrayA.find(e => e.id == action.payload.idFirst).gv2);
             state.arrayA.find(e => e.id == action.payload.idSecond).gv2 = state.arrayA.find(e => e.id == action.payload.idFirst).gv2
             state.arrayA.find(e => e.id == action.payload.idFirst).gv2 = ''
