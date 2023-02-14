@@ -1,6 +1,4 @@
-import {
-    createSlice
-} from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const arrayA = [
   {
@@ -462,24 +460,31 @@ const arrayA = [
 ];
 
 const dragAndDrogSlice = createSlice({
-    name: "lichThi",
-    initialState: {
-        arrayA: arrayA
+  name: "lichThi",
+  initialState: {
+    arrayA: arrayA,
+  },
+  reducers: {
+    addGv2: (state, action) => {
+      state.arrayA.find((e) => e.id == action.payload.id).gv2 =
+        action.payload.name;
     },
-    reducers: {
-
-        addGv2: (state, action) => {
-            state.arrayA.find(e=>e.id==action.payload.id).gv2 = action.payload.name;
-        },
-        editGv2: (state, action) => {
-
-            console.log(arrayA.find(e => e.id == action.payload.idFirst).gv2);
-            state.arrayA.find(e => e.id == action.payload.idSecond).gv2 = state.arrayA.find(e => e.id == action.payload.idFirst).gv2
-            state.arrayA.find(e => e.id == action.payload.idFirst).gv2 = ''
-
-
-        },
+    editGv2: (state, action) => {
+      console.log(arrayA.find((e) => e.id == action.payload.idFirst).gv2);
+      state.arrayA.find((e) => e.id == action.payload.idSecond).gv2 =
+        state.arrayA.find((e) => e.id == action.payload.idFirst).gv2;
+      state.arrayA.find((e) => e.id == action.payload.idFirst).gv2 = "";
     },
+    editGv1: (state, action) => {
+      console.log(action.payload);
+      // [index, objN] = action.payload;
+      let index = action.payload[0];
+      let objN = action.payload[1];
+      console.log("index: ", index);
+      console.log("ObjN: ", objN);
+      state.arrayA.splice(index, 1, objN);
+    },
+  },
 });
 
 export default dragAndDrogSlice;
