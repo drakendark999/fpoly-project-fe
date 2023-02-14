@@ -9,6 +9,7 @@ const Table = (props) => {
         border: "1px",
         borderColor: "black",
     };
+    // console.log(arrayA)
 
     
     // ];

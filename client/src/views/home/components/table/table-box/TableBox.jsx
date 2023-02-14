@@ -1,16 +1,21 @@
 import React from "react";
-import { Box, GridItem, Text } from "@chakra-ui/react";
+import { Box, Button, GridItem, Text, Stack, Select } from "@chakra-ui/react";
 import { useState } from "react";
 import { useDrop, useDrag } from "react-dnd";
 import dragAndDrogSlice from "../../../../../stores/slices/dragAndDrogSlice";
 // import importFileSlice from "../../../../../stores/slices/importFileSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Gv2Box from "./gv2-box/Gv2Box";
+import EditBoxGv1 from "./EditBoxGv1";
+import { getLichThi } from "../../../../../selectors/selectors";
+
 const TableBox = (props) => {
     let data = props.datalist;
-
+    const [editCheck, setEditCheck] = useState(true);
+    const [boxEdit, setBoxEdit] = useState(false)
     const dispatch = useDispatch();
     const [color, setColor] = useState("#FED049");
+    let index = props.index;
 
     const colorDefaults = {
         waiting: "#ffa700",
@@ -26,8 +31,7 @@ const TableBox = (props) => {
 
     let backgroundColor = "white";
 
-    if (data.mon != "")
-    {
+    if (data.mon != "") {
         backgroundColor = backgroundColors[data.stt];
     }
 
@@ -54,7 +58,7 @@ const TableBox = (props) => {
     }));
 
     const addGv2 = (name, id) => {
-       
+
         dispatch(dragAndDrogSlice.actions.addGv2({ name, id }));
         // dispatch(importFileSlice.actions.deleteFreeTimeTeachers(name))
     };
@@ -62,19 +66,57 @@ const TableBox = (props) => {
         // console.log({ idFirst,idSecond})
         dispatch(dragAndDrogSlice.actions.editGv2({ idFirst, idSecond }));
     };
+
+    // CLick Gv1
+
+    const editGv1 = () => {
+        editCheck ? setEditCheck(false) : setEditCheck(true)
+    }
+
+    const boxEditGv1 = () => {
+        boxEdit ? setBoxEdit(false) : setBoxEdit(true)
+    }
+
+    const changeGv1InData = (e) => {
+        let objNew = {
+            id: data.id,
+            mon: data.mon,
+            lop: data.lop,
+            gv1: e.target.value,
+            gv2: data.gv2,
+            stt: data.stt,
+          }
+        console.log(index)
+        console.log(objNew)
+        dispatch(dragAndDrogSlice.actions.editGv1([index,objNew]))
+        // const arrOld = useSelector(getLichThi);
+        // console.log(arrOld)
+        setBoxEdit(false)
+        setEditCheck(true)
+    }
+
     return (
         <>
-            <GridItem ref={drop} backgroundColor={backgroundColor} {...props} p={2}>
-                <Box borderBottom="1px" borderColor="black" minH='73'>
+            <GridItem ref={drop} backgroundColor={backgroundColor} {...props}  p={2} position='relative'>
+                <Box borderBottom="1px" borderColor="black" minH='73' >
                     <Text id="monHoc">{data.mon}</Text>
                     <Text id="lop">{data.lop}</Text>
-                    <Text id="giangVien">{data.gv1}</Text>
+                    {/* <Text id="giangVien">{data.gv1}</Text> */}
+                    <Text id="giangVien" cursor='pointer' onClick={boxEditGv1}>{data.gv1}</Text>
+
                 </Box>
                 <div ref={dropFix}>
                     <Box style={{ minHeight: "20px" }} color={colorDefaults[data.stt]} mt={1} id="giangVien2">
                         <Gv2Box id={data.id} gv2={data.gv2} />
                     </Box>
                 </div>
+                {boxEdit ? <Box bg='lightyellow' maxH='76px' w='100%' position='absolute' left='100px' zIndex='1000' top='13px'>
+                    <Select value={data.gv1} onChange={changeGv1InData}>
+                        <option value='locth5'>locth5</option>
+                        <option value='longnv36'>longnv36</option>
+
+                    </Select>
+                </Box> : ""}
             </GridItem>
         </>
     );
