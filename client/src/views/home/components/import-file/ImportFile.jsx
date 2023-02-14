@@ -1,5 +1,5 @@
-import React from "react";
-import { FormControl, Input } from "@chakra-ui/react";
+import React, { useEffect } from "react";
+import { FormControl, Input, Button } from "@chakra-ui/react";
 
 import { ExcelRenderer } from "react-excel-renderer";
 import { useDispatch } from "react-redux";
@@ -10,7 +10,6 @@ import importFileSlice from "../../../../stores/slices/importFileSlice";
 const ImportFile = (props) => {
   const dispatch = useDispatch();
 
-  
   const fileHandler = (event) => {
     let fileObj = event.target.files[0];
     console.log(fileObj.type);
@@ -41,15 +40,18 @@ const ImportFile = (props) => {
             teacher.bomon &&
             teacher.name.length
         );
-        dispatch(importFileSlice.actions.freeTimeTeachers(teachers));
+        // dispatch(importFileSlice.actions.freeTimeTeachers(teachers));
       }
     });
   };
 
   
+  let handleBtn = () => {
+    
+  }
 
   return (
-    <FormControl>
+    <FormControl >
       <input
         type="file"
         accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,
@@ -57,6 +59,7 @@ const ImportFile = (props) => {
         onChange={fileHandler}
         style={{ padding: "10px" }}
       />
+    <Button display='flex' colorScheme={"telegram"} size="sm" onClick={handleBtn}>Thêm dữ liệu GV2</Button>
     </FormControl>
   );
 };
