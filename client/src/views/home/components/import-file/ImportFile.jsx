@@ -1,57 +1,69 @@
 import React, { useEffect } from "react";
-import { FormControl, Input, Button } from "@chakra-ui/react";
+import { FormControl, Input, Button, Text } from "@chakra-ui/react";
 
 import { ExcelRenderer } from "react-excel-renderer";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import importFileSlice from "../../../../stores/slices/importFileSlice";
-
-// import * as XLSX from "xlsx";
+import { freeTimeTeachersSelector } from "../../../../selectors/selectors";
+import { addGV2 } from "../../../../stores/slices/importFileSlice";
 
 const ImportFile = (props) => {
   const dispatch = useDispatch();
+  let teachersFromDb = useSelector(freeTimeTeachersSelector)
 
   const fileHandler = (event) => {
     let fileObj = event.target.files[0];
     console.log(fileObj.type);
     let teachers = [];
 
+    console.log(teachersFromDb)
     //just pass the fileObj as parameter
     ExcelRenderer(fileObj, (err, resp) => {
       if (err) {
         console.log(err);
       } else {
-        // setTable({
-        //   cols: resp.cols,
-        //   rows: resp.rows,
-        // });
 
-        teachers = resp.rows.map((item, index) => {
-          return { name: item[1], bomon: item[4], caRanh: "1,3,4,6" };
+        teachers = resp.rows.reduce((teachers, item) => {
+          if (item.length >= 5 && item[0]) {
+            teachers.push({
+              idNV: item[0],
+              MaNV: item[1],
+              hoVaTen: item[2],
+              doiTuong: item[3],
+              BoMon: item[4],
+              ghiChu: item[5],
+            });
+          }
+
+          return teachers;
+        }, []);
+
+        //Delete dòng đầu tiêu đề;
+        teachers = teachers.slice(1);
+        let results = [];
+
+        // Check duplicates idNV trong file excel, nếu duplicate thì chỉ lấy cái đầu
+        teachers.forEach((d) => {
+          let found = false;
+          results.forEach((r) => {
+            if (!found && r.idNV === d.idNV) found = true;
+          });
+          if (!found) results.push(d);
         });
 
-        // Loại bỏ tên các cột A, B, C, D, E và các trường IDNV, Mã NV, Họ Và Tên, Đối tượng (loại Hơp đồng), Bộ Môn, Ghi Chú
-        teachers = teachers.slice(3, teachers.length - 1);
+        // Lọc rows chưa có idNV trong db để thêm
+        results = results.filter(md =>
+          teachersFromDb.every(fd => fd.idNV !== md.idNV));
 
-        // Loại bỏ item vô nghĩa tên rỗng, undefined, ...
-        teachers = teachers.filter(
-          (teacher) =>
-            teacher.name &&
-            teacher.name.length &&
-            teacher.bomon &&
-            teacher.name.length
-        );
-        // dispatch(importFileSlice.actions.freeTimeTeachers(teachers));
+        results.map(x => dispatch(addGV2(x)))
       }
     });
   };
 
-  
-  let handleBtn = () => {
-    
-  }
 
   return (
     <FormControl >
+      <Text as="b" display="block" textAlign="center">Thêm mới GV2 bằng file excel</Text>
       <input
         type="file"
         accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,
@@ -59,7 +71,6 @@ const ImportFile = (props) => {
         onChange={fileHandler}
         style={{ padding: "10px" }}
       />
-    <Button display='flex' colorScheme={"telegram"} size="sm" onClick={handleBtn}>Thêm dữ liệu GV2</Button>
     </FormControl>
   );
 };

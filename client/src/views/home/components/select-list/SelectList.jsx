@@ -37,19 +37,6 @@ const SelectList = () => {
 
   // },[listTeacher])
 
-//   let handleBtn =  () => {
-    // dispatch(
-    //   addGV2({
-    //     idNV: "000443423",
-    //     MaNV: "khanhttn",
-    //     hoVaTen: "Tôn Thất Nhật Khánh",
-    //     doiTuong: "CBNV",
-    //     BoMon: "B. Đào tạo",
-    //     ghiChu: "",
-    //   })
-    // );
-//   };
-
   return (
     <>
       <Flex direction="column">
@@ -70,6 +57,7 @@ const SelectList = () => {
         >
           Danh sách giảng viên rảnh
         </Text>
+        <Text as="i" display="block" textAlign="center">Tổng cộng: {teachers.length} GV2</Text>
 
         <Box h={600} overflowY="auto">
           {teachers.map((e, index) => {

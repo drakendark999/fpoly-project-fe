@@ -2,6 +2,11 @@ import { Sequelize, DataTypes } from "sequelize";
 import sequelize from "./connect";
 
 const GiangVien2 = sequelize.define("giangvien2s", {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
     idNV: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -24,7 +29,7 @@ const GiangVien2 = sequelize.define("giangvien2s", {
     },
     ghiChu: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     
 });
