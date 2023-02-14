@@ -20,8 +20,8 @@ const Layout = () => {
         dispatch(fetchAllGV1())
     },[])
     let arrayA = useSelector(getLichThi)
-    console.log(arrayA)
-  
+    // console.log(arrayA)
+    
     
     return (
         <DndProvider backend={HTML5Backend} >

@@ -525,16 +525,20 @@ export const fetchAllGV1 = createAsyncThunk("lichThi/fetchAllGV1", async () => {
   //     stt: "confirm",
   //   },
   let arr = [];
-  console.log(response.data);
+
+  // console.log(response.data);
   response.data.map((item) => {
     let obj = {
       id: parseInt(item.id),
       mon: item.ma_Mon,
+      ten_Phong: item.ten_Phong,
       lop: item.ma_Lop,
       gv1: item.GV1,
       gv2: item.GV2,
       stt: "confirm",
+      caThi: item.ca_Thi,
     };
+
     arr.push(obj);
   });
   return arr;
