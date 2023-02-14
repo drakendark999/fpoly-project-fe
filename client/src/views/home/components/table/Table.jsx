@@ -27,11 +27,10 @@ const Table = (props) => {
             {/* Body table */}
             <GridItem>
                 <Grid height="100%" direction='column' minH='355px'templateColumns="repeat(1, 1fr)">
-                    <TableSideBar {...style} count="1" />
-                    <TableSideBar {...style} count="2" />
-                    <TableSideBar {...style} count="2" />
-                    <TableSideBar {...style} count="2" />
-                    
+                    <TableSideBar {...style} count="T1101" />
+                    <TableSideBar {...style} count="T1102" />
+                    <TableSideBar {...style} count="T1103" />
+                    <TableSideBar {...style} count="T1104" />
                 </Grid>
             </GridItem>
             {/* Body content box */}

@@ -10,12 +10,17 @@ import Paginator from "../paginator/Paginator";
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { getLichThi } from "../../../../selectors/selectors";
+import { fetchAllGV1 } from "../../../../stores/slices/dragAndDrogSlice";
 const Layout = () => {
-
+    const dispatch = useDispatch();
     // Get data
+    useEffect(()=>{
+        dispatch(fetchAllGV1())
+    },[])
     let arrayA = useSelector(getLichThi)
+    console.log(arrayA)
   
     
     return (
