@@ -7,7 +7,7 @@ const SelectBox = (props) => {
 
     const [{ isDragging }, drag] = useDrag(() => ({
         type: "box",
-        item: { name: data.name },
+        item: { name: data.MaNV },
         collect: (monitor) => ({
             isDragging: !!monitor.isDragging(),
         }),
@@ -18,15 +18,15 @@ const SelectBox = (props) => {
         <Box style={{ opacity: isDragging ? "0" : "1" }} ref={drag} border="1px" borderColor="gray" borderRadius="base" py={3} px={5} m={3} cursor="pointer">
             <Flex justify="space-between">
                 <Text id="tenGV" as="b">
-                    {data.name}
+                    {data.MaNV}
                 </Text>
                 <Text id="boMon" as="abbr">
-                    Bộ môn: <span>{data.bomon}</span>
+                    Bộ môn: <span>{data.BoMon}</span>
                 </Text>
             </Flex>
-            <Text id="caRanh" as="i" fontSize="sm" display="block">
+            {/* <Text id="caRanh" as="i" fontSize="sm" display="block">
                 Ca rảnh: {data.caRanh}
-            </Text>
+            </Text> */}
         </Box>
     );
 };

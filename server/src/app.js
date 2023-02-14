@@ -4,11 +4,16 @@ import * as dotenv from "dotenv";
 import path from "path";
 import createError from "http-errors";
 
+// CORS Policy
+import cors from "cors"
+
 // Routes import
 import indexRouter from "./routes";
+import giangVien2Router from "./routes/api/giangvien2";
 
 // App initialization
 const app = express();
+app.use(cors());
 dotenv.config();
 const PORT = process.env.PORT || 3000;
 
@@ -21,6 +26,7 @@ app.use(json());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
+app.use("/api/gv2", giangVien2Router);
 
 
 app.listen(PORT, () => console.log(`App listening at port ${PORT}`));
@@ -40,3 +46,4 @@ app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.render("error");
 });
+
