@@ -19,14 +19,14 @@ const TableBox = (props) => {
     let index = props.index;
 
     const colorDefaults = {
-        waiting: "#ffa700",
-        confirm: "green",
-        refuse: "red",
+        pending: "#ffa700",
+        confirmed: "green",
+        rejected: "red",
     };
     const backgroundColors = {
-        confirm: "#C0EEE4",
-        waiting: "#ffff0047",
-        refuse: "#ff040440",
+        confirmed: "#C0EEE4",
+        pending: "#ffff0047",
+        rejected: "#ff040440",
         "": "tomato",
     };
 
@@ -35,6 +35,8 @@ const TableBox = (props) => {
     if (data.mon != "") {
         backgroundColor = backgroundColors[data.stt];
     }
+
+    console.log(data);
 
     // add Gv 2
     const [{ isOver }, drop] = useDrop(() => ({

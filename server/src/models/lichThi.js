@@ -59,7 +59,13 @@ const lichThi = sequelize.define(
     },
     GV2: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
+    },
+    status: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      comment:
+        '"pending": đang chờ; "rejected": từ chối; "confirmed": đã xác nhận; "": chưa có gv2',
     },
   },
   {
@@ -67,6 +73,7 @@ const lichThi = sequelize.define(
     tableName: "lichThi",
   }
 );
+
 lichThi.sync({ alter: true });
 
 export default lichThi;

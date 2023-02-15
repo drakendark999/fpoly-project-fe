@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Grid, GridItem } from "@chakra-ui/react";
+import { Button, Grid, GridItem } from "@chakra-ui/react";
 import Header from "../header/Header";
 // import Table from "../table/Table";
 import FormSelect from "../form-select/FormSelect";
@@ -36,6 +36,9 @@ const Layout = () => {
                     <FormSelect />
                     <Table  />
                     {/* <Paginator arrayA={arrayA} itemsPerPage={32} /> */}
+                    <Button colorScheme='cyan' variant='solid' mt={2}>
+                        Lưu lịch thi
+                    </Button>
                 </GridItem>
                 <GridItem colSpan={1} borderLeft="1px" borderColor="black" ml={2} pl={2} py={2}>
                     <SelectList />
