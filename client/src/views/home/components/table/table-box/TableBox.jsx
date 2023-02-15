@@ -82,11 +82,14 @@ const TableBox = (props) => {
         let objNew = {
             id: data.id,
             mon: data.mon,
+            ten_Phong: data.ten_Phong,
             lop: data.lop,
             gv1: e.target.value,
             gv2: data.gv2,
             stt: data.stt,
+            caThi: data.caThi
           }
+          console.log(objNew)
         dispatch(dragAndDrogSlice.actions.editGv1([index,objNew]))
         // const arrOld = useSelector(getLichThi);
         // console.log(arrOld)
