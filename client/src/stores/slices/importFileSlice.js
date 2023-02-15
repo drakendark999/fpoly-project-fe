@@ -38,7 +38,7 @@ const importFileSlice = createSlice({
     })
     .addCase(addGV2.fulfilled, (state, {payload}) => {
       state.freeTimeTeachers.push(payload);
-      console.log("New data", payload);
+      
     })
   }
 });

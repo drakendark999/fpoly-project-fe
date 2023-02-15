@@ -86,8 +86,6 @@ const TableBox = (props) => {
             gv2: data.gv2,
             stt: data.stt,
           }
-        console.log(index)
-        console.log(objNew)
         dispatch(dragAndDrogSlice.actions.editGv1([index,objNew]))
         // const arrOld = useSelector(getLichThi);
         // console.log(arrOld)

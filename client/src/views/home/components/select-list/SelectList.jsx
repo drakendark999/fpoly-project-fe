@@ -31,7 +31,7 @@ const SelectList = () => {
   }, []);
 
   let teachers = useSelector(freeTimeTeachersSelector);
-  let [listTeacher, setListTeacher] = useState(teachers);
+ 
 
   // useEffect(()=>{
 
