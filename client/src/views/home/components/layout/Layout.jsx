@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Grid, GridItem } from "@chakra-ui/react";
+import { Grid, GridItem, Button } from "@chakra-ui/react";
 import Header from "../header/Header";
 // import Table from "../table/Table";
 import FormSelect from "../form-select/FormSelect";
@@ -14,6 +14,10 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import { useSelector, useDispatch } from "react-redux";
 import { getLichThi } from "../../../../selectors/selectors";
 import { fetchAllGV1 } from "../../../../stores/slices/dragAndDrogSlice";
+import { fetchUpdateLichThi } from "../../../../stores/slices/dragAndDrogSlice";
+import ButtonSave from "../button-save-database/ButtonSave";
+
+
 const Layout = () => {
     const dispatch = useDispatch();
     // Get data
@@ -24,7 +28,9 @@ const Layout = () => {
     // let arrayA = useSelector(getLichThi);
     
     
-     
+    //  saveDataBase = onClick
+
+
 
    
     // console.log(arrayA);
@@ -41,7 +47,9 @@ const Layout = () => {
                     <SelectList />
                 </GridItem>
             </Grid>
+            <ButtonSave/>
         </DndProvider>
+        
     );
 };
 

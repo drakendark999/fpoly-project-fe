@@ -74,7 +74,8 @@ const Table = (props) => {
     //     },
     // ];
     // console.log(arrayA)
-   
+    
+
     const sortByCaThi = (caThi)=>{
         let index;
         let sortArray = arrayA.filter((e, i)=>{
