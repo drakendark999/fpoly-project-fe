@@ -37,13 +37,12 @@ const giangVien2Slice = createSlice({
       state.list = payload;
     })
     .addCase(addGV2.fulfilled, (state, {payload}) => {
-<<<<<<< HEAD:client/src/stores/slices/importFileSlice.js
       state.freeTimeTeachers.push(payload);
       
-=======
+
       state.list.push(payload);
       console.log("Data GV2 mới đã thêm vào CSDL:", payload);
->>>>>>> 7020fac1eafb15a036b5e9e0cde903d814c5abd3:client/src/stores/slices/giangVien2Slice.js
+
     })
   }
 });

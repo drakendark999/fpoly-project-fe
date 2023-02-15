@@ -10,7 +10,8 @@ import EditBoxGv1 from "./EditBoxGv1";
 import { getLichThi } from "../../../../../selectors/selectors";
 
 const TableBox = (props) => {
-    let data = props.datalist;
+    let data = props.data;
+   
     const [editCheck, setEditCheck] = useState(true);
     const [boxEdit, setBoxEdit] = useState(false)
     const dispatch = useDispatch();
@@ -95,7 +96,7 @@ const TableBox = (props) => {
 
     return (
         <>
-            <GridItem ref={drop} backgroundColor={backgroundColor} {...props}  p={2} position='relative'>
+            <GridItem ref={drop} backgroundColor={backgroundColor}  p={2} position='relative' border='1px'>
                 <Box borderBottom="1px" borderColor="black" minH='73' >
                     <Text id="monHoc">{data.mon}</Text>
                     <Text id="lop">{data.lop}</Text>
@@ -112,7 +113,6 @@ const TableBox = (props) => {
                     <Select value={data.gv1} onChange={changeGv1InData}>
                         <option value='locth5'>locth5</option>
                         <option value='longnv36'>longnv36</option>
-
                     </Select>
                 </Box> : ""}
             </GridItem>

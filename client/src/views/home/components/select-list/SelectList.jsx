@@ -28,13 +28,13 @@ const SelectList = () => {
     dispatch(fetchAllGV2());
   }, []);
 
-<<<<<<< HEAD
-  let teachers = useSelector(freeTimeTeachersSelector);
+
+  // let teachers = useSelector(freeTimeTeachersSelector);
  
-=======
+
   let teachers = useSelector(giangVien2Selector);
   // let [listTeacher, setListTeacher] = useState(teachers);
->>>>>>> 7020fac1eafb15a036b5e9e0cde903d814c5abd3
+
 
   // useEffect(()=>{
 

@@ -4,32 +4,85 @@ import TableBox from "./table-box/TableBox";
 import TableHead from "./table-head/TableHead";
 import TableSideBar from "./table-sidebar/TableSideBar";
 import TableChild from "./TableChild";
+import TableSort from "./table-sort/TableSort";
+import { useSelector } from "react-redux";
+import { getLichThi } from "../../../../selectors/selectors";
 
-function useInterval(callback, delay) {
-    const savedCallback = useCallback(callback, []);
-    useEffect(() => {
-        const id = setInterval(savedCallback, delay);
-        return () => clearInterval(id);
-    }, [delay, savedCallback]);
-}
+// function useInterval(callback, delay) {
+//     const savedCallback = useCallback(callback, []);
+//     useEffect(() => {
+//         const id = setInterval(savedCallback, delay);
+//         return () => clearInterval(id);
+//     }, [delay, savedCallback]);
+// }
 
 const Table = (props) => {
-    const { arrayA } = props;
-    const arrayAMemo = useMemo(() => arrayA, [arrayA]);
+    
 
     const style = {
         border: "1px",
         borderColor: "black",
     };
     // console.log(arrayA)
+    let arrayA = useSelector(getLichThi);
 
-    let phongThi = [];
-    arrayA.map((item, index) => {
-        phongThi.push(item.ten_Phong);
-    });
-
-    let arrCa = [1, 2, 3, 4, 5, 6, 7, 8];
-    // console.log(arrCa)
+    // let arrayA = [
+    //     {
+    //         id: 1,
+    //         mon: "WEB 1043",
+    //         ten_Phong: "T1103",
+    //         lop: "WE 18202",
+    //         gv1: "loc th5",
+    //         gv2: "abc",
+    //         caThi: 1,
+    //     },
+    //     {
+    //         id: 2,
+    //         mon: "WEB 1043",
+    //         ten_Phong: "T1103",
+    //         lop: "WE 18202",
+    //         gv1: "loc th5",
+    //         gv2: "abc",
+    //         caThi: 2,
+    //     },
+    //     {
+    //         id: 3,
+    //         mon: "WEB 1043",
+    //         ten_Phong: "T1103",
+    //         lop: "WE 18202",
+    //         gv1: "loc th5",
+    //         gv2: "abc",
+    //         caThi: 3,
+    //     },
+    //     {
+    //         id: 4,
+    //         mon: "WEB 1043",
+    //         ten_Phong: "T1101",
+    //         lop: "WE 18202",
+    //         gv1: "loc th5",
+    //         gv2: "abc",
+    //         caThi: 4,
+    //     },
+    //     {
+    //         id: 5,
+    //         mon: "WEB 1043",
+    //         ten_Phong: "T1101",
+    //         lop: "WE 18202",
+    //         gv1: "loc th5",
+    //         gv2: "xyz",
+    //         caThi: 1,
+    //     },
+    // ];
+    
+   
+    const sortByCaThi = (caThi)=>{
+        let sortArray = arrayA.filter(e=>e.caThi==caThi)
+        sortArray = sortArray.sort(function(a, b) {
+            return a.ten_Phong.slice(-1) - b.ten_Phong.slice(-1); ;
+          });
+        return sortArray
+    }
+    
     return (
         <Grid templateColumns="repeat(9, 1fr)" textAlign="center">
             {/* Header table*/}
@@ -52,7 +105,7 @@ const Table = (props) => {
             {/* Body content box */}
             <GridItem colSpan={8}>
                 {/* t01 */}
-                {phongThi.map((item, i) => {
+                {/* {phongThi.map((item, i) => {
                     return (
                         <Grid templateColumns="repeat(8, 1fr)" key={item + i}>
                             {arrCa.map((c) => {
@@ -66,13 +119,22 @@ const Table = (props) => {
                             })}
                         </Grid>
                     );
-                })}
+                })} */}
                 {/* t02 */}
-                {/* <Grid templateColumns="repeat(8, 1fr)">
-                    {arrayA.map((e, index) => {
-                        return <TableBox datalist={e} index={index} key={e.id} {...style} />;
-                    })}
-                </Grid> */}
+                <Grid templateColumns="repeat(8, 1fr)" h="100%">
+                    {/* {arrayA.map((e, index) => {
+                        return <TableBox datalist={e} index={index} key={index} {...style} />;
+                    })} */}
+                    <TableSort data={sortByCaThi} caThi={1} />
+                    <TableSort data={sortByCaThi} caThi={2} />
+                    <TableSort data={sortByCaThi} caThi={3} />
+                    <TableSort data={sortByCaThi} caThi={4} />
+                    <TableSort data={sortByCaThi} caThi={5} />
+                    <TableSort data={sortByCaThi} caThi={6} />
+                    <TableSort data={sortByCaThi} caThi={7} />
+                    <TableSort data={sortByCaThi} caThi={8} />
+                    
+                </Grid>
             </GridItem>
         </Grid>
     );
