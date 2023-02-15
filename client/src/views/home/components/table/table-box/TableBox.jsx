@@ -118,10 +118,12 @@ const TableBox = (props) => {
                         <Gv2Box id={data.id} gv2={data.gv2} />
                     </Box>
                 </div>
-                {boxEdit ? <Box bg='lightyellow' maxH='76px' w='100%' position='absolute' left='100px' zIndex='1000' top='13px'>
+                {boxEdit ? <Box bg='#E5E0FF' boxShadow='0px 0px 3px #cdcdcd' maxH='76px' w='100%' position='absolute' left='100px' zIndex='1000' top='13px'>
                     <Select value={data.gv1} onChange={changeGv1InData}>
                         <option value='locth5'>locth5</option>
                         <option value='longnv36'>longnv36</option>
+                        <option value='hotb'>hotb</option>
+                        <option value='ngahth4'>ngahth4</option>
                     </Select>
                 </Box> : ""}
             </GridItem>

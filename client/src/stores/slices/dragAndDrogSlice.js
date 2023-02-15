@@ -66,7 +66,7 @@ export const fetchAllGV1 = createAsyncThunk("lichThi/fetchAllGV1", async () => {
       lop: item.ma_Lop,
       gv1: item.GV1,
       gv2: item.GV2,
-      stt: "confirm",
+      stt: item.status,
       caThi: item.ca_Thi,
     };
 

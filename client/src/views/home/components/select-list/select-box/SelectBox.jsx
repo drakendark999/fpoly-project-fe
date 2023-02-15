@@ -30,7 +30,7 @@ const SelectBox = (props) => {
           {data.MaNV}
         </Text>
         <Text id="boMon" as="abbr">
-          Bộ môn: <span>{data.BoMon}</span>
+          <span>{data.BoMon}</span>
         </Text>
       </Flex>
       {/* <Text id="caRanh" as="i" fontSize="sm" display="block">
