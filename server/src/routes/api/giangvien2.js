@@ -16,6 +16,13 @@ giangVien2Router.get("/:idNV", async (req, res) => {
 giangVien2Router.post("/", async (req, res) => {
   let data = req.body;
 
+  // const isExist = await GiangVien2.findOne({ where: { idNV: data.idNV } });
+  // if (isExist === null) {
+  //   await GiangVien2.create(data);
+  //   res.json(data);
+  // } else {
+  //   console.log("IDNV đã tồn tại trong db:", data.idNV);
+  // }
   await GiangVien2.create(data);
   res.json(data);
 });

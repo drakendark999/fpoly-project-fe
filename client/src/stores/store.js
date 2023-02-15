@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import dragAndDrogSlice from "./slices/dragAndDrogSlice";
-import importFileSlice from "./slices/importFileSlice";
+import giangVien2Slice from "./slices/giangVien2Slice";
 
 const store = configureStore({
   reducer: {
-    importFile: importFileSlice.reducer,
+    giangVien2: giangVien2Slice.reducer,
     lichThi: dragAndDrogSlice.reducer,
   },
 });

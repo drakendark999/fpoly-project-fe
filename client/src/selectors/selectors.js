@@ -1,7 +1,3 @@
-
-
-export const freeTimeTeachersSelector = (state) =>state.importFile.freeTimeTeachers;
-
-
+export const giangVien2Selector = (state) =>state.giangVien2.list;
 
 export const getLichThi = (state) => state.lichThi.arrayA;

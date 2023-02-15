@@ -2,29 +2,29 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const fetchAllGV2 = createAsyncThunk(
-  "importFile/fetchAllGV2",
+  "giangVien2/fetchAllGV2",
   async () => {
     const response = await axios.get("http://localhost:1372/api/gv2");
     return response.data;
   }
 );
 
-export const addGV2 = createAsyncThunk('importFile/addGV2',
+export const addGV2 = createAsyncThunk('giangVien2/addGV2',
 async(data) => {
     const response = await axios.post("http://localhost:1372/api/gv2", data);
     return response.data;
 })
 
-const importFileSlice = createSlice({
-  name: "importFile",
+const giangVien2Slice = createSlice({
+  name: "giangVien2",
   initialState: {
     filterValue: "",
-    freeTimeTeachers: [],
+    list: [],
   },
   reducers: {
-    freeTimeTeachers: (state, { payload }) => {
-      state.freeTimeTeachers = payload;
-    },
+    // giangVien2: (state, { payload }) => {
+    //   state.list = payload;
+    // },
 
     // deleteFreeTimeTeachers: (state,action) => {
     //   state.filterValue = action.payload
@@ -34,13 +34,18 @@ const importFileSlice = createSlice({
   extraReducers: (builder) => {
     builder
     .addCase(fetchAllGV2.fulfilled, (state, {payload}) => {
-      state.freeTimeTeachers = payload;
+      state.list = payload;
     })
     .addCase(addGV2.fulfilled, (state, {payload}) => {
+<<<<<<< HEAD:client/src/stores/slices/importFileSlice.js
       state.freeTimeTeachers.push(payload);
       
+=======
+      state.list.push(payload);
+      console.log("Data GV2 mới đã thêm vào CSDL:", payload);
+>>>>>>> 7020fac1eafb15a036b5e9e0cde903d814c5abd3:client/src/stores/slices/giangVien2Slice.js
     })
   }
 });
 
-export default importFileSlice;
+export default giangVien2Slice;
