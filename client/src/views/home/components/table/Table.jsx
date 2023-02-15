@@ -1,27 +1,33 @@
-import React from "react";
+import React, {useMemo, useState, useEffect, useCallback } from 'react';
 import { Flex, Grid, GridItem } from "@chakra-ui/react";
 import TableBox from "./table-box/TableBox";
 import TableHead from "./table-head/TableHead";
 import TableSideBar from "./table-sidebar/TableSideBar";
 import TableChild from "./TableChild";
+
+function useInterval(callback, delay) {
+  const savedCallback = useCallback(callback, []);
+  useEffect(() => {
+    const id = setInterval(savedCallback, delay);
+    return () => clearInterval(id);
+  }, [delay, savedCallback]);
+}
+
 const Table = (props) => {
     const { arrayA } = props;
+    const arrayAMemo = useMemo(() => arrayA, [arrayA]);
+
     const style = {
         border: "1px",
         borderColor: "black",
     };
     // console.log(arrayA)
+    
 
     let phongThi = [];
     arrayA.map((item,index) => {
         phongThi.push(item.ten_Phong)    
     })
-
-    // console.log(phongThi)
-
-    // let arrP = ['T1101', 'T1102','T1103','T1104'];
-    // arrP.map(item => console.log(item))
-    // ];
 
     let arrCa = [1,2,3,4,5,6,7,8]
     // console.log(arrCa)
@@ -48,18 +54,29 @@ const Table = (props) => {
             <GridItem colSpan={8} >
 
                 {/* t01 */}
-                {phongThi.map((item,i) => {
-                    return(
+                {phongThi.map((item, i) =>
+                {
+                    return (
+                        
                         <Grid templateColumns="repeat(8, 1fr)" key={item+i}>
                             {
-                            arrCa.map((c) => {
+                                
+                                arrCa.map((c) =>
+                                {
                                 return(
-                                    arrayA.map((e,index)=> {
-                                        if(item == e.ten_Phong & e.caThi === c){
+                                    arrayAMemo.map((e, index) =>
+                                    {
+                                        if (item == e.ten_Phong & e.caThi === c)
+                                        {
+                                            console.log(e,index);
                                             return <TableBox datalist={e} index={index} key={e.id} {...style} />
-                                        }else{
+                                        } else
+                                        {
+                                            console.log(e.id, index);
                                             return <TableBox datalist={{}} index={index} key={e.id} {...style} />
                                         }
+                                        
+                                        
                                     })
                                 )
                             })
