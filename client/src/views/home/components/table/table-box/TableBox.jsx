@@ -16,6 +16,7 @@ const TableBox = (props) => {
     const [boxEdit, setBoxEdit] = useState(false)
     const dispatch = useDispatch();
     const [color, setColor] = useState("#FED049");
+    const [colorGV1, setColorGV1] = useState(false);
     let index = props.index;
 
     const colorDefaults = {
@@ -95,6 +96,7 @@ const TableBox = (props) => {
         // console.log(arrOld)
         setBoxEdit(false)
         setEditCheck(true)
+        setColorGV1(true)
     }
 
     return (
@@ -104,7 +106,9 @@ const TableBox = (props) => {
                     <Text id="monHoc">{data.mon}</Text>
                     <Text id="lop">{data.lop}</Text>
                     {/* <Text id="giangVien">{data.gv1}</Text> */}
-                    <Text id="giangVien" cursor='pointer' onClick={boxEditGv1}>{data.gv1}</Text>
+                    <Text id="giangVien" cursor='pointer' style={{
+                        color: colorGV1?"red":"black"
+                    }} onClick={boxEditGv1}>{data.gv1}</Text>
 
                 </Box>
                 <div ref={dropFix}>

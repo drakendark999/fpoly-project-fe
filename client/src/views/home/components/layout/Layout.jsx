@@ -21,11 +21,12 @@ import ButtonSave from "../button-save-database/ButtonSave";
 const Layout = () => {
     const dispatch = useDispatch();
     // Get data
+    let arrAStore = useSelector(getLichThi);
     useEffect(() => {
         dispatch(fetchAllGV1());
     }, []);
 
-    // let arrayA = useSelector(getLichThi);
+    // let arrAStore = useSelector(getLichThi);
     
     
     //  saveDataBase = onClick

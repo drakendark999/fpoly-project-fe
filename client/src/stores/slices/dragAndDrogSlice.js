@@ -46,6 +46,7 @@ const dragAndDrogSlice = createSlice({
       })
       .addCase(fetchUpdateLichThi.fulfilled, (state, action) => {
         state.arrayA = action.payload;
+        alert("Lưu thành công!!");
       });
   },
 });

@@ -8,11 +8,18 @@ const ButtonSave = () => {
 
     let arr = useSelector(getLichThi)
     const saveDatabase = () => {
-        console.log(arr)
-        dispatch(fetchUpdateLichThi(arr))
+        if (confirm("Bạn có muốn lưu danh sách lịch thi?")) {
+            // user clicked OK
+            console.log(arr)
+            dispatch(fetchUpdateLichThi(arr))
+        } else {
+            // user clicked Cancel
+            return 0;
+        }
+
     }
 
-    return(
+    return (
         <Button colorScheme='blue' onClick={saveDatabase}>Save</Button>
     )
 }
