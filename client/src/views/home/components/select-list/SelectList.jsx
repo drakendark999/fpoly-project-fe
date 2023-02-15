@@ -1,16 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 // import {Select} from  "chakra-react-select"
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import Select from "react-select";
 import SelectBox from "./select-box/SelectBox";
-import { useState } from "react";
-import { useSelector } from "react-redux";
 import ImportFile from "../import-file/ImportFile";
 import "./selectList.scss";
-import { freeTimeTeachersSelector } from "../../../../selectors/selectors";
 
-import { useDispatch } from "react-redux";
-import { addGV2, fetchAllGV2 } from "../../../../stores/slices/importFileSlice";
+import { giangVien2Selector } from "../../../../selectors/selectors";
+import { useDispatch, useSelector } from "react-redux";
+import { addGV2, fetchAllGV2 } from "../../../../stores/slices/giangVien2Slice";
 
 const SelectList = () => {
   const [table, setTable] = useState({});
@@ -30,8 +28,8 @@ const SelectList = () => {
     dispatch(fetchAllGV2());
   }, []);
 
-  let teachers = useSelector(freeTimeTeachersSelector);
-  let [listTeacher, setListTeacher] = useState(teachers);
+  let teachers = useSelector(giangVien2Selector);
+  // let [listTeacher, setListTeacher] = useState(teachers);
 
   // useEffect(()=>{
 

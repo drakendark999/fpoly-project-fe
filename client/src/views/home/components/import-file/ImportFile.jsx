@@ -3,20 +3,17 @@ import { FormControl, Input, Button, Text } from "@chakra-ui/react";
 
 import { ExcelRenderer } from "react-excel-renderer";
 import { useDispatch, useSelector } from "react-redux";
-import importFileSlice from "../../../../stores/slices/importFileSlice";
-import { freeTimeTeachersSelector } from "../../../../selectors/selectors";
-import { addGV2 } from "../../../../stores/slices/importFileSlice";
+import { giangVien2Selector } from "../../../../selectors/selectors";
+import { addGV2 } from "../../../../stores/slices/giangVien2Slice";
 
 const ImportFile = (props) => {
   const dispatch = useDispatch();
-  let teachersFromDb = useSelector(freeTimeTeachersSelector)
+  let teachersFromDb = useSelector(giangVien2Selector)
 
   const fileHandler = (event) => {
     let fileObj = event.target.files[0];
-    console.log(fileObj.type);
     let teachers = [];
 
-    console.log(teachersFromDb)
     //just pass the fileObj as parameter
     ExcelRenderer(fileObj, (err, resp) => {
       if (err) {
@@ -55,7 +52,8 @@ const ImportFile = (props) => {
         results = results.filter(md =>
           teachersFromDb.every(fd => fd.idNV !== md.idNV));
 
-        results.map(x => dispatch(addGV2(x)))
+          // console.log(results);
+        results.forEach(x => dispatch(addGV2(x)))
       }
     });
   };
