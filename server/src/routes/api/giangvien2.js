@@ -1,7 +1,5 @@
-import { Router } from "express";
-import GiangVien2 from "../../models/GiangVien2";
-
-const giangVien2Router = Router();
+const giangVien2Router = require("express").Router();
+const GiangVien2 = require("../../models/GiangVien2");
 
 giangVien2Router.get("/", async (req, res) => {
   let data = await GiangVien2.findAll();
@@ -27,4 +25,4 @@ giangVien2Router.post("/", async (req, res) => {
   res.json(data);
 });
 
-export default giangVien2Router;
+module.exports = giangVien2Router;

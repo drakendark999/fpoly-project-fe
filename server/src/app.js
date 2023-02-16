@@ -1,27 +1,28 @@
 // Libraries importing
-import express, { json } from "express";
-import * as dotenv from "dotenv";
-import path from "path";
-import createError from "http-errors";
+const express = require("express");
+require("dotenv").config();
+const path = require("path");
+const createError = require("http-errors");
 
 // CORS Policy
-import cors from "cors";
+const cors = require("cors");
 
 // Routes import
-import indexRouter from "./routes";
-import giangVien2Router from "./routes/api/giangvien2";
-import lichThiRouter from "./routes/api/lichThi";
+const indexRouter = require("./routes");
+const giangVien2Router = require("./routes/api/giangvien2");
+const lichThiRouter = require("./routes/api/lichThi");
+
 // App initialization
 const app = express();
 app.use(cors());
-dotenv.config();
+
 const PORT = process.env.PORT || 3000;
 
 // App configuration
-dotenv.config();
-app.use(json());
-
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.json());
+app.use(express.static(path.join(__dirname, "./public")));
+app.set("view engine", "ejs");
+app.set("views", path.resolve(__dirname, "./views"));
 
 app.use("/", indexRouter);
 app.use("/api/gv2", giangVien2Router);

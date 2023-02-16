@@ -1,5 +1,5 @@
-import { Sequelize, DataTypes } from "sequelize";
-import sequelize from "./connect";
+const { Sequelize, DataTypes } = require("sequelize");
+const sequelize = require("./connect");
 
 const lichThi = sequelize.define(
   "lichThi",
@@ -76,4 +76,4 @@ const lichThi = sequelize.define(
 
 lichThi.sync({ alter: true });
 
-export default lichThi;
+module.exports = lichThi;
