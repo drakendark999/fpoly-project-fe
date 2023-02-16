@@ -5,8 +5,8 @@ import TableBox from "../table-box/TableBox";
 const TableSort = ({ data, caThi }) => {
     // console.log(data(caThi))
 
-    const [arrayA, i] = data(caThi);
-    
+    const arrayA = data(caThi);
+    console.log(arrayA)
 
     const sortedArray = arrayA.sort((a, b) => (a.ten_Phong > b.ten_Phong ? 1 : -1));
     while (sortedArray.length < 4) {
@@ -24,6 +24,7 @@ const TableSort = ({ data, caThi }) => {
         }
     }
 
+    console.log(arrayEnd)
    
    
     
@@ -45,7 +46,7 @@ const TableSort = ({ data, caThi }) => {
         <GridItem>
             <Grid templateRows="repeat(4, 1fr)" h="100%">
                 {arrayEnd.map((e, index) => {
-                    return <TableBox key={index} data={e} index={i} />;
+                    return <TableBox key={index} data={e} index={e.inDex} />;
                 })}
             </Grid>
         </GridItem>
