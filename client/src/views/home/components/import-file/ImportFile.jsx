@@ -21,7 +21,7 @@ const ImportFile = (props) => {
       } else {
 
         teachers = resp.rows.reduce((teachers, item) => {
-          if (item.length >= 5 && item[0]) {
+          if (item.length >= 5 && item[0] && item.length <= 6) {
             teachers.push({
               idNV: item[0],
               MaNV: item[1],
