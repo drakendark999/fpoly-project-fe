@@ -21,8 +21,7 @@ const TableSort = ({ data, caThi }) => {
         }
     });
 
-    // console.log(sortedArray);
-    console.log(sortedArray);
+    
 
     return (
         <GridItem>
