@@ -3,32 +3,49 @@ import React from "react";
 import TableBox from "../table-box/TableBox";
 
 const TableSort = ({ data, caThi }) => {
-    const [arrayA,i] = data(caThi);
-    // console.log(i)
-    // console.log("a: ",arrayA)
+    // console.log(data(caThi))
+
+    const [arrayA, i] = data(caThi);
+    
+
     const sortedArray = arrayA.sort((a, b) => (a.ten_Phong > b.ten_Phong ? 1 : -1));
     while (sortedArray.length < 4) {
         sortedArray.push({});
     }
-
-    // console.log(sortedArray);
-    sortedArray.forEach((e,index) => {
-        if (Object.keys(e).length == 0) {
-        } else {
-            
-            if(e.ten_Phong.slice(-1)-1!==index) {
-                sortedArray[e.ten_Phong.slice(-1)-1]=e
-                sortedArray[index]={}
-            }
+    const arrayEnd = [];
+    for (let i = 0; i < sortedArray.length - 1; i++) {
+        if (Object.keys(sortedArray[i]).length !== 0) {
+            arrayEnd[sortedArray[i].ten_Phong.slice(-1) - 1] = sortedArray[i];
+        } 
+    }
+    for (let i = 0; i < arrayEnd.length - 1; i++) {
+        if(arrayEnd[i]==undefined){
+            arrayEnd[i] ={}
         }
-    });
+    }
+
+   
+   
+    
+
+    // sortedArray.forEach((e, index) => {
+    //     if (Object.keys(e).length == 0) {
+    //     } else {
+    //         if (e.ten_Phong.slice(-1) - 1 !== index) {
+    //             let temp = sortedArray[e.ten_Phong.slice(-1) - 1];
+    //             sortedArray[e.ten_Phong.slice(-1) - 1] = e;
+    //             sortedArray[index] = temp;
+    //         }
+    //     }
+    // });
+    
 
 
     return (
         <GridItem>
             <Grid templateRows="repeat(4, 1fr)" h="100%">
-                {sortedArray.map((e,index) => {
-                    return <TableBox key={e.id} data={e} index={i} />;
+                {arrayEnd.map((e, index) => {
+                    return <TableBox key={index} data={e} index={i} />;
                 })}
             </Grid>
         </GridItem>

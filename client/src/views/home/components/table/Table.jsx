@@ -8,13 +8,7 @@ import TableSort from "./table-sort/TableSort";
 import { useSelector } from "react-redux";
 import { getLichThi } from "../../../../selectors/selectors";
 
-// function useInterval(callback, delay) {
-//     const savedCallback = useCallback(callback, []);
-//     useEffect(() => {
-//         const id = setInterval(savedCallback, delay);
-//         return () => clearInterval(id);
-//     }, [delay, savedCallback]);
-// }
+
 
 const Table = (props) => {
     
@@ -23,57 +17,10 @@ const Table = (props) => {
         border: "1px",
         borderColor: "black",
     };
-    // console.log(arrayA)
+    
     let arrayA = useSelector(getLichThi);
-    // console.log(arrayA)
-    // let arrayA = [
-    //     {
-    //         id: 1,
-    //         mon: "WEB 1043",
-    //         ten_Phong: "T1103",
-    //         lop: "WE 18202",
-    //         gv1: "loc th5",
-    //         gv2: "abc",
-    //         caThi: 1,
-    //     },
-    //     {
-    //         id: 2,
-    //         mon: "WEB 1043",
-    //         ten_Phong: "T1103",
-    //         lop: "WE 18202",
-    //         gv1: "loc th5",
-    //         gv2: "abc",
-    //         caThi: 2,
-    //     },
-    //     {
-    //         id: 3,
-    //         mon: "WEB 1043",
-    //         ten_Phong: "T1103",
-    //         lop: "WE 18202",
-    //         gv1: "loc th5",
-    //         gv2: "abc",
-    //         caThi: 3,
-    //     },
-    //     {
-    //         id: 4,
-    //         mon: "WEB 1043",
-    //         ten_Phong: "T1101",
-    //         lop: "WE 18202",
-    //         gv1: "loc th5",
-    //         gv2: "abc",
-    //         caThi: 4,
-    //     },
-    //     {
-    //         id: 5,
-    //         mon: "WEB 1043",
-    //         ten_Phong: "T1101",
-    //         lop: "WE 18202",
-    //         gv1: "loc th5",
-    //         gv2: "xyz",
-    //         caThi: 1,
-    //     },
-    // ];
-    // console.log(arrayA)
+    
+    
     
 
     const sortByCaThi = (caThi)=>{
@@ -89,8 +36,9 @@ const Table = (props) => {
           });
         //   console.log(sortArray)
         // console.log("i: ",index)
-        return [sortArray,index]
+        return  [sortArray,index]
     }
+    
     
     return (
         <Grid templateColumns="repeat(9, 1fr)" textAlign="center">
@@ -134,6 +82,7 @@ const Table = (props) => {
                     {/* {arrayA.map((e, index) => {
                         return <TableBox datalist={e} index={index} key={index} {...style} />;
                     })} */}
+
                     <TableSort data={sortByCaThi} caThi={1} />
                     <TableSort data={sortByCaThi} caThi={2} />
                     <TableSort data={sortByCaThi} caThi={3} />

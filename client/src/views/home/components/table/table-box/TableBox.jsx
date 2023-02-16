@@ -37,7 +37,7 @@ const TableBox = (props) => {
         backgroundColor = backgroundColors[data.stt];
     }
 
-    console.log(data);
+ 
 
     // add Gv 2
     const [{ isOver }, drop] = useDrop(() => ({
@@ -92,7 +92,7 @@ const TableBox = (props) => {
             stt: data.stt,
             caThi: data.caThi
           }
-          console.log(objNew)
+          
         dispatch(dragAndDrogSlice.actions.editGv1([index,objNew]))
         // const arrOld = useSelector(getLichThi);
         // console.log(arrOld)

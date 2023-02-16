@@ -10,7 +10,7 @@ const ButtonSave = () => {
   const saveDatabase = () => {
     if (confirm("Bạn có muốn lưu danh sách lịch thi?")) {
       // user clicked OK
-      console.log(arr);
+      
       dispatch(fetchUpdateLichThi(arr));
     } else {
       // user clicked Cancel
