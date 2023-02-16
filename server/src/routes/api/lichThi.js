@@ -1,7 +1,5 @@
-import { Router } from "express";
-import lichThi from "../../models/lichThi";
-
-const lichThiRouter = Router();
+const lichThiRouter = require("express").Router();
+const lichThi = require("../../models/lichThi");
 
 lichThiRouter.get("/", async (req, res) => {
   let data = await lichThi.findAll();
@@ -19,4 +17,4 @@ lichThiRouter.put("/updateLichThi", async (req, res) => {
   res.json(backData);
 });
 
-export default lichThiRouter;
+module.exports = lichThiRouter;
