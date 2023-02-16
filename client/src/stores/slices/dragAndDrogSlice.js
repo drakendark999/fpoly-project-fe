@@ -1,6 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const apiURL = import.meta.env.VITE_API_URL_LOCAL;
+// const apiURL = import.meta.env.VITE_API_URL;
+
 const arrayA = [];
 const dragAndDrogSlice = createSlice({
   name: "lichThi",
@@ -54,7 +57,7 @@ const dragAndDrogSlice = createSlice({
 export default dragAndDrogSlice;
 
 export const fetchAllGV1 = createAsyncThunk("lichThi/fetchAllGV1", async () => {
-  const response = await axios.get("http://localhost:1372/api/lichthi");
+  const response = await axios.get(`${apiURL}/api/lichthi`);
   let arr = [];
 
   // console.log(response.data);
@@ -79,13 +82,13 @@ export const fetchUpdateLichThi = createAsyncThunk(
   "lichThi/fetchUpdateLichThi",
   async (data) => {
     // const response = await axios.put(
-    //   `http://localhost:1372/api/lichthi/updateLichThi`,
+    //   `${apiURL}/api/lichthi/updateLichThi`,
     //   data
     // );
     let d = [];
     data.forEach(async (item) => {
       d.push(item);
-      await axios.put(`http://localhost:1372/api/lichthi/updateLichThi`, {
+      await axios.put(`${apiURL}/api/lichthi/updateLichThi`, {
         id: item.id,
         GV1: item.gv1,
         GV2: item.gv2,
