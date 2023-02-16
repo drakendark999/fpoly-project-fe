@@ -15,7 +15,7 @@ const FormSelect = () => {
     { id: 3, name: 'Đồ họa'},
   ]
   return (
-    <Flex justify= "space-between" align="center" my={4}>
+    <Flex justify= "space-between" align="center" my={3}>
       <DateTime />
       <div>
         <ButtonRadio data={toaNha} title='Tòa nhà'/>

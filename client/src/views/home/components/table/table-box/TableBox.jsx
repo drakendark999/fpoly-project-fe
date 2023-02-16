@@ -16,17 +16,18 @@ const TableBox = (props) => {
     const [boxEdit, setBoxEdit] = useState(false)
     const dispatch = useDispatch();
     const [color, setColor] = useState("#FED049");
+    const [colorGV1, setColorGV1] = useState(false);
     let index = props.index;
 
     const colorDefaults = {
-        waiting: "#ffa700",
-        confirm: "green",
-        refuse: "red",
+        pending: "#ffa700",
+        confirmed: "green",
+        rejected: "red",
     };
     const backgroundColors = {
-        confirm: "#C0EEE4",
-        waiting: "#ffff0047",
-        refuse: "#ff040440",
+        confirmed: "#C0EEE4",
+        pending: "#ffff0047",
+        rejected: "#ff040440",
         "": "tomato",
     };
 
@@ -35,6 +36,8 @@ const TableBox = (props) => {
     if (data.mon != "") {
         backgroundColor = backgroundColors[data.stt];
     }
+
+    console.log(data);
 
     // add Gv 2
     const [{ isOver }, drop] = useDrop(() => ({
@@ -82,16 +85,20 @@ const TableBox = (props) => {
         let objNew = {
             id: data.id,
             mon: data.mon,
+            ten_Phong: data.ten_Phong,
             lop: data.lop,
             gv1: e.target.value,
             gv2: data.gv2,
             stt: data.stt,
+            caThi: data.caThi
           }
+          console.log(objNew)
         dispatch(dragAndDrogSlice.actions.editGv1([index,objNew]))
         // const arrOld = useSelector(getLichThi);
         // console.log(arrOld)
         setBoxEdit(false)
         setEditCheck(true)
+        setColorGV1(true)
     }
 
     return (
@@ -101,7 +108,9 @@ const TableBox = (props) => {
                     <Text id="monHoc">{data.mon}</Text>
                     <Text id="lop">{data.lop}</Text>
                     {/* <Text id="giangVien">{data.gv1}</Text> */}
-                    <Text id="giangVien" cursor='pointer' onClick={boxEditGv1}>{data.gv1}</Text>
+                    <Text id="giangVien" cursor='pointer' style={{
+                        color: colorGV1?"red":"black"
+                    }} onClick={boxEditGv1}>{data.gv1}</Text>
 
                 </Box>
                 <div ref={dropFix}>
@@ -109,10 +118,12 @@ const TableBox = (props) => {
                         <Gv2Box id={data.id} gv2={data.gv2} />
                     </Box>
                 </div>
-                {boxEdit ? <Box bg='lightyellow' maxH='76px' w='100%' position='absolute' left='100px' zIndex='1000' top='13px'>
+                {boxEdit ? <Box bg='#E5E0FF' boxShadow='0px 0px 3px #cdcdcd' maxH='76px' w='100%' position='absolute' left='100px' zIndex='1000' top='13px'>
                     <Select value={data.gv1} onChange={changeGv1InData}>
                         <option value='locth5'>locth5</option>
                         <option value='longnv36'>longnv36</option>
+                        <option value='hotb'>hotb</option>
+                        <option value='ngahth4'>ngahth4</option>
                     </Select>
                 </Box> : ""}
             </GridItem>

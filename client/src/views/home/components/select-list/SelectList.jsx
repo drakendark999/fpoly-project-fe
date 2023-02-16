@@ -62,7 +62,7 @@ const SelectList = () => {
         </Text>
         <Text as="i" display="block" textAlign="center">Tổng cộng: {teachers.length} GV2</Text>
 
-        <Box h={600} overflowY="auto">
+        <Box h={550} overflowY="auto">
           {teachers.map((e, index) => {
             return <SelectBox key={index} datalist={e} />;
           })}

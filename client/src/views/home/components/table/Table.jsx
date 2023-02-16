@@ -25,7 +25,7 @@ const Table = (props) => {
     };
     // console.log(arrayA)
     let arrayA = useSelector(getLichThi);
-
+    // console.log(arrayA)
     // let arrayA = [
     //     {
     //         id: 1,
@@ -73,14 +73,23 @@ const Table = (props) => {
     //         caThi: 1,
     //     },
     // ];
+    // console.log(arrayA)
     
-   
+
     const sortByCaThi = (caThi)=>{
-        let sortArray = arrayA.filter(e=>e.caThi==caThi)
+        let index;
+        let sortArray = arrayA.filter((e, i)=>{
+            if(e.caThi==caThi){
+                index = i
+            }
+            return e.caThi==caThi
+        })
         sortArray = sortArray.sort(function(a, b) {
             return a.ten_Phong.slice(-1) - b.ten_Phong.slice(-1); ;
           });
-        return sortArray
+        //   console.log(sortArray)
+        // console.log("i: ",index)
+        return [sortArray,index]
     }
     
     return (

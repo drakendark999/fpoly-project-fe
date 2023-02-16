@@ -3,7 +3,9 @@ import React from "react";
 import TableBox from "../table-box/TableBox";
 
 const TableSort = ({ data, caThi }) => {
-    const arrayA = data(caThi);
+    const [arrayA,i] = data(caThi);
+    // console.log(i)
+    // console.log("a: ",arrayA)
     const sortedArray = arrayA.sort((a, b) => (a.ten_Phong > b.ten_Phong ? 1 : -1));
     while (sortedArray.length < 4) {
         sortedArray.push({});
@@ -21,13 +23,12 @@ const TableSort = ({ data, caThi }) => {
         }
     });
 
-    
 
     return (
         <GridItem>
             <Grid templateRows="repeat(4, 1fr)" h="100%">
-                {sortedArray.map((e) => {
-                    return <TableBox key={e.id} data={e} />;
+                {sortedArray.map((e,index) => {
+                    return <TableBox key={e.id} data={e} index={i} />;
                 })}
             </Grid>
         </GridItem>
