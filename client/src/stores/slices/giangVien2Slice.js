@@ -24,12 +24,9 @@ const giangVien2Slice = createSlice({
     list: [],
   },
   reducers: {
-    // giangVien2: (state, { payload }) => {
-    //   state.list = payload;
-    // },
-    // deleteFreeTimeTeachers: (state,action) => {
-    //   state.filterValue = action.payload
-    // }
+    setFilterValue: (state, { payload }) => {
+      state.filterValue = payload;
+    },
   },
 
   extraReducers: (builder) => {
