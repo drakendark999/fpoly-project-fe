@@ -49,6 +49,7 @@ const TableImport = () => {
                 idToa_Nha: (item[11].includes('(Nha ')) ? (item[11].slice(item[11].indexOf('(Nha '))).charAt(5) : null,
                 ten_Phong: (item[11].includes('(')) ? item[11].slice(0, item[11].indexOf('(')).trim() : item[11],
                 ma_Lop: formatRemove(item[6], arrCS),
+                bo_Mon: item[4],
                 ma_Mon: item[1],
                 dot_Thi: (item[15] && item[15].includes('Đợt')) ? parseInt(item[15].slice(-1)) : item[15],
                 ngay_Thi: new Date(Date.UTC(0, 0, item[7] - 1)).toISOString().slice(0,10),

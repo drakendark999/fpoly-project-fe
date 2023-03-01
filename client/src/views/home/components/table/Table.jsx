@@ -12,10 +12,11 @@ import { getAllLichThi2 } from "../../../../stores/slices/lichThi2Slice";
 
 const Table = (props) => {
     const dispatch = useDispatch();
+    let lichThi2 = useSelector(getLichThi2);
     useEffect(() => {
         dispatch(getAllLichThi2());
-    
-      }, []);
+    }, []);
+    console.log("Lịch thi: ", lichThi2);
 
     const style = {
         border: "1px",
@@ -24,8 +25,8 @@ const Table = (props) => {
     
     let arrayA = useSelector(getLichThi);
     
-    let lichThi2 = useSelector(getLichThi2);
-    console.log("Lịch thi: ", lichThi2);
+
+   
     
 
     const sortByCaThi = (caThi)=>{
