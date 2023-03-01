@@ -57,7 +57,7 @@ const Table = (props) => {
     
     
     return (
-        <Grid templateColumns="repeat(9, 1fr)" textAlign="center">
+        <Grid templateColumns="repeat(7, 1fr)" textAlign="center">
             {/* Header table*/}
 
             <GridItem {...style}>
@@ -76,7 +76,7 @@ const Table = (props) => {
                 </Grid>
             </GridItem>
             {/* Body content box */}
-            <GridItem colSpan={8}>
+            <GridItem colSpan={6}>
                 {/* t01 */}
                 {/* {phongThi.map((item, i) => {
                     return (
@@ -94,7 +94,7 @@ const Table = (props) => {
                     );
                 })} */}
                 {/* t02 */}
-                <Grid templateColumns="repeat(8, 1fr)" h="100%">
+                <Grid templateColumns="repeat(6, 1fr)" h="100%">
                     {/* {arrayA.map((e, index) => {
                         return <TableBox datalist={e} index={index} key={index} {...style} />;
                     })} */}

@@ -28,14 +28,14 @@ const TableHead = (props) => {
                 <Text as='b'>Ca 6</Text>
                 <Text fontSize='sm' display='block'>(19:30 - 21:30)</Text>
                 </GridItem>
-            <GridItem py={2} {...props}>
+            {/* <GridItem py={2} {...props}>
                 <Text as='b'>Ca 7</Text>
                 <Text fontSize='sm' display='block'>(online)</Text>
                 </GridItem>
             <GridItem py={2} {...props}>
                 <Text as='b'>Ca 8</Text>
                 <Text fontSize='sm' display='block'>(online)</Text>
-                </GridItem>
+                </GridItem> */}
         </>
     );
 };
