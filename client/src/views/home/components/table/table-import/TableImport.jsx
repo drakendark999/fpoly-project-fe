@@ -111,6 +111,7 @@ const TableImport = () => {
         <input
           type="file"
           onChange={handleSubmit}
+          disabled
           accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,
           application/vnd.ms-excel"
           style={{ padding: "10px" }}
