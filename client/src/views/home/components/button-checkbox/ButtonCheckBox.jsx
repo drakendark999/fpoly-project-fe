@@ -1,16 +1,30 @@
-import { FormControl,  Checkbox, CheckboxGroup } from '@chakra-ui/react'
-import React from 'react'
+import {
+  FormControl,
+  FormLabel,
+  Checkbox,
+  GridItem,
+  Grid,
+} from "@chakra-ui/react";
+import React from "react";
 
-const ButtonCheckBox = () => {
+const ButtonCheckBox = (props) => {
   return (
-    
-      <FormControl as='fieldset'>
-          <FormControl as='legend'>{props.title}</FormControl>
-          
+    <FormControl as="fieldset" w="400px">
+      <FormLabel as="legend">{props.title}</FormLabel>
 
-      </FormControl>
-      
-  )
-}
+      <Grid templateColumns="repeat(4, 1fr)" gap={1}>
+        {props.data.map((item, index) => {
+          return (
+            <GridItem>
+              <Checkbox key={index} size="md">
+                {item.name}
+              </Checkbox>
+            </GridItem>
+          );
+        })}
+      </Grid>
+    </FormControl>
+  );
+};
 
-export default ButtonCheckBox
+export default ButtonCheckBox;
