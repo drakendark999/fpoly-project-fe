@@ -6,7 +6,7 @@ const TableSort = ({ data, caThi }) => {
     // console.log(data(caThi))
 
     const arrayA = data(caThi);
-    console.log(arrayA)
+    // console.log(arrayA)
 
     const sortedArray = arrayA.sort((a, b) => (a.ten_Phong > b.ten_Phong ? 1 : -1));
     while (sortedArray.length < 4) {
@@ -24,7 +24,7 @@ const TableSort = ({ data, caThi }) => {
         }
     }
 
-    console.log(arrayEnd)
+    // console.log(arrayEnd)
    
    
     

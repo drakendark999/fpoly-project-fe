@@ -26,16 +26,18 @@ const giangVien2Slice = createSlice({
         },
     },
 
-    extraReducers: (builder) => {
-        builder
-            .addCase(fetchAllGV2.fulfilled, (state, { payload }) => {
-                state.list = payload;
-            })
-            .addCase(addGV2.fulfilled, (state, { payload }) => {
-                state.list.push(payload);
-                console.log("Data GV2 mới đã thêm vào CSDL:", payload);
-            });
-    },
+
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchAllGV2.fulfilled, (state, { payload }) => {
+        state.list = payload;
+      })
+      .addCase(addGV2.fulfilled, (state, { payload }) => {
+        state.list.push(payload);
+        // console.log("Data GV2 mới đã thêm vào CSDL:", payload);
+      });
+  },
+
 });
 
 export default giangVien2Slice;

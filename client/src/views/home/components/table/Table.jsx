@@ -5,13 +5,17 @@ import TableHead from "./table-head/TableHead";
 import TableSideBar from "./table-sidebar/TableSideBar";
 import TableChild from "./TableChild";
 import TableSort from "./table-sort/TableSort";
-import { useSelector } from "react-redux";
-import { getLichThi } from "../../../../selectors/selectors";
+import { useSelector, useDispatch } from "react-redux";
+import { getLichThi, getLichThi2 } from "../../../../selectors/selectors";
 
-
+import { getAllLichThi2 } from "../../../../stores/slices/lichThi2Slice";
 
 const Table = (props) => {
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getAllLichThi2());
     
+      }, []);
 
     const style = {
         border: "1px",
@@ -20,7 +24,8 @@ const Table = (props) => {
     
     let arrayA = useSelector(getLichThi);
     
-    
+    let lichThi2 = useSelector(getLichThi2);
+    console.log("Lịch thi: ", lichThi2);
     
 
     const sortByCaThi = (caThi)=>{
@@ -31,7 +36,7 @@ const Table = (props) => {
             }
             return e.caThi==caThi
         })
-        console.log("arrayA: ",arrayA)
+        // console.log("arrayA: ",arrayA)
         sortArray = sortArray.sort(function(a, b) {
             return a.ten_Phong.slice(-1) - b.ten_Phong.slice(-1); ;
           });
@@ -45,7 +50,7 @@ const Table = (props) => {
                 }
             })
           })
-          console.log(sortArray)
+        //   console.log(sortArray)
         // console.log("i: ",index)
         return  sortArray
     }

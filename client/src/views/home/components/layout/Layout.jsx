@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Grid, GridItem, Button, Box } from "@chakra-ui/react";
+import { Grid, GridItem, Button, Box, Flex } from "@chakra-ui/react";
 import Header from "../header/Header";
 // import Table from "../table/Table";
 import FormSelect from "../form-select/FormSelect";
@@ -16,6 +16,7 @@ import { getLichThi } from "../../../../selectors/selectors";
 import { fetchAllGV1 } from "../../../../stores/slices/dragAndDrogSlice";
 import { fetchUpdateLichThi } from "../../../../stores/slices/dragAndDrogSlice";
 import ButtonSave from "../button-save-database/ButtonSave";
+import TableImport from "../table/table-import/TableImport";
 
 
 const Layout = () => {
@@ -34,7 +35,7 @@ const Layout = () => {
 
 
    
-    // console.log(arrayA);
+    // console.log(arrAStore);
     return (
         <DndProvider backend={HTML5Backend}>
             <Grid templateColumns="repeat(5, 1fr)" gap={4} mt={1}>
@@ -43,9 +44,10 @@ const Layout = () => {
                     <FormSelect />
                     <Table  />
                     {/* <Paginator arrayA={arrayA} itemsPerPage={32} /> */}
-                    <Box textAlign='right'>
+                    <Flex alignItems="center">
+                        <TableImport />
                         <ButtonSave />
-                    </Box>
+                    </Flex>
                 </GridItem>
                 <GridItem colSpan={1} borderLeft="1px" borderColor="black" ml={2} pl={2} py={2}>
                     <SelectList />
