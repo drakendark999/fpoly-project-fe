@@ -12,10 +12,23 @@ const SelectBox = (props) => {
       isDragging: !!monitor.isDragging(),
     }),
   }));
+  
+  const styles = {
+    border: '2px dashed gray',
+    padding: '10px 20px',
+  }
+
+  if (isDragging) {
+    styles.opacity = 0.5;
+    styles.transform = 'scale(0.8)';
+    styles.cursor = 'grabbing';
+  } else {
+    styles.cursor = 'grab';
+  }
 
   return (
     <Box
-      style={{ opacity: isDragging ? "0" : "1" }}
+      style={styles}
       ref={drag}
       border="1px"
       borderColor="gray"
@@ -38,6 +51,9 @@ const SelectBox = (props) => {
             </Text> */}
       <Text id="hoTen" as="i" fontSize="sm" display="block" mt={1}>
         Họ tên: {data.hoVaTen}
+      </Text>
+       <Text fontSize="sm" display="block" mt={1}>
+        Số ca thi đã tham gia: <strong>1</strong>
       </Text>
     </Box>
   );

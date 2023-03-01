@@ -8,10 +8,12 @@ import { useDispatch, useSelector } from "react-redux";
 import Gv2Box from "./gv2-box/Gv2Box";
 import EditBoxGv1 from "./EditBoxGv1";
 import { getLichThi } from "../../../../../selectors/selectors";
+import "./tableBox.scss";
 
-const TableBox = (props) => {
+const TableBox = (props) =>
+{
     let data = props.data;
-   
+
     const [editCheck, setEditCheck] = useState(true);
     const [boxEdit, setBoxEdit] = useState(false)
     const dispatch = useDispatch();
@@ -33,27 +35,32 @@ const TableBox = (props) => {
 
     let backgroundColor = "white";
 
-    if (data.mon != "") {
+    if (data.mon != "")
+    {
         backgroundColor = backgroundColors[data.stt];
     }
 
- 
+
 
     // add Gv 2
     const [{ isOver }, drop] = useDrop(() => ({
         accept: "box",
-        drop: (item) => {
+        drop: (item) =>
+        {
             addGv2(item.name, data.id);
         },
         collect: (monitor) => ({
             isOver: !!monitor.isOver(),
+            canDrop: monitor.canDrop(),
         }),
     }));
+    const backgroundColorDrop = isOver ? "yellow" : "white";
 
     // Edit Gv 2
     const [{ isOverFix }, dropFix] = useDrop(() => ({
         accept: "boxFix",
-        drop: (item) => {
+        drop: (item) =>
+        {
             editGv2(item.id, (item["nowId"] = data.id));
         },
         collect: (monitor) => ({
@@ -61,27 +68,32 @@ const TableBox = (props) => {
         }),
     }));
 
-    const addGv2 = (name, id) => {
+    const addGv2 = (name, id) =>
+    {
 
         dispatch(dragAndDrogSlice.actions.addGv2({ name, id }));
         // dispatch(importFileSlice.actions.deleteFreeTimeTeachers(name))
     };
-    const editGv2 = (idFirst, idSecond) => {
+    const editGv2 = (idFirst, idSecond) =>
+    {
         // console.log({ idFirst,idSecond})
         dispatch(dragAndDrogSlice.actions.editGv2({ idFirst, idSecond }));
     };
 
     // CLick Gv1
 
-    const editGv1 = () => {
+    const editGv1 = () =>
+    {
         editCheck ? setEditCheck(false) : setEditCheck(true)
     }
 
-    const boxEditGv1 = () => {
+    const boxEditGv1 = () =>
+    {
         boxEdit ? setBoxEdit(false) : setBoxEdit(true)
     }
 
-    const changeGv1InData = (e) => {
+    const changeGv1InData = (e) =>
+    {
         let objNew = {
             id: data.id,
             mon: data.mon,
@@ -91,9 +103,9 @@ const TableBox = (props) => {
             gv2: data.gv2,
             stt: data.stt,
             caThi: data.caThi
-          }
-          
-        dispatch(dragAndDrogSlice.actions.editGv1([index,objNew]))
+        }
+
+        dispatch(dragAndDrogSlice.actions.editGv1([index, objNew]))
         // const arrOld = useSelector(getLichThi);
         // console.log(arrOld)
         setBoxEdit(false)
@@ -103,13 +115,16 @@ const TableBox = (props) => {
 
     return (
         <>
-            <GridItem ref={drop} backgroundColor={backgroundColor}  p={2} position='relative' border='1px'>
+            <GridItem ref={drop} style={{
+                backgroundColorDrop,
+                animation: isOver ? "blink 1s infinite" : "none",
+            }} backgroundColor={backgroundColor} p={2} position='relative' border='1px'>
                 <Box borderBottom="1px" borderColor="black" minH='73' >
                     <Text id="monHoc">{data.mon}</Text>
                     <Text id="lop">{data.lop}</Text>
                     {/* <Text id="giangVien">{data.gv1}</Text> */}
                     <Text id="giangVien" cursor='pointer' style={{
-                        color: colorGV1?"red":"black"
+                        color: colorGV1 ? "red" : "black"
                     }} onClick={boxEditGv1}>{data.gv1}</Text>
 
                 </Box>
