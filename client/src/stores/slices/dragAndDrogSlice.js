@@ -4,25 +4,13 @@ import axios from "axios";
 const apiURL = import.meta.env.VITE_API_URL_LOCAL;
 // const apiURL = import.meta.env.VITE_API_URL;
 
-const arrayA = [];
+
 const dragAndDrogSlice = createSlice({
   name: "lichThi",
   initialState: {
     arrayA: [],
   },
   reducers: {
-    // reducers: {
-    //   addGv2: (state, action) => {
-    //     state.arrayA.find((e) => e.id == action.payload.id).gv2 =
-    //       action.payload.name;
-    //   },
-    //   editGv2: (state, action) => {
-    //     console.log(arrayA.find((e) => e.id == action.payload.idFirst).gv2);
-    //     state.arrayA.find((e) => e.id == action.payload.idSecond).gv2 =
-    //       state.arrayA.find((e) => e.id == action.payload.idFirst).gv2;
-    //     state.arrayA.find((e) => e.id == action.payload.idFirst).gv2 = "";
-    //   },
-    // },
 
     addGv2: (state, action) => {
       state.arrayA.find((e) => e.id == action.payload.id).gv2 =

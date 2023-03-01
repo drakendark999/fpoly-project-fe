@@ -23,3 +23,6 @@ lerna-debug.log*
 # Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
 # /server/node_modules/.cache/@babel/register/*
 node_modules
+client/node_modules
+server/node_modules
+**/node_modules

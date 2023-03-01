@@ -23,25 +23,6 @@ const TableSort = ({ data, caThi }) => {
             arrayEnd[i] ={}
         }
     }
-
-    // console.log(arrayEnd)
-   
-   
-    
-
-    // sortedArray.forEach((e, index) => {
-    //     if (Object.keys(e).length == 0) {
-    //     } else {
-    //         if (e.ten_Phong.slice(-1) - 1 !== index) {
-    //             let temp = sortedArray[e.ten_Phong.slice(-1) - 1];
-    //             sortedArray[e.ten_Phong.slice(-1) - 1] = e;
-    //             sortedArray[index] = temp;
-    //         }
-    //     }
-    // });
-    
-
-
     return (
         <GridItem>
             <Grid templateRows="repeat(4, 1fr)" h="100%">
