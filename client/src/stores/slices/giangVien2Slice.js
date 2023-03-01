@@ -36,7 +36,7 @@ const giangVien2Slice = createSlice({
       })
       .addCase(addGV2.fulfilled, (state, { payload }) => {
         state.list.push(payload);
-        console.log("Data GV2 mới đã thêm vào CSDL:", payload);
+        // console.log("Data GV2 mới đã thêm vào CSDL:", payload);
       });
   },
 });

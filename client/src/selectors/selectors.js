@@ -16,6 +16,8 @@ export const getGiangVien2 = createSelector(
   }
 );
 
+export const getLichThi2 = (state) => state.lichThi2.list;
+
 export const getLichThi = (state) => state.lichThi.arrayA;
 
 export const getAccount = (state) => {

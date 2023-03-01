@@ -5,13 +5,17 @@ import TableHead from "./table-head/TableHead";
 import TableSideBar from "./table-sidebar/TableSideBar";
 import TableChild from "./TableChild";
 import TableSort from "./table-sort/TableSort";
-import { useSelector } from "react-redux";
-import { getLichThi } from "../../../../selectors/selectors";
+import { useSelector, useDispatch } from "react-redux";
+import { getLichThi, getLichThi2 } from "../../../../selectors/selectors";
 
-
+import { getAllLichThi2 } from "../../../../stores/slices/lichThi2Slice";
 
 const Table = (props) => {
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getAllLichThi2());
     
+      }, []);
 
     const style = {
         border: "1px",
@@ -20,7 +24,8 @@ const Table = (props) => {
     
     let arrayA = useSelector(getLichThi);
     
-    
+    let lichThi2 = useSelector(getLichThi2);
+    console.log("Lịch thi: ", lichThi2);
     
 
     const sortByCaThi = (caThi)=>{

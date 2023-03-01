@@ -3,7 +3,7 @@ const express = require("express");
 require("dotenv").config();
 const path = require("path");
 const createError = require("http-errors");
-
+const bodyParser = require('body-parser');
 // CORS Policy
 const cors = require("cors");
 
@@ -11,6 +11,7 @@ const cors = require("cors");
 const indexRouter = require("./routes");
 const giangVien2Router = require("./routes/api/giangvien2");
 const lichThiRouter = require("./routes/api/lichThi");
+const lichThi2Router = require("./routes/api/lichThi2")
 
 // App initialization
 const app = express();
@@ -19,6 +20,8 @@ app.use(cors());
 const PORT = process.env.PORT || 3000;
 
 // App configuration
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "./public")));
 app.set("view engine", "ejs");
@@ -27,6 +30,7 @@ app.set("views", path.resolve(__dirname, "./views"));
 app.use("/", indexRouter);
 app.use("/api/gv2", giangVien2Router);
 app.use("/api/lichthi", lichThiRouter);
+app.use("/api/lichthi2", lichThi2Router);
 
 app.listen(PORT, () => console.log(`App listening at port ${PORT}`));
 
