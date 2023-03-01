@@ -32,6 +32,10 @@ const lichThi2 = sequelize.define("lichThi2",{
       type: DataTypes.STRING,
       allowNull: false,
     },
+    bo_Mon: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     dot_Thi: {
       type: DataTypes.INTEGER,
       allowNull: true,
