@@ -27,6 +27,10 @@ const GiangVien2 = sequelize.define("giangvien2s", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  count: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
   ghiChu: {
     type: DataTypes.STRING,
     allowNull: true,

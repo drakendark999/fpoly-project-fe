@@ -53,7 +53,7 @@ const SelectBox = (props) => {
         Họ tên: {data.hoVaTen}
       </Text>
        <Text fontSize="sm" display="block" mt={1}>
-        Số ca thi đã tham gia: <strong>1</strong>
+        Số ca thi đã tham gia: <strong>{data.count}</strong>
       </Text>
     </Box>
   );
