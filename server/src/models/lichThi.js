@@ -9,6 +9,10 @@ const lichThi = sequelize.define(
       allowNull: false,
       primaryKey: true,
     },
+    boMon: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     maKy_Thi: {
       type: DataTypes.STRING,
       allowNull: false,

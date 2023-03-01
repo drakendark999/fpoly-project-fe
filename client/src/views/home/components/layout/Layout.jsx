@@ -34,7 +34,7 @@ const Layout = () => {
 
 
    
-    // console.log(arrayA);
+    // console.log(arrAStore);
     return (
         <DndProvider backend={HTML5Backend}>
             <Grid templateColumns="repeat(5, 1fr)" gap={4} mt={1}>

@@ -31,7 +31,7 @@ const Table = (props) => {
             }
             return e.caThi==caThi
         })
-        console.log("arrayA: ",arrayA)
+        // console.log("arrayA: ",arrayA)
         sortArray = sortArray.sort(function(a, b) {
             return a.ten_Phong.slice(-1) - b.ten_Phong.slice(-1); ;
           });
@@ -45,7 +45,7 @@ const Table = (props) => {
                 }
             })
           })
-          console.log(sortArray)
+        //   console.log(sortArray)
         // console.log("i: ",index)
         return  sortArray
     }
