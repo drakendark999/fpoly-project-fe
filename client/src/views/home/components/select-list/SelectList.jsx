@@ -6,45 +6,46 @@ import SelectBox from "./select-box/SelectBox";
 import ImportFile from "../import-file/ImportFile";
 import "./selectList.scss";
 
-import { giangVien2Selector } from "../../../../selectors/selectors";
+import { getGiangVien2, giangVien2FilterValue, giangVien2Selector } from "../../../../selectors/selectors";
 import { useDispatch, useSelector } from "react-redux";
-import { addGV2, fetchAllGV2 } from "../../../../stores/slices/giangVien2Slice";
+import giangVien2Slice, { addGV2, fetchAllGV2 } from "../../../../stores/slices/giangVien2Slice";
 
 const SelectList = () => {
   const [table, setTable] = useState({});
   const dispatch = useDispatch();
-
-  const options = [
-    { value: "cung chuyen mon", label: "Cùng chuyên môn" },
-    { value: "cung bo mon", label: "Cùng bộ môn" },
-    { value: "dang co mat tai truong", label: "Đang có mặt tại trường" },
-    {
-      value: "giang vien dang duoc phan it gio",
-      label: "Giảng viên đang được phân ít giờ",
-    },
-  ];
-
+ 
   useEffect(() => {
     dispatch(fetchAllGV2());
+
   }, []);
 
+  let allTeachers = useSelector(giangVien2Selector);
+  let teachers = useSelector(getGiangVien2);
+  
+  const options = (allTeachers.filter((value, index, self) =>
+  index === self.findIndex(t => ( t.BoMon === value.BoMon)))).map(teacher => {
+    return {
+      value: teacher.BoMon,
+      label: teacher.BoMon
+    }
+  });
 
-  // let teachers = useSelector(freeTimeTeachersSelector);
- 
+  let handleOptionsChange = (e) => {
+    // console.log(e.value);
+    dispatch(giangVien2Slice.actions.setFilterValue(e.value));
+  }
 
-  let teachers = useSelector(giangVien2Selector);
-  // let [listTeacher, setListTeacher] = useState(teachers);
-
-
-  // useEffect(()=>{
-
-  // },[listTeacher])
+  // const options = [
+  //   { value: "cung chuyen mon", label: "Cùng chuyên môn" },
+  //   { value: "cung bo mon", label: "Cùng bộ môn" },
+  //   { value: "dang co mat tai truong", label: "Đang có mặt tại trường" },
+  // ];
 
   return (
     <>
       <Flex direction="column">
         <ImportFile setTable={setTable} />
-        <Select
+        <Select onChange={handleOptionsChange}
           maxMenuHeight={120}
           options={options}
           style={{ width: "100%" }}
