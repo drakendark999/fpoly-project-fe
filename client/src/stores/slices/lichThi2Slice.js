@@ -9,7 +9,7 @@ export const getAllLichThi2 = createAsyncThunk("lichThi2/getAll", async () => {
   return response.data;
 });
 
-export const addLichThi2 = createAsyncThunk("giangVien2/addGV2", async (data) => {
+export const addLichThi2 = createAsyncThunk("lichThi2/add", async (data) => {
   const response = await axios.post(`${apiURL}/api/lichthi2`, data);
   return response.data;
 });
