@@ -19,7 +19,7 @@ let lichThi2Slice = createSlice({
   initialState: {
     filter: {
       date: "2022-12-18",
-      toaNha: "",
+      toaNha: "F",
       nganh: [],
     },
     list: [],

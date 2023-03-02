@@ -3,6 +3,7 @@ import dragAndDrogSlice from "./slices/dragAndDrogSlice";
 import giangVien2Slice from "./slices/giangVien2Slice";
 import accountSlice from "./slices/accountSlice";
 import lichThi2Slice from "./slices/lichThi2Slice";
+import phongSlice from "./slices/phongSlice";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     lichThi: dragAndDrogSlice.reducer,
     account: accountSlice.reducer,
     lichThi2: lichThi2Slice.reducer,
+    phong : phongSlice.reducer
   },
 });
 
