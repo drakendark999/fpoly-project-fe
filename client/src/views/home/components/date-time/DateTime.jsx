@@ -3,37 +3,40 @@ import { Box } from '@chakra-ui/react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import './dataTime.scss';
-import { filterWithDate } from '../../../../stores/slices/dragAndDrogSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
 import moment from 'moment'
+import lichThi2Slice from '../../../../stores/slices/lichThi2Slice';
 
 
 const DateTime = () =>
 {
   const [startDate, setStartDate] = useState(new Date());
   const dispatch = useDispatch();
-  const setDateLocal = () => {
-    let date = new Date();
-    let newDate = moment(date).format('YYYY-MM-DD')
-    localStorage.setItem("date", newDate)
-  }
+  // const setDateLocal = () => {
+  //   let date = new Date();
+  //   let newDate = moment(date).format('YYYY-MM-DD')
+  //   localStorage.setItem("date", newDate)
+  // }
 
-  useEffect(() => {
-    let date = new Date();
-    let newDate = moment(date).format('YYYY-MM-DD')
-    localStorage.setItem("date", newDate)
-  },[])
+  // useEffect(() => {
+  //   let date = new Date();
+  //   let newDate = moment(date).format('YYYY-MM-DD')
+  //   localStorage.setItem("date", newDate)
+  // },[])
 
 
+
+  // console.log(startDate)
   const handleChangeTime = (date) => {
     // console.log(date)
     setStartDate(date)
     // console.log(startDate)    
     let newDate = moment(date).format('YYYY-MM-DD')
-    localStorage.setItem("date", newDate)
+    // localStorage.setItem("date", newDate)
     // console.log(newDate)
-    dispatch(filterWithDate(newDate))
+    // dispatch(filterWithDate(newDate))
+    dispatch(lichThi2Slice.actions.setDate(newDate))
   }
 
 

@@ -17,12 +17,12 @@ const FormSelect = () => {
     { id: 3, name: 'Tòa T'},
   ]
   const nganh = [
-    { id: 1, name: 'UDPM'},
-    { id: 2, name: 'CNTT'},
-    { id: 3, name: 'TKĐH'},
-    { id: 3, name: 'Kinh tế'},
-    { id: 3, name: 'Tiếng anh'},
-    { id: 3, name: 'Cơ bản'},
+    { id: 1, name: 'UDPM', checked: false},
+    { id: 2, name: 'CNTT', checked: false},
+    { id: 3, name: 'TKĐH', checked: false},
+    { id: 3, name: 'Kinh tế', checked: false},
+    { id: 3, name: 'Tiếng anh', checked: false},
+    { id: 3, name: 'Cơ bản', checked: false},
   ]
   return (
     <Flex justify= "space-between" align="top" my={3}>

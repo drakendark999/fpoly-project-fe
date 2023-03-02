@@ -15,28 +15,54 @@ export const addLichThi2 = createAsyncThunk("lichThi2/add", async (data) => {
 });
 
 let lichThi2Slice = createSlice({
-    name: "lichThi2",
-    initialState: {
-      list: [],
-      count: 0
+  name: "lichThi2",
+  initialState: {
+    filter: {
+      date: "2022-12-18",
+      toaNha: "",
+      nganh: [],
     },
-  
-    reducers: {
-      setLichThi2: (state, { payload }) => {
-        state.list = payload;
-      },
+    list: [],
+    count: 0,
+  },
+
+  reducers: {
+    setLichThi2: (state, { payload }) => {
+      state.list = payload;
+    },
+    setToaNha: (state, { payload }) => {
+      console.log(payload);
+      state.filter.toaNha = payload;
+    },
+    setDate: (state, { payload }) => {
+      state.filter.date = payload;
+    },
+    setNganhLT: (state, action) => {
+      // console.log(action);
+      state.filter.nganh = action.payload;
     },
 
-    extraReducers: (builder) => {
-      builder
-        .addCase(getAllLichThi2.fulfilled, (state, { payload }) => {
-          state.list = payload;
-        })
-        .addCase(addLichThi2.fulfilled, (state, { payload }) => {
-          // state.list.push(payload);
-          alert('Upload thành công lịch thi');
-        });
+    deleteNganhLT: (state, { payload }) => {
+      console.log("data: ", payload);
+      // console.log(state.filter.nganh);
+      let arrNganh = state.filter.nganh.filter((item) => {
+        return item == payload ? false : true;
+      });
+      // console.log(arrNganh);
+      state.filter.nganh = arrNganh;
     },
-  });
-  
-  export default lichThi2Slice;
+  },
+
+  extraReducers: (builder) => {
+    builder
+      .addCase(getAllLichThi2.fulfilled, (state, { payload }) => {
+        state.list = payload;
+      })
+      .addCase(addLichThi2.fulfilled, (state, { payload }) => {
+        // state.list.push(payload);
+        alert("Upload thành công lịch thi");
+      });
+  },
+});
+
+export default lichThi2Slice;

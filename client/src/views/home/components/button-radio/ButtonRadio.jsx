@@ -1,33 +1,24 @@
 import { FormControl, FormLabel, HStack, Radio, RadioGroup } from '@chakra-ui/react'
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { filterWithToaNha } from '../../../../stores/slices/dragAndDrogSlice'
+import dragAndDrogSlice from '../../../../stores/slices/dragAndDrogSlice'
 import { useEffect } from 'react'
-import { filterWithChuyenNganh } from '../../../../stores/slices/dragAndDrogSlice'
+import { getLichThi2, filterLichThi } from '../../../../selectors/selectors'
+import lichThi2Slice from '../../../../stores/slices/lichThi2Slice'
 
 const ButtonRadio = (props) => {
     // console.log(props.data[0].name);
     const dispatch = useDispatch();
     const phanBiet = props.phanBiet;
+    // let lichThi2 = useSelector(filterLichThi);
+    const [toaNhaValue, setToaNhaValue] = useState('Tòa F');
 
-    useEffect(() => {
-        // let date = new Date();
-        // let newDate = moment(date).format('YYYY-MM-DD')
-        localStorage.setItem("Toa nha", "F")
-        localStorage.setItem("Chuyen nganh", 'UDPM')
-      },[])
+    // console.log("Lịch thi: ", lichThi2);
 
-    const handleChangeStateWithToaNha = (value) => {
+    const handleButtonRadio = (value) => {
         let toaNha = value.substr(4, 1)
-        localStorage.setItem("Toa nha", toaNha)
-        // console.log(toaNha)
-        dispatch(filterWithToaNha(toaNha))
-    }
-
-    const handleChangeStateWithChuyenNganh = (value) => {
-        // console.log(value)
-        localStorage.setItem("Chuyen nganh", value)
-        dispatch(filterWithChuyenNganh(value))
+        setToaNhaValue(value);
+        dispatch(lichThi2Slice.actions.setToaNha(toaNha))
     }
 
     return (
@@ -35,16 +26,12 @@ const ButtonRadio = (props) => {
         <FormControl as='fieldset'>
             <FormLabel as='legend'>{props.title}</FormLabel>
 
-            <RadioGroup defaultValue={props.data[0].name} >
+            <RadioGroup >
                 <HStack spacing='24px'>
                     {props.data.map((item, index) => {
                         return (
                             <Radio key={index} value={item.name} onClick={() => {
-                                if(phanBiet == 1){
-                                    handleChangeStateWithToaNha(item.name)
-                                }else{
-                                    handleChangeStateWithChuyenNganh(item.name)
-                                }
+                                handleButtonRadio(item.name)
                             }}>{item.name}</Radio>
                         )
                     })}

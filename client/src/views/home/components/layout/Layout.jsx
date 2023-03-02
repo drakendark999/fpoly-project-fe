@@ -17,6 +17,7 @@ import { fetchAllGV1 } from "../../../../stores/slices/dragAndDrogSlice";
 import { fetchUpdateLichThi } from "../../../../stores/slices/dragAndDrogSlice";
 import ButtonSave from "../button-save-database/ButtonSave";
 import TableImport from "../table/table-import/TableImport";
+import lichThi2Slice from "../../../../stores/slices/lichThi2Slice";
 
 
 const Layout = () => {
@@ -26,6 +27,8 @@ const Layout = () => {
     useEffect(() => {
         dispatch(fetchAllGV1());
     }, []);
+
+    
 
     // let arrAStore = useSelector(getLichThi);
     

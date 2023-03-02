@@ -6,17 +6,17 @@ import TableSideBar from "./table-sidebar/TableSideBar";
 import TableChild from "./TableChild";
 import TableSort from "./table-sort/TableSort";
 import { useSelector, useDispatch } from "react-redux";
-import { getLichThi, getLichThi2 } from "../../../../selectors/selectors";
+import { getLichThi, getLichThi2, filterLichThi } from "../../../../selectors/selectors";
 
 import { getAllLichThi2 } from "../../../../stores/slices/lichThi2Slice";
 
 const Table = (props) => {
     const dispatch = useDispatch();
-    let lichThi2 = useSelector(getLichThi2);
+    let lichThi2 = useSelector(filterLichThi);
     useEffect(() => {
         dispatch(getAllLichThi2());
     }, []);
-    console.log("Lịch thi: ", lichThi2);
+    console.log("Lịch thi 2: ", lichThi2);
 
     const style = {
         border: "1px",
