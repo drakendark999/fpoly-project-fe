@@ -18,6 +18,7 @@ const ButtonRadio = (props) => {
     const handleButtonRadio = (value) => {
         let toaNha = value.substr(4, 1)
         setToaNhaValue(value);
+        dispatch(dragAndDrogSlice.actions.setToaNha(toaNha))
         dispatch(lichThi2Slice.actions.setToaNha(toaNha))
     }
 
@@ -29,6 +30,14 @@ const ButtonRadio = (props) => {
             <RadioGroup >
                 <HStack spacing='24px'>
                     {props.data.map((item, index) => {
+                        if(item.name == 'Tòa F'){
+                            return(
+                                <Radio key={index} value={item.name} onClick={() => {
+                                    handleButtonRadio(item.name)
+                                }}>{item.name}</Radio>
+                            )
+                        }
+
                         return (
                             <Radio key={index} value={item.name} onClick={() => {
                                 handleButtonRadio(item.name)

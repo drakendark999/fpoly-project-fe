@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import moment from 'moment'
 import lichThi2Slice from '../../../../stores/slices/lichThi2Slice';
-
+import dragAndDrogSlice from '../../../../stores/slices/dragAndDrogSlice';
 
 const DateTime = () =>
 {
@@ -36,6 +36,7 @@ const DateTime = () =>
     // localStorage.setItem("date", newDate)
     // console.log(newDate)
     // dispatch(filterWithDate(newDate))
+    dispatch(dragAndDrogSlice.actions.setDate(newDate))
     dispatch(lichThi2Slice.actions.setDate(newDate))
   }
 

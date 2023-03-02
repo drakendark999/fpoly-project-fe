@@ -31,7 +31,7 @@ let lichThi2Slice = createSlice({
       state.list = payload;
     },
     setToaNha: (state, { payload }) => {
-      console.log(payload);
+      // console.log(payload);
       state.filter.toaNha = payload;
     },
     setDate: (state, { payload }) => {
@@ -41,9 +41,8 @@ let lichThi2Slice = createSlice({
       // console.log(action);
       state.filter.nganh = action.payload;
     },
-
     deleteNganhLT: (state, { payload }) => {
-      console.log("data: ", payload);
+      // console.log("data: ", payload);
       // console.log(state.filter.nganh);
       let arrNganh = state.filter.nganh.filter((item) => {
         return item == payload ? false : true;

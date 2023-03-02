@@ -7,6 +7,11 @@ const apiURL = import.meta.env.VITE_API_URL_LOCAL;
 const dragAndDrogSlice = createSlice({
   name: "lichThi",
   initialState: {
+    filter: {
+      date: "2023-03-01",
+      toaNha: "F",
+      nganh: [],
+    },
     arrayA: [],
   },
   reducers: {
@@ -26,6 +31,27 @@ const dragAndDrogSlice = createSlice({
       let objN = action.payload[1];
 
       state.arrayA.splice(index, 1, objN);
+    },
+    setToaNha: (state, { payload }) => {
+      // console.log(payload);
+      state.filter.toaNha = payload;
+    },
+    setDate: (state, { payload }) => {
+      state.filter.date = payload;
+    },
+    setNganhLT: (state, action) => {
+      // console.log(action);
+      state.filter.nganh = action.payload;
+    },
+
+    deleteNganhLT: (state, { payload }) => {
+      console.log("data: ", payload);
+      // console.log(state.filter.nganh);
+      let arrNganh = state.filter.nganh.filter((item) => {
+        return item == payload ? false : true;
+      });
+      // console.log(arrNganh);
+      state.filter.nganh = arrNganh;
     },
   },
   extraReducers: (builder) => {
@@ -58,6 +84,8 @@ export const fetchAllGV1 = createAsyncThunk("lichThi/fetchAllGV1", async () => {
       stt: item.status,
       caThi: item.ca_Thi,
       ngay_Thi: item.ngay_Thi,
+      idToa_Nha: item.idToa_Nha,
+      bo_Mon: item.boMon,
     };
 
     arr.push(obj);

@@ -18,17 +18,17 @@ import { fetchUpdateLichThi } from "../../../../stores/slices/dragAndDrogSlice";
 import ButtonSave from "../button-save-database/ButtonSave";
 import TableImport from "../table/table-import/TableImport";
 import lichThi2Slice from "../../../../stores/slices/lichThi2Slice";
-
+import { filterLichThiArrayA } from "../../../../selectors/selectors";
 
 const Layout = () => {
     const dispatch = useDispatch();
     // Get data
-    let arrAStore = useSelector(getLichThi);
+    
     useEffect(() => {
         dispatch(fetchAllGV1());
     }, []);
-
-    
+    let arrAStore = useSelector(filterLichThiArrayA);
+    console.log(arrAStore)
 
     // let arrAStore = useSelector(getLichThi);
     

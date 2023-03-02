@@ -7,7 +7,7 @@ import TableChild from "./TableChild";
 import TableSort from "./table-sort/TableSort";
 import { useSelector, useDispatch } from "react-redux";
 import { getLichThi, getLichThi2, filterLichThi } from "../../../../selectors/selectors";
-
+import { filterLichThiArrayA } from "../../../../selectors/selectors";
 import { getAllLichThi2 } from "../../../../stores/slices/lichThi2Slice";
 
 const Table = (props) => {
@@ -23,7 +23,7 @@ const Table = (props) => {
         borderColor: "black",
     };
     
-    let arrayA = useSelector(getLichThi);
+    let arrayA = useSelector(filterLichThiArrayA);
     
 
    
