@@ -1,0 +1,1 @@
+export const selectPhong = (state)=>state.phong.phongList

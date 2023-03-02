@@ -26,11 +26,11 @@ const ButtonRadio = (props) => {
         <FormControl as='fieldset'>
             <FormLabel as='legend'>{props.title}</FormLabel>
 
-            <RadioGroup >
+            <RadioGroup defaultValue={props.data[0].name} >
                 <HStack spacing='24px'>
                     {props.data.map((item, index) => {
                         return (
-                            <Radio key={index} value={item.name} onClick={() => {
+                            <Radio key={index} value={item.name} onChange={() => {
                                 handleButtonRadio(item.name)
                             }}>{item.name}</Radio>
                         )
