@@ -7,7 +7,7 @@ import dragAndDrogSlice from "../../../../../stores/slices/dragAndDrogSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Gv2Box from "./gv2-box/Gv2Box";
 import EditBoxGv1 from "./EditBoxGv1";
-import { getLichThi } from "../../../../../selectors/selectors";
+import { getLichThi, getGiangVien2 } from "../../../../../selectors/selectors";
 import "./tableBox.scss";
 
 const TableBox = (props) =>
@@ -113,6 +113,12 @@ const TableBox = (props) =>
         setColorGV1(true)
     }
 
+    // select GV2
+
+    const listGv2 = useSelector(getGiangVien2)
+    // console.log(listGv2)
+
+
     return (
         <>
             <GridItem ref={drop} style={{
@@ -135,10 +141,17 @@ const TableBox = (props) =>
                 </div>
                 {boxEdit ? <Box bg='#E5E0FF' boxShadow='0px 0px 3px #cdcdcd' maxH='76px' w='100%' position='absolute' left='100px' zIndex='1000' top='13px'>
                     <Select value={data.gv1} onChange={changeGv1InData}>
-                        <option value='locth5'>locth5</option>
+                        {
+                            listGv2.map((item,index) => {
+                                return(
+                                    <option key={index} value={item.MaNV}>{item.MaNV}</option>
+                                )
+                            })
+                        }
+                        {/* <option value='locth5'>locth5</option>
                         <option value='longnv36'>longnv36</option>
                         <option value='hotb'>hotb</option>
-                        <option value='ngahth4'>ngahth4</option>
+                        <option value='ngahth4'>ngahth4</option> */}
                     </Select>
                 </Box> : ""}
             </GridItem>
