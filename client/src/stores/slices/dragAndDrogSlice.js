@@ -16,11 +16,12 @@ const dragAndDrogSlice = createSlice({
     },
     reducers: {
         addGv2: (state, action) => {
-            state.arrayA.find((e) => e.id == action.payload.id).gv2 = action.payload.name;
+            
+            state.arrayA.find((e) => e.id == action.payload.id).GV2 = action.payload.name;
         },
         editGv2: (state, action) => {
-            state.arrayA.find((e) => e.id == action.payload.idSecond).gv2 = state.arrayA.find((e) => e.id == action.payload.idFirst).gv2;
-            state.arrayA.find((e) => e.id == action.payload.idFirst).gv2 = "";
+            state.arrayA.find((e) => e.id == action.payload.idSecond).GV2 = state.arrayA.find((e) => e.id == action.payload.idFirst).GV2;
+            state.arrayA.find((e) => e.id == action.payload.idFirst).GV2 = "";
         },
 
         editGv1: (state, action) => {
