@@ -189,6 +189,8 @@ const TableImport = () => {
         lichThiTrung.unshift(dataHeaders);
         setDataExport(lichThiTrung);
       }
+
+      alert('Vui lòng confirm thông tin ca thi mà bạn uploads!')
     });
   };
 
