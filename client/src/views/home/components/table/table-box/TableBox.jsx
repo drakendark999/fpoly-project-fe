@@ -17,7 +17,7 @@ const TableBox = (props) => {
     const [boxEdit, setBoxEdit] = useState(false)
     const dispatch = useDispatch();
     const [color, setColor] = useState("#FED049");
-    const [colorGV1, setColorGV1] = useState(false);
+    const [colorGV1, setColorGV1] = useState('black');
     let index = props.index;
 
 
@@ -106,7 +106,13 @@ const TableBox = (props) => {
         // console.log(arrOld)
         setBoxEdit(false)
         setEditCheck(true)
-        setColorGV1(true)
+        const intervalId = setInterval(() => {
+            setColorGV1((colorGV1) => {
+            return colorGV1 === 'red' ? 'blue' : 'red';
+      });
+    }, 500);
+
+    return () => clearInterval(intervalId);
     }
 
     const dropOS = useRef(null)
@@ -145,7 +151,7 @@ const TableBox = (props) => {
                         <Text id="lop">{data.lop}</Text>
                         {/* <Text id="giangVien">{data.gv1}</Text> */}
                         <Text id="giangVien" cursor='pointer' style={{
-                            color: colorGV1 ? "red" : "black"
+                            color: colorGV1
                         }} onClick={boxEditGv1}>{data.gv1}</Text>
 
                     </Box>
