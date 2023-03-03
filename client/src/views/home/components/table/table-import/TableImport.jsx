@@ -8,14 +8,9 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { ExcelRenderer } from "react-excel-renderer";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-// import { getLichThi2 } from "../../../../../selectors/selectors";
-import lichThi2Slice from "../../../../../stores/slices/lichThi2Slice";
-import {
-  addLichThi2,
-  getAllLichThi2,
-} from "../../../../../stores/slices/lichThi2Slice";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import {addLichThi2} from "../../../../../stores/slices/lichThi2Slice";
 import * as XLSX from "xlsx"
 import { saveAs } from 'file-saver';
 
