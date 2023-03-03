@@ -12,22 +12,23 @@ const dragAndDrogSlice = createSlice({
       toaNha: "F",
       nganh: [],
     },
+
     arrayA: [],
   },
+
   reducers: {
     addGv2: (state, action) => {
-      state.arrayA.find((e) => e.id == action.payload.id).gv2 =
+      state.arrayA.find((e) => e.id == action.payload.id).GV2 =
         action.payload.name;
     },
     editGv2: (state, action) => {
-      state.arrayA.find((e) => e.id == action.payload.idSecond).gv2 =
-        state.arrayA.find((e) => e.id == action.payload.idFirst).gv2;
-      state.arrayA.find((e) => e.id == action.payload.idFirst).gv2 = "";
+      state.arrayA.find((e) => e.id == action.payload.idSecond).GV2 =
+        state.arrayA.find((e) => e.id == action.payload.idFirst).GV2;
+      state.arrayA.find((e) => e.id == action.payload.idFirst).GV2 = "";
     },
 
     editGv1: (state, action) => {
       let index = action.payload[0];
-      // console.log(index);
       let objN = action.payload[1];
 
       state.arrayA.splice(index, 1, objN);
