@@ -19,7 +19,7 @@ const TableSort = ({ data, caThi,lengthP,phong }) => {
         if (Object.keys(sortedArray[i]).length !== 0) {
             phong.forEach((itemPhong,index)=>{
                
-                if(sortedArray[i].ten_Phong.slice(-3)==itemPhong.tenPhong.slice(-3)){
+                if(sortedArray[i].ten_Phong==itemPhong.tenPhong){
                     arrayEnd[index]= sortedArray[i]
                 }
                 
