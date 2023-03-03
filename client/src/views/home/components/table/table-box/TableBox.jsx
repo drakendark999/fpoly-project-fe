@@ -1,25 +1,26 @@
 import React from "react";
 import { Box, Button, GridItem, Text, Stack, Select } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useDrop, useDrag } from "react-dnd";
 import dragAndDrogSlice from "../../../../../stores/slices/dragAndDrogSlice";
 // import importFileSlice from "../../../../../stores/slices/importFileSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Gv2Box from "./gv2-box/Gv2Box";
 import EditBoxGv1 from "./EditBoxGv1";
-import { getLichThi, getGiangVien2 } from "../../../../../selectors/selectors";
+import { getLichThi, getGiangVien2, giangVien2Selector } from "../../../../../selectors/selectors";
 import "./tableBox.scss";
 
-const TableBox = (props) =>
-{
+const TableBox = (props) => {
     let data = props.data;
 
     const [editCheck, setEditCheck] = useState(true);
     const [boxEdit, setBoxEdit] = useState(false)
     const dispatch = useDispatch();
     const [color, setColor] = useState("#FED049");
-    const [colorGV1, setColorGV1] = useState(false);
+    const [colorGV1, setColorGV1] = useState('black');
     let index = props.index;
+
+
 
     const colorDefaults = {
         pending: "#ffa700",
@@ -35,8 +36,7 @@ const TableBox = (props) =>
 
     let backgroundColor = "white";
 
-    if (data.mon != "")
-    {
+    if (data.mon != "") {
         backgroundColor = backgroundColors[data.stt];
     }
 
@@ -45,8 +45,7 @@ const TableBox = (props) =>
     // add Gv 2
     const [{ isOver }, drop] = useDrop(() => ({
         accept: "box",
-        drop: (item) =>
-        {
+        drop: (item) => {
             addGv2(item.name, data.id);
         },
         collect: (monitor) => ({
@@ -59,8 +58,7 @@ const TableBox = (props) =>
     // Edit Gv 2
     const [{ isOverFix }, dropFix] = useDrop(() => ({
         accept: "boxFix",
-        drop: (item) =>
-        {
+        drop: (item) => {
             editGv2(item.id, (item["nowId"] = data.id));
         },
         collect: (monitor) => ({
@@ -68,32 +66,27 @@ const TableBox = (props) =>
         }),
     }));
 
-    const addGv2 = (name, id) =>
-    {
+    const addGv2 = (name, id) => {
 
         dispatch(dragAndDrogSlice.actions.addGv2({ name, id }));
         // dispatch(importFileSlice.actions.deleteFreeTimeTeachers(name))
     };
-    const editGv2 = (idFirst, idSecond) =>
-    {
+    const editGv2 = (idFirst, idSecond) => {
         // console.log({ idFirst,idSecond})
         dispatch(dragAndDrogSlice.actions.editGv2({ idFirst, idSecond }));
     };
 
     // CLick Gv1
 
-    const editGv1 = () =>
-    {
+    const editGv1 = () => {
         editCheck ? setEditCheck(false) : setEditCheck(true)
     }
 
-    const boxEditGv1 = () =>
-    {
+    const boxEditGv1 = () => {
         boxEdit ? setBoxEdit(false) : setBoxEdit(true)
     }
 
-    const changeGv1InData = (e) =>
-    {
+    const changeGv1InData = (e) => {
         let objNew = {
             id: data.id,
             mon: data.mon,
@@ -102,56 +95,97 @@ const TableBox = (props) =>
             gv1: e.target.value,
             gv2: data.gv2,
             stt: data.stt,
-            caThi: data.caThi
+            caThi: data.caThi,
+            ngay_Thi: data.ngay_Thi,
+            idToa_Nha: data.idToa_Nha,
+            bo_Mon: data.bo_Mon
         }
+
+        // Xác nhận thay đổi gv1 ko?
+        const accept = confirm("Bạn chắc chắn sẽ thay đổi giảng viên 1???");
+        if (!accept) return;
 
         dispatch(dragAndDrogSlice.actions.editGv1([index, objNew]))
         // const arrOld = useSelector(getLichThi);
         // console.log(arrOld)
         setBoxEdit(false)
         setEditCheck(true)
-        setColorGV1(true)
+
+        // Thay đổi giảng viên 1 sẽ chớp
+        const intervalId = setInterval(() => {
+            setColorGV1((colorGV1) => {
+                return colorGV1 === 'red' ? 'blue' : 'red';
+            });
+        }, 500);
+
+        return () => clearInterval(intervalId);
     }
+
+    const dropOS = useRef(null)
+
+    const handleClickOutside = (e) => {
+        if (dropOS.current && !dropOS.current.contains(e.target)) {
+            setBoxEdit(false);
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener('click', handleClickOutside);
+        return () => {
+            document.removeEventListener('click', handleClickOutside);
+        };
+    }, []);
 
     // select GV2
 
-    const listGv2 = useSelector(getGiangVien2)
+    const listGv2 = useSelector(giangVien2Selector)
     // console.log(listGv2)
 
+    const closeEditGV = () => {
+        setBoxEdit(false)
+    }
 
     return (
         <>
-            <GridItem ref={drop} style={{
-                backgroundColorDrop,
-                animation: isOver ? "blink 1s infinite" : "none",
-            }} backgroundColor={backgroundColor} p={2} position='relative' border='1px'>
-                <Box borderBottom="1px" borderColor="black" minH='73' >
-                    <Text id="monHoc">{data.mon}</Text>
-                    <Text id="lop">{data.lop}</Text>
-                    {/* <Text id="giangVien">{data.gv1}</Text> */}
-                    <Text id="giangVien" cursor='pointer' style={{
-                        color: colorGV1 ? "red" : "black"
-                    }} onClick={boxEditGv1}>{data.gv1}</Text>
+            <div ref={dropOS}>
+                <GridItem ref={drop} style={{
+                    backgroundColorDrop,
+                    animation: isOver ? "blink 1s infinite" : "none",
+                }} backgroundColor={backgroundColor} p={2} position='relative' border='1px' >
+                    <Box borderBottom="1px" borderColor="black" minH='73' >
+                        <Text id="monHoc">{data.mon}</Text>
+                        <Text id="lop">{data.lop}</Text>
+                        {/* <Text id="giangVien">{data.gv1}</Text> */}
+                        <Text id="giangVien" cursor='pointer' style={{
+                            color: colorGV1
+                        }} onClick={boxEditGv1}>{data.gv1}</Text>
 
-                </Box>
-                <div ref={dropFix}>
-                    <Box style={{ minHeight: "20px" }} color={colorDefaults[data.stt]} mt={1} id="giangVien2">
-                        <Gv2Box id={data.id} gv2={data.gv2} />
                     </Box>
-                </div>
-                {boxEdit ? <Box bg='#E5E0FF' boxShadow='0px 0px 3px #cdcdcd' maxH='76px' w='100%' position='absolute' left='100px' zIndex='1000' top='13px'>
-                    <Select value={data.gv1} onChange={changeGv1InData}>
-                        {
-                            listGv2.map((item,index) => {
-                                return(
-                                    <option key={index} value={item.MaNV}>{item.MaNV}</option>
-                                )
-                            })
-                        }
-                        
-                    </Select>
-                </Box> : ""}
-            </GridItem>
+
+                    <div ref={dropFix}>
+                        <Box style={{ minHeight: "20px" }} color={colorDefaults[data.stt]} mt={1} id="giangVien2">
+                            <Gv2Box id={data.id} gv2={data.gv2} />
+                        </Box>
+                    </div>
+                    {boxEdit ? <Box bg='#E5E0FF' boxShadow='0px 0px 3px #cdcdcd' maxH='76px' w='100%' position='absolute' left='100px' zIndex='1000' top='13px'>
+                        <Select value={data.gv1} onChange={changeGv1InData}>
+                            {
+                                listGv2.map((item, index) => {
+                                    return (
+                                        <option key={index} value={item.MaNV}>{item.MaNV}</option>
+                                    )
+                                })
+                            }
+                            {/* <option value='locth5'>locth5</option>
+                        <option value='longnv36'>longnv36</option>
+                        <option value='hotb'>hotb</option>
+                        <option value='ngahth4'>ngahth4</option> */}
+                        </Select>
+                    </Box> : ""}
+                </GridItem>
+            </div>
+
+
         </>
     );
 };

@@ -7,9 +7,13 @@ import TableChild from "./TableChild";
 import TableSort from "./table-sort/TableSort";
 import { useSelector, useDispatch } from "react-redux";
 import { getLichThi, getLichThi2, filterLichThi } from "../../../../selectors/selectors";
+
+import { filterLichThiArrayA } from "../../../../selectors/selectors";
+
 import { selectPhong } from "../../../../selectors/selectPhong";
 
 import { fetchAllPhong } from "../../../../stores/slices/phongSlice";
+
 
 import { getAllLichThi2 } from "../../../../stores/slices/lichThi2Slice";
 
@@ -32,8 +36,10 @@ const Table = (props) => {
         borderColor: "black",
     };
     
-    let arrayA = useSelector(getLichThi);
-    // console.log("arrayA: ",arrayA);
+
+    let arrayA = useSelector(filterLichThiArrayA);
+
+    // let arrayA = useSelector(getLichThi);
 
     
 
