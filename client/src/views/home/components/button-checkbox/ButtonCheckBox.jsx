@@ -2,7 +2,7 @@ import { FormControl, FormLabel, Checkbox, GridItem, Grid } from "@chakra-ui/rea
 import { useSelector, useDispatch } from "react-redux";
 import React, { useEffect, useState } from "react";
 import lichThi2Slice from "../../../../stores/slices/lichThi2Slice";
-import { nganhLichThi } from "../../../../selectors/selectors";
+// import { nganhLichThi } from "../../../../selectors/selectors";
 import dragAndDrogSlice from "../../../../stores/slices/dragAndDrogSlice";
 
 const ButtonCheckBox = (props) => {

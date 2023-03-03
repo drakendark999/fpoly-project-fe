@@ -9,9 +9,13 @@ const phongSlice = createSlice({
     name: "phong",
     initialState: {
         phongList: [],
-        filter: ''
+        filter: 'F'
     },
-    reducers: {},
+    reducers: {
+        setPhongBaseToaNha: (state, action) => {
+            state.filter = action.payload;
+        },
+    },
 
     extraReducers: (builder) => {
         builder

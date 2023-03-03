@@ -5,112 +5,105 @@ const apiURL = import.meta.env.VITE_API_URL_LOCAL;
 // const apiURL = import.meta.env.VITE_API_URL;
 
 const dragAndDrogSlice = createSlice({
-  name: "lichThi",
-  initialState: {
-    filter: {
-      date: "2023-03-01",
-      toaNha: "F",
-      nganh: [],
+    name: "lichThi",
+    initialState: {
+        filter: {
+            date: "2022-12-18",
+            toaNha: "F",
+            nganh: [],
+        },
+        arrayA: [],
     },
-    arrayA: [],
-  },
-  reducers: {
-    addGv2: (state, action) => {
-      state.arrayA.find((e) => e.id == action.payload.id).gv2 =
-        action.payload.name;
-    },
-    editGv2: (state, action) => {
-      state.arrayA.find((e) => e.id == action.payload.idSecond).gv2 =
-        state.arrayA.find((e) => e.id == action.payload.idFirst).gv2;
-      state.arrayA.find((e) => e.id == action.payload.idFirst).gv2 = "";
-    },
+    reducers: {
+        addGv2: (state, action) => {
+            state.arrayA.find((e) => e.id == action.payload.id).gv2 = action.payload.name;
+        },
+        editGv2: (state, action) => {
+            state.arrayA.find((e) => e.id == action.payload.idSecond).gv2 = state.arrayA.find((e) => e.id == action.payload.idFirst).gv2;
+            state.arrayA.find((e) => e.id == action.payload.idFirst).gv2 = "";
+        },
 
-    editGv1: (state, action) => {
-      // [index, objN] = action.payload;
-      let index = action.payload[0];
-      let objN = action.payload[1];
+        editGv1: (state, action) => {
+            let index = action.payload[0];
+            let objN = action.payload[1];
 
-      state.arrayA.splice(index, 1, objN);
-    },
-    setToaNha: (state, { payload }) => {
-      // console.log(payload);
-      state.filter.toaNha = payload;
-    },
-    setDate: (state, { payload }) => {
-      state.filter.date = payload;
-    },
-    setNganhLT: (state, action) => {
-      // console.log(action);
-      state.filter.nganh = action.payload;
-    },
+            state.arrayA.splice(index, 1, objN);
+        },
+        setToaNha: (state, { payload }) => {
+            state.filter.toaNha = payload;
+        },
+        setDate: (state, { payload }) => {
+            state.filter.date = payload;
+        },
+        setNganhLT: (state, action) => {
+            state.filter.nganh = action.payload;
+        },
 
-    deleteNganhLT: (state, { payload }) => {
-      // console.log("data: ", payload);
-      // console.log(state.filter.nganh);
-      let arrNganh = state.filter.nganh.filter((item) => {
-        return item == payload ? false : true;
-      });
-      // console.log(arrNganh);
-      state.filter.nganh = arrNganh;
+        deleteNganhLT: (state, { payload }) => {
+            let arrNganh = state.filter.nganh.filter((item) => {
+                return item == payload ? false : true;
+            });
+
+            state.filter.nganh = arrNganh;
+        },
     },
-  },
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchAllGV1.fulfilled, (state, action) => {
-        state.arrayA = action.payload;
-      })
-      .addCase(fetchUpdateLichThi.fulfilled, (state, action) => {
-        state.arrayA = action.payload;
-        alert("Lưu thành công!!");
-      });
-  },
+    extraReducers: (builder) => {
+        builder
+            .addCase(getAllLichThi2.fulfilled, (state, action) => {
+                state.arrayA = action.payload;
+            })
+
+            // .addCase(fetchAllGV1.fulfilled, (state, action) => {
+            //     state.arrayA = action.payload;
+            // })
+
+            .addCase(fetchUpdateLichThi.fulfilled, (state, action) => {
+                state.arrayA = action.payload;
+                alert("Lưu thành công!!");
+            });
+    },
 });
 
 export default dragAndDrogSlice;
 
-export const fetchAllGV1 = createAsyncThunk("lichThi/fetchAllGV1", async () => {
-  const response = await axios.get(`${apiURL}/api/lichthi`);
-  let arr = [];
+// export const fetchAllGV1 = createAsyncThunk("lichThi/fetchAllGV1", async () => {
+//     const response = await axios.get(`${apiURL}/api/lichthi`);
+//     let arr = [];
+//     response.data.map((item) => {
+//         let obj = {
+//             id: parseInt(item.id),
+//             mon: item.ma_Mon,
+//             ten_Phong: item.ten_Phong,
+//             lop: item.ma_Lop,
+//             gv1: item.GV1,
+//             gv2: item.GV2,
+//             stt: item.status,
+//             caThi: item.ca_Thi,
+//             ngay_Thi: item.ngay_Thi,
+//             idToa_Nha: item.idToa_Nha,
+//             bo_Mon: item.boMon,
+//         };
+//         arr.push(obj);
+//     });
+//     return arr;
+// });
 
-  // console.log(response.data);
-  response.data.map((item) => {
-    let obj = {
-      id: parseInt(item.id),
-      mon: item.ma_Mon,
-      ten_Phong: item.ten_Phong,
-      lop: item.ma_Lop,
-      gv1: item.GV1,
-      gv2: item.GV2,
-      stt: item.status,
-      caThi: item.ca_Thi,
-      ngay_Thi: item.ngay_Thi,
-      idToa_Nha: item.idToa_Nha,
-      bo_Mon: item.boMon,
-    };
-
-    arr.push(obj);
-  });
-  return arr;
+export const getAllLichThi2 = createAsyncThunk("lichThi2/getAll", async () => {
+    const response = await axios.get(`${apiURL}/api/lichthi2`);
+    
+    return response.data;
 });
 
-export const fetchUpdateLichThi = createAsyncThunk(
-  "lichThi/fetchUpdateLichThi",
-  async (data) => {
-    // const response = await axios.put(
-    //   `${apiURL}/api/lichthi/updateLichThi`,
-    //   data
-    // );
+export const fetchUpdateLichThi = createAsyncThunk("lichThi/fetchUpdateLichThi", async (data) => {
     let d = [];
     data.forEach(async (item) => {
-      d.push(item);
-      await axios.put(`${apiURL}/api/lichthi/updateLichThi`, {
-        id: item.id,
-        GV1: item.gv1,
-        GV2: item.gv2,
-      });
-      //   console.log(item);
+        d.push(item);
+        await axios.put(`${apiURL}/api/lichthi/updateLichThi`, {
+            id: item.id,
+            GV1: item.gv1,
+            GV2: item.gv2,
+        });
     });
     console.log("Database Upload", d);
     return d;
-  }
-);
+});

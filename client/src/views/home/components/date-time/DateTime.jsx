@@ -12,30 +12,19 @@ import dragAndDrogSlice from '../../../../stores/slices/dragAndDrogSlice';
 const DateTime = () =>
 {
   const [startDate, setStartDate] = useState(new Date());
+  // const [startDate, setStartDate] = useState('2022-12-18');
   const dispatch = useDispatch();
-  // const setDateLocal = () => {
-  //   let date = new Date();
-  //   let newDate = moment(date).format('YYYY-MM-DD')
-  //   localStorage.setItem("date", newDate)
-  // }
-
-  // useEffect(() => {
-  //   let date = new Date();
-  //   let newDate = moment(date).format('YYYY-MM-DD')
-  //   localStorage.setItem("date", newDate)
-  // },[])
+  
 
 
 
-  // console.log(startDate)
+
   const handleChangeTime = (date) => {
-    // console.log(date)
+ 
     setStartDate(date)
-    // console.log(startDate)    
+   
     let newDate = moment(date).format('YYYY-MM-DD')
-    // localStorage.setItem("date", newDate)
-    // console.log(newDate)
-    // dispatch(filterWithDate(newDate))
+
     dispatch(dragAndDrogSlice.actions.setDate(newDate))
     dispatch(lichThi2Slice.actions.setDate(newDate))
   }

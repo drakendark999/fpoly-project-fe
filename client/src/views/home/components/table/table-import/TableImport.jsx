@@ -9,7 +9,7 @@ import {
 import { ExcelRenderer } from "react-excel-renderer";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getLichThi2 } from "../../../../../selectors/selectors";
+// import { getLichThi2 } from "../../../../../selectors/selectors";
 import lichThi2Slice from "../../../../../stores/slices/lichThi2Slice";
 import { addLichThi2, getAllLichThi2 } from "../../../../../stores/slices/lichThi2Slice";
 
