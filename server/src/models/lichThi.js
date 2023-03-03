@@ -1,17 +1,11 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require("./connect");
 
-const lichThi = sequelize.define(
-  "lichThi",
-  {
+const lichThi = sequelize.define("lichThi",{
     id: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      primaryKey: true,
-    },
-    boMon: {
-      type: DataTypes.STRING,
-      allowNull: false,
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
     },
     maKy_Thi: {
       type: DataTypes.STRING,
@@ -20,10 +14,11 @@ const lichThi = sequelize.define(
     idKhu_Vuc: {
       type: DataTypes.STRING,
       allowNull: false,
+      comment: '"pmqt": CS3, "nk": CS2'
     },
     idToa_Nha: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     ten_Phong: {
       type: DataTypes.STRING,
@@ -37,9 +32,13 @@ const lichThi = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    đợt_Thi: {
+    bo_Mon: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    dot_Thi: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
     ngay_Thi: {
       type: DataTypes.DATE,
@@ -51,15 +50,16 @@ const lichThi = sequelize.define(
     },
     so_SV: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
     maLich_Thi: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
     },
     GV1: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     GV2: {
       type: DataTypes.STRING,
@@ -67,14 +67,12 @@ const lichThi = sequelize.define(
     },
     status: {
       type: DataTypes.STRING,
-      allowNull: true,
-      comment:
-        '"pending": đang chờ; "rejected": từ chối; "confirmed": đã xác nhận; "": chưa có gv2',
+      allowNull: false,
+      comment: '"pending": đang chờ; "rejected": từ chối; "confirmed": đã xác nhận; "": chưa có gv2',
     },
   },
   {
     timestamps: false,
-    tableName: "lichThi",
   }
 );
 
