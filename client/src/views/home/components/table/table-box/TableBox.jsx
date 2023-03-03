@@ -9,16 +9,19 @@ import Gv2Box from "./gv2-box/Gv2Box";
 import EditBoxGv1 from "./EditBoxGv1";
 import { giangVien2Selector } from "../../../../../selectors/selectors";
 import "./tableBox.scss";
+import { getLichThi1 } from "../../../../../selectors/selectors";
 
 const TableBox = (props) => {
     let data = props.data;
+    let arrayAll = useSelector(getLichThi1)
+    // console.log(arrayAll)
 
     const [editCheck, setEditCheck] = useState(true);
     const [boxEdit, setBoxEdit] = useState(false);
     const dispatch = useDispatch();
     const [color, setColor] = useState("#FED049");
     const [colorGV1, setColorGV1] = useState("black");
-    let index = props.index;
+    // let index = props.index;
 
     const colorDefaults = {
         pending: "#ffa700",
@@ -80,25 +83,38 @@ const TableBox = (props) => {
     };
 
     const changeGv1InData = (e) => {
+        let ide = 0;
         let objNew = {
             id: data.id,
-            mon: data.mon,
-            ten_Phong: data.ten_Phong,
-            lop: data.lop,
-            gv1: e.target.value,
-            gv2: data.gv2,
-            stt: data.stt,
-            caThi: data.caThi,
-            ngay_Thi: data.ngay_Thi,
+            maKy_Thi: data.maKy_Thi,
+            idKhu_Vuc: data.idKhu_Vuc,
             idToa_Nha: data.idToa_Nha,
+            GV1: e.target.value,
+            ten_Phong: data.ten_Phong,
+            ma_Lop: data.ma_Lop,
+            ma_Mon: data.ma_Mon,
             bo_Mon: data.bo_Mon,
+            dot_Thi: data.dot_Thi,
+            ngay_Thi: data.ngay_Thi,
+            ca_Thi: data.ca_Thi,
+            maLich_Thi: data.maLich_Thi,
+            GV2: data.GV2,
+            status: data.status
         };
+        // console.log(objNew)
+        // console.log(index)
+        arrayAll.forEach((item,index) => {
+            if(item.id == objNew.id){
+                ide = index
+            }
+        })
+        // console.log(ide)
 
         // Xác nhận thay đổi gv1 ko?
         const accept = confirm("Bạn chắc chắn sẽ thay đổi giảng viên 1???");
         if (!accept) return;
 
-        dispatch(dragAndDrogSlice.actions.editGv1([index, objNew]));
+        dispatch(dragAndDrogSlice.actions.editGv1([ide, objNew]));
 
         setBoxEdit(false);
         setEditCheck(true);

@@ -5,63 +5,66 @@ const apiURL = import.meta.env.VITE_API_URL_LOCAL;
 // const apiURL = import.meta.env.VITE_API_URL;
 
 const dragAndDrogSlice = createSlice({
-    name: "lichThi",
-    initialState: {
-        filter: {
-            date: "2022-12-18",
-            toaNha: "F",
-            nganh: [],
-        },
-        arrayA: [],
+  name: "lichThi",
+  initialState: {
+    filter: {
+      date: "2022-12-18",
+      toaNha: "F",
+      nganh: [],
     },
-    reducers: {
-        addGv2: (state, action) => {
-            state.arrayA.find((e) => e.id == action.payload.id).gv2 = action.payload.name;
-        },
-        editGv2: (state, action) => {
-            state.arrayA.find((e) => e.id == action.payload.idSecond).gv2 = state.arrayA.find((e) => e.id == action.payload.idFirst).gv2;
-            state.arrayA.find((e) => e.id == action.payload.idFirst).gv2 = "";
-        },
-
-        editGv1: (state, action) => {
-            let index = action.payload[0];
-            let objN = action.payload[1];
-
-            state.arrayA.splice(index, 1, objN);
-        },
-        setToaNha: (state, { payload }) => {
-            state.filter.toaNha = payload;
-        },
-        setDate: (state, { payload }) => {
-            state.filter.date = payload;
-        },
-        setNganhLT: (state, action) => {
-            state.filter.nganh = action.payload;
-        },
-
-        deleteNganhLT: (state, { payload }) => {
-            let arrNganh = state.filter.nganh.filter((item) => {
-                return item == payload ? false : true;
-            });
-
-            state.filter.nganh = arrNganh;
-        },
+    arrayA: [],
+  },
+  reducers: {
+    addGv2: (state, action) => {
+      state.arrayA.find((e) => e.id == action.payload.id).gv2 =
+        action.payload.name;
     },
-    extraReducers: (builder) => {
-        builder
-            .addCase(getAllLichThi2.fulfilled, (state, action) => {
-                state.arrayA = action.payload;
-            })
-
-            // .addCase(fetchAllGV1.fulfilled, (state, action) => {
-            //     state.arrayA = action.payload;
-            // })
-
-            .addCase(fetchUpdateLichThi.fulfilled, (state, action) => {
-                state.arrayA = action.payload;
-                alert("Lưu thành công!!");
-            });
+    editGv2: (state, action) => {
+      state.arrayA.find((e) => e.id == action.payload.idSecond).gv2 =
+        state.arrayA.find((e) => e.id == action.payload.idFirst).gv2;
+      state.arrayA.find((e) => e.id == action.payload.idFirst).gv2 = "";
     },
+
+    editGv1: (state, action) => {
+      let index = action.payload[0];
+      // console.log(index);
+      let objN = action.payload[1];
+
+      state.arrayA.splice(index, 1, objN);
+    },
+    setToaNha: (state, { payload }) => {
+      state.filter.toaNha = payload;
+    },
+    setDate: (state, { payload }) => {
+      state.filter.date = payload;
+    },
+    setNganhLT: (state, action) => {
+      state.filter.nganh = action.payload;
+    },
+
+    deleteNganhLT: (state, { payload }) => {
+      let arrNganh = state.filter.nganh.filter((item) => {
+        return item == payload ? false : true;
+      });
+
+      state.filter.nganh = arrNganh;
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getAllLichThi2.fulfilled, (state, action) => {
+        state.arrayA = action.payload;
+      })
+
+      // .addCase(fetchAllGV1.fulfilled, (state, action) => {
+      //     state.arrayA = action.payload;
+      // })
+
+      .addCase(fetchUpdateLichThi.fulfilled, (state, action) => {
+        state.arrayA = action.payload;
+        alert("Lưu thành công!!");
+      });
+  },
 });
 
 export default dragAndDrogSlice;
@@ -89,21 +92,24 @@ export default dragAndDrogSlice;
 // });
 
 export const getAllLichThi2 = createAsyncThunk("lichThi2/getAll", async () => {
-    const response = await axios.get(`${apiURL}/api/lichthi2`);
-    
-    return response.data;
+  const response = await axios.get(`${apiURL}/api/lichthi2`);
+
+  return response.data;
 });
 
-export const fetchUpdateLichThi = createAsyncThunk("lichThi/fetchUpdateLichThi", async (data) => {
+export const fetchUpdateLichThi = createAsyncThunk(
+  "lichThi/fetchUpdateLichThi",
+  async (data) => {
     let d = [];
     data.forEach(async (item) => {
-        d.push(item);
-        await axios.put(`${apiURL}/api/lichthi/updateLichThi`, {
-            id: item.id,
-            GV1: item.gv1,
-            GV2: item.gv2,
-        });
+      d.push(item);
+      await axios.put(`${apiURL}/api/lichthi/updateLichThi`, {
+        id: item.id,
+        GV1: item.gv1,
+        GV2: item.gv2,
+      });
     });
     console.log("Database Upload", d);
     return d;
-});
+  }
+);
