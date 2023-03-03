@@ -2,6 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const apiURL = import.meta.env.VITE_API_URL_LOCAL;
+// const apiURL = import.meta.env.VITE_API_URL;
+
 
 const phongSlice = createSlice({
     name: "phong",

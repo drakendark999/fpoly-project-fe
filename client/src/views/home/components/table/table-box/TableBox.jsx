@@ -148,10 +148,7 @@ const TableBox = (props) =>
                                 )
                             })
                         }
-                        {/* <option value='locth5'>locth5</option>
-                        <option value='longnv36'>longnv36</option>
-                        <option value='hotb'>hotb</option>
-                        <option value='ngahth4'>ngahth4</option> */}
+                        
                     </Select>
                 </Box> : ""}
             </GridItem>

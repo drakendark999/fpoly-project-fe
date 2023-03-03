@@ -33,6 +33,7 @@ const Table = (props) => {
     };
     
     let arrayA = useSelector(getLichThi);
+    // console.log("arrayA: ",arrayA);
 
     
 
@@ -88,21 +89,7 @@ const Table = (props) => {
             {/* Body content box */}
             <GridItem colSpan={6}>
                 {/* t01 */}
-                {/* {phongThi.map((item, i) => {
-                    return (
-                        <Grid templateColumns="repeat(8, 1fr)" key={item + i}>
-                            {arrCa.map((c) => {
-                                return arrayAMemo.map((e, index) => {
-                                    if ((item == e.ten_Phong) & (e.caThi === c)) {
-                                        return <TableBox datalist={e} index={index} key={e.id} {...style} />;
-                                    } else {
-                                        return <TableBox datalist={{}} index={index} key={e.id} {...style} />;
-                                    }
-                                });
-                            })}
-                        </Grid>
-                    );
-                })} */}
+                
                 {/* t02 */}
                 <Grid templateColumns="repeat(6, 1fr)" h="100%">
                     {/* {arrayA.map((e, index) => {
@@ -115,8 +102,6 @@ const Table = (props) => {
                     <TableSort data={sortByCaThi} caThi={4} />
                     <TableSort data={sortByCaThi} caThi={5} />
                     <TableSort data={sortByCaThi} caThi={6} />
-                    <TableSort data={sortByCaThi} caThi={7} />
-                    <TableSort data={sortByCaThi} caThi={8} />
                     
                 </Grid>
             </GridItem>
