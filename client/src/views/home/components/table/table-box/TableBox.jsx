@@ -101,18 +101,24 @@ const TableBox = (props) => {
             bo_Mon: data.bo_Mon
         }
 
+        // Xác nhận thay đổi gv1 ko?
+        const accept = confirm("Bạn chắc chắn sẽ thay đổi giảng viên 1???");
+        if (!accept) return;
+
         dispatch(dragAndDrogSlice.actions.editGv1([index, objNew]))
         // const arrOld = useSelector(getLichThi);
         // console.log(arrOld)
         setBoxEdit(false)
         setEditCheck(true)
+
+        // Thay đổi giảng viên 1 sẽ chớp
         const intervalId = setInterval(() => {
             setColorGV1((colorGV1) => {
-            return colorGV1 === 'red' ? 'blue' : 'red';
-      });
-    }, 500);
+                return colorGV1 === 'red' ? 'blue' : 'red';
+            });
+        }, 500);
 
-    return () => clearInterval(intervalId);
+        return () => clearInterval(intervalId);
     }
 
     const dropOS = useRef(null)
