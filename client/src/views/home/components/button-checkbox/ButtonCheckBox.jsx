@@ -28,7 +28,7 @@ const ButtonCheckBox = (props) => {
       setNganhL(arr)
 
     }else{
-      console.log("Fail")
+      // console.log("Fail")
       dispatch(dragAndDrogSlice.actions.deleteNganhLT(e))
       let newArr = nganhL.filter(item => {
         return item == e ? false : true

@@ -45,7 +45,7 @@ const dragAndDrogSlice = createSlice({
     },
 
     deleteNganhLT: (state, { payload }) => {
-      console.log("data: ", payload);
+      // console.log("data: ", payload);
       // console.log(state.filter.nganh);
       let arrNganh = state.filter.nganh.filter((item) => {
         return item == payload ? false : true;

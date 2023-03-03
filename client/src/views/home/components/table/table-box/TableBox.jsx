@@ -95,7 +95,10 @@ const TableBox = (props) => {
             gv1: e.target.value,
             gv2: data.gv2,
             stt: data.stt,
-            caThi: data.caThi
+            caThi: data.caThi,
+            ngay_Thi: data.ngay_Thi,
+            idToa_Nha: data.idToa_Nha,
+            bo_Mon: data.bo_Mon
         }
 
         dispatch(dragAndDrogSlice.actions.editGv1([index, objNew]))
