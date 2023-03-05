@@ -32,7 +32,7 @@ const TableSort = ({ data, caThi,lengthP,phong }) => {
             arrayEnd[i] ={}
         }
     }
-    console.log('arrayEnd',arrayEnd)
+    // console.log('arrayEnd',arrayEnd)
     return (
         <GridItem>
             <Grid templateRows={`repeat(${lengthPhong}, 1fr)`} h="100%">

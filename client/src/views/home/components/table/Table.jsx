@@ -80,10 +80,6 @@ const Table = (props) => {
             {/* Body table */}
             <GridItem>
                 <Grid height="100%" direction="column" minH="355px" templateColumns="repeat(1, 1fr)">
-                    {/* <TableSideBar {...style} count="T1101" />
-                    <TableSideBar {...style} count="T1102" />
-                    <TableSideBar {...style} count="T1103" />
-                    <TableSideBar {...style} count="T1104" /> */}
                     {phongSort.map(e=>{
                         return <TableSideBar key={e.tenPhong} {...style} count={e.tenPhong}/>
                     })}

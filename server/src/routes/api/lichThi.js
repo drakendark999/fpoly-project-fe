@@ -9,10 +9,9 @@ lichThiRouter.get("/", async (req, res) => {
 
 lichThiRouter.put("/updateLichThi", async (req, res) => {
     let data = req.body;
-    // console.log(data);
     let d = await lichThi.update({ GV1: data.GV1, GV2: data.GV2 }, { where: { id: data.id } });
-    let backData = await lichThi.findAll();
-    res.json(backData);
+    // let backData = await lichThi.findAll();
+    // res.json(backData);
 });
 
 module.exports = lichThiRouter;

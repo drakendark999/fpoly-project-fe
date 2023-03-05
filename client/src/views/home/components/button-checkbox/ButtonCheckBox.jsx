@@ -12,7 +12,7 @@ const ButtonCheckBox = (props) => {
   // console.log("Ngành: ", nganhL)
   useEffect(() => {
     dispatch(dragAndDrogSlice.actions.setNganhLT(nganhL))
-    dispatch(lichThi2Slice.actions.setNganhLT(nganhL))
+    // dispatch(lichThi2Slice.actions.setNganhLT(nganhL))
   }, [nganhL])
   const handleChangeStatus = (e, d) => {
 

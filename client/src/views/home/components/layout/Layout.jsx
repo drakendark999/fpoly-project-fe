@@ -13,7 +13,6 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 
 import { useSelector, useDispatch } from "react-redux";
 import { getLichThi } from "../../../../selectors/selectors";
-// import { fetchAllGV1 } from "../../../../stores/slices/dragAndDrogSlice";
 import { fetchUpdateLichThi } from "../../../../stores/slices/dragAndDrogSlice";
 import ButtonSave from "../button-save-database/ButtonSave";
 import TableImport from "../table/table-import/TableImport";
@@ -22,21 +21,6 @@ import { filterLichThiArrayA } from "../../../../selectors/selectors";
 
 const Layout = () => {
     const dispatch = useDispatch();
-    // Get data
-    
-    // useEffect(() => {
-    //     dispatch(fetchAllGV1());
-    // }, []);
-
-    // let arrAStore = useSelector(getLichThi);
-    
-    
-    //  saveDataBase = onClick
-
-
-
-   
-    // console.log(arrAStore);
     return (
         <DndProvider backend={HTML5Backend}>
             <Grid templateColumns="repeat(5, 1fr)" gap={4} mt={1}>
