@@ -1,7 +1,8 @@
 import { Button } from "@chakra-ui/react";
 import { getLichThi } from "../../../../selectors/selectors";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchUpdateLichThi } from "../../../../stores/slices/dragAndDrogSlice";
+import { fetchUpdateLichThi2 } from "../../../../stores/slices/dragAndDrogSlice";
+
 
 const ButtonSave = () => {
   const dispatch = useDispatch();
@@ -11,7 +12,7 @@ const ButtonSave = () => {
     if (confirm("Bạn có muốn lưu danh sách lịch thi?")) {
       // user clicked OK
       
-      dispatch(fetchUpdateLichThi(arr));
+      dispatch(fetchUpdateLichThi2(arr));
     } else {
       // user clicked Cancel
       return 0;

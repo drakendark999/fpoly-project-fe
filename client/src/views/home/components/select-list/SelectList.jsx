@@ -46,7 +46,7 @@ const SelectList = () => {
         return () => window.removeEventListener("scroll", onScroll);
     }, []);
 
-    console.log(offset);
+    // console.log(offset);
 
     return (
         <>

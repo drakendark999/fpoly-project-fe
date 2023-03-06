@@ -11,23 +11,17 @@ import Table from "../table/Table";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 
-import { useSelector, useDispatch } from "react-redux";
-import { getLichThi } from "../../../../selectors/selectors";
-import { fetchUpdateLichThi } from "../../../../stores/slices/dragAndDrogSlice";
 import ButtonSave from "../button-save-database/ButtonSave";
 import TableImport from "../table/table-import/TableImport";
-import lichThi2Slice from "../../../../stores/slices/lichThi2Slice";
-import { filterLichThiArrayA } from "../../../../selectors/selectors";
 
 const Layout = () => {
-    const dispatch = useDispatch();
     return (
         <DndProvider backend={HTML5Backend}>
             <Grid templateColumns="repeat(5, 1fr)" gap={4} mt={1}>
                 <GridItem colSpan={4}>
                     <Header />
                     <FormSelect />
-                    <Table  />
+                    <Table />
                     {/* <Paginator arrayA={arrayA} itemsPerPage={32} /> */}
                     <Flex alignItems="center">
                         <TableImport />
@@ -39,7 +33,6 @@ const Layout = () => {
                 </GridItem>
             </Grid>
         </DndProvider>
-        
     );
 };
 

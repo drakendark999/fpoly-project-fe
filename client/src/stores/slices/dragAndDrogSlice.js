@@ -8,7 +8,7 @@ const dragAndDrogSlice = createSlice({
     name: "lichThi",
     initialState: {
         filter: {
-            date: "2022-12-18",
+            date: "2022-10-22",
             toaNha: "F",
             nganh: [],
         },
@@ -59,9 +59,9 @@ const dragAndDrogSlice = createSlice({
             //     state.arrayA = action.payload;
             // })
 
-            .addCase(fetchUpdateLichThi.fulfilled, (state, action) => {
+            .addCase(fetchUpdateLichThi2.fulfilled, (state, action) => {
                 state.arrayA = action.payload;
-                alert("Lưu thành công!!");
+                alert("Lưu thành công!!!!!!");
             });
     },
 });
@@ -70,19 +70,21 @@ export default dragAndDrogSlice;
 
 export const getAllLichThi2 = createAsyncThunk("lichThi2/getAll", async () => {
     const response = await axios.get(`${apiURL}/api/lichthi2`);
+    
     return response.data;
 });
 
-export const fetchUpdateLichThi = createAsyncThunk("lichThi/fetchUpdateLichThi", async (data) => {
-    let d = [];
-    data.forEach(async (item) => {
-        d.push(item);
-        await axios.put(`${apiURL}/api/lichthi/updateLichThi`, {
-            id: item.id,
-            GV1: item.gv1,
-            GV2: item.gv2,
-        });
-    });
-    console.log("Database Upload", d);
-    return d;
+export const fetchUpdateLichThi2 = createAsyncThunk("lichThi2/fetchUpdateLichThi2", async (data) => {
+   
+    const response = await axios.put(`${apiURL}/api/lichthi2/updateLichThi`, data);
+   
+    return data;
+    // data.forEach(async (item) => {
+    //     d.push(item);
+    //     await axios.put(`${apiURL}/api/lichthi2/updateLichThi`, {
+    //         id: item.id,
+    //         GV1: item.gv1,
+    //         GV2: item.gv2,
+    //     });
+    // });
 });

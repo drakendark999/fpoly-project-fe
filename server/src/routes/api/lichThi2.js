@@ -45,6 +45,16 @@ lichThi2Router.post("/", async (req, res) => {
   
     res.json({success: 'Upload data success'});
   });
+
+  // Lưu lịch thi 2
+  lichThi2Router.put("/updateLichThi", async (req, res) => {
+    let data = req.body;
+    data.forEach(async (e)=>await lichThi2.update({ GV1: e.GV1, GV2: e.GV2 }, { where: { id: e.id } }))
+    // let d = await lichThi2.update({ GV1: data.GV1, GV2: data.GV2 }, { where: { id: data.id } });
+    // let backData = await lichThi2.findAll();
+    // res.json(backData);
+    res.json('Upload thành công')
+});
   
 
 

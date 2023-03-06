@@ -104,7 +104,7 @@ const TableImport = () => {
 
       let dataAccess = {lichThiUpload};
       dispatch(addLichThi2(dataAccess))
-      // Dời lich thi 2 qua lịch thi
+      
     }
   }
 

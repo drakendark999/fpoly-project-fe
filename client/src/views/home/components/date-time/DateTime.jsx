@@ -26,7 +26,7 @@ const DateTime = () =>
     let newDate = moment(date).format('YYYY-MM-DD')
 
     dispatch(dragAndDrogSlice.actions.setDate(newDate))
-    dispatch(lichThi2Slice.actions.setDate(newDate))
+    // dispatch(lichThi2Slice.actions.setDate(newDate))
   }
 
 
