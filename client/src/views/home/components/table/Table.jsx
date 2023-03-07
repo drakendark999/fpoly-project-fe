@@ -122,7 +122,7 @@ const Table = (props) => {
             data={sortByCaThi}
             caThi={1}
           />
-          {/* <TableSort
+          <TableSort
             phong={phongSort}
             lengthP={lengtPhong}
             data={sortByCaThi}
@@ -151,7 +151,7 @@ const Table = (props) => {
             lengthP={lengtPhong}
             data={sortByCaThi}
             caThi={6}
-          /> */}
+          />
         </Grid>
       </GridItem>
     </Grid>
