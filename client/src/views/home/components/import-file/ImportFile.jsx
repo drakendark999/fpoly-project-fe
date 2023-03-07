@@ -21,15 +21,15 @@ const ImportFile = (props) => {
       } else {
 
         teachers = resp.rows.reduce((teachers, item) => {
-          if (item.length >= 6 && item[0] && item.length <= 7) {
+          if (item.length >= 5 && item[0] && item.length <= 6) {
             teachers.push({
               idNV: item[0],
               MaNV: item[1],
               hoVaTen: item[2],
               doiTuong: item[3],
               BoMon: item[4],
-              count: item[5],
-              ghiChu: item[6],
+              ghiChu: item[5],
+             count: 0
             });
           }
 
