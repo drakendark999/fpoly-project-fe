@@ -5,7 +5,8 @@ import TableBox from "../table-box/TableBox";
 const TableSort = ({ data, caThi,lengthP,phong }) => {
     // console.log(data(caThi))
     const lengthPhong = lengthP
-    const arrayA = data(caThi);
+    let arrayA =[] 
+    arrayA=data(caThi);
   
     
 
@@ -18,7 +19,6 @@ const TableSort = ({ data, caThi,lengthP,phong }) => {
     for (let i = 0; i < sortedArray.length - 1; i++) {
         if (Object.keys(sortedArray[i]).length !== 0) {
             phong.forEach((itemPhong,index)=>{
-               
                 if(sortedArray[i].ten_Phong==itemPhong.tenPhong){
                     arrayEnd[index]= sortedArray[i]
                 }

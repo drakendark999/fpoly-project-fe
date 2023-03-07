@@ -30,21 +30,7 @@ let lichThi2Slice = createSlice({
         setLichThi2: (state, { payload }) => {
             state.list = payload;
         },
-        // setToaNha: (state, { payload }) => {
-        //     state.filter.toaNha = payload;
-        // },
-        // setDate: (state, { payload }) => {
-        //     state.filter.date = payload;
-        // },
-        // setNganhLT: (state, action) => {
-        //     state.filter.nganh = action.payload;
-        // },
-        // deleteNganhLT: (state, { payload }) => {
-        //     let arrNganh = state.filter.nganh.filter((item) => {
-        //         return item == payload ? false : true;
-        //     });
-        //     state.filter.nganh = arrNganh;
-        // },
+        
     },
 
     extraReducers: (builder) => {

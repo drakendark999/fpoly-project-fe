@@ -68,25 +68,26 @@ const Table = (props) => {
 
   const [offset, setOffset] = useState(0);
   const selectRoll = useRef();
-  useEffect(() => {
-    const onScroll = () => {
-      setOffset(window.pageYOffset);
-    };
-    // clean up code
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
+  // useEffect(() => {
+  //   const onScroll = () => {
+  //     setOffset(window.pageYOffset);
+  //   };
+  //   // clean up code
+  //   window.addEventListener("scroll", onScroll, { passive: true });
+  //   return () => window.removeEventListener("scroll", onScroll);
+  // }, []);
+                                                                                                          
   return (
-    <Grid templateColumns="repeat(7, 1fr)" textAlign="center">
+    <Grid templateColumns="repeat(7, 1fr)" textAlign="center" >
       {/* Header table*/}
       <GridItem
         colSpan={7}
         zIndex={100}
         background="white"
-        minW={1140.6}
+        
         top={offset == 0 ? `0` : `0px`}
         pos={offset > 0 ? `fixed` : "relative"}
+        minW={offset > 0 ? `1140.6px` : "auto"}
         ref={selectRoll}
       >
         <TableHead {...style} />
@@ -121,7 +122,7 @@ const Table = (props) => {
             data={sortByCaThi}
             caThi={1}
           />
-          <TableSort
+          {/* <TableSort
             phong={phongSort}
             lengthP={lengtPhong}
             data={sortByCaThi}
@@ -150,7 +151,7 @@ const Table = (props) => {
             lengthP={lengtPhong}
             data={sortByCaThi}
             caThi={6}
-          />
+          /> */}
         </Grid>
       </GridItem>
     </Grid>

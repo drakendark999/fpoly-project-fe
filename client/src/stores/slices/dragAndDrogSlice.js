@@ -32,6 +32,7 @@ const dragAndDrogSlice = createSlice({
             state.arrayA.splice(index, 1, objN);
         },
         setToaNha: (state, { payload }) => {
+            // console.log(payload);
             state.filter.toaNha = payload;
         },
         setDate: (state, { payload }) => {
@@ -45,7 +46,6 @@ const dragAndDrogSlice = createSlice({
             let arrNganh = state.filter.nganh.filter((item) => {
                 return item == payload ? false : true;
             });
-
             state.filter.nganh = arrNganh;
         },
     },

@@ -1,10 +1,10 @@
 import { FormControl, FormLabel, HStack, Radio, RadioGroup } from "@chakra-ui/react";
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import {  useDispatch } from "react-redux";
 import dragAndDrogSlice from "../../../../stores/slices/dragAndDrogSlice";
 
 import phongSlice from "../../../../stores/slices/phongSlice";
-import { filterPhong } from "../../../../selectors/selectPhong";
+
 
 const ButtonRadio = (props) => {
     const dispatch = useDispatch();
