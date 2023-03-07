@@ -61,7 +61,7 @@ const SelectList = () => {
                     Tổng cộng: {teachers.length} GV2
                 </Text>
 
-                <Box h={550} overflowY="auto" top={offset ==0  ? `0` : offset> 181 ? `0` :`190px`} pos={offset > 0 ? `fixed` : "relative"} ref={selectRoll}>
+                <Box h={750} overflowY="auto" top={offset ==0  ? `0` : offset> 181 ? `0` :`190px`} pos={offset > 0 ? `fixed` : "relative"} ref={selectRoll}>
                     {teachers.map((e, index) => {
                         return <SelectBox key={index} datalist={e} />;
                     })}

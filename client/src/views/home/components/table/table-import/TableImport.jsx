@@ -77,7 +77,7 @@ const TableImport = () => {
             so_SV: item[10],
             GV1: item[12],
             GV2: item[13],
-            status: "pending",
+            status: "",
           };
           x.maLich_Thi =
             x.maKy_Thi +

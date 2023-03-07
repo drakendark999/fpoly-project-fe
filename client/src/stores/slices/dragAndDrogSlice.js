@@ -8,7 +8,7 @@ const dragAndDrogSlice = createSlice({
     name: "lichThi",
     initialState: {
         filter: {
-            date: "2022-10-22",
+            date: "2022-12-22",
             toaNha: "F",
             nganh: [],
         },
