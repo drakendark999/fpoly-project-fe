@@ -95,25 +95,38 @@ const TableBox = (props) => {
     );
 
     // Edit Gv 2
+
     const [{ isOverFix }, dropFix] = useDrop(
-        () => ({
-            accept: "boxFix",
-            drop: (item) => {
-                editGv2(item.id, (item["nowId"] = data.id));
-                setIsDropped(true);
-            },
-            collect: (monitor) => ({
-                isOverFix: !!monitor.isOver(),
+        useMemo(
+            () => ({
+                accept: "boxFix",
+                drop: (item) => {
+                    editGv2(item.id, (item["nowId"] = data.id));
+                    setIsDropped(true);
+                },
+                collect: (monitor) => ({
+                    isOverFix: !!monitor.isOver(),
+                }),
             }),
-        }),
-        [data]
+            [data]
+        )
     );
+    // const [{ isOverFix }, dropFix] = useDrop({
+    //     accept: "boxFix",
+    //     drop: (item) => {
+    //         editGv2(item.id, (item["nowId"] = data.id));
+    //         setIsDropped(true);
+    //     },
+    //     collect: (monitor) => ({
+    //         isOverFix: !!monitor.isOver(),
+    //     }),
+    // });
 
     const addGv2 = (name, id) => {
-        console.log(data);
         dispatch(dragAndDrogSlice.actions.addGv2({ name, id }));
     };
     const editGv2 = (idFirst, idSecond) => {
+        console.log(idFirst, idSecond);
         dispatch(dragAndDrogSlice.actions.editGv2({ idFirst, idSecond }));
     };
 
