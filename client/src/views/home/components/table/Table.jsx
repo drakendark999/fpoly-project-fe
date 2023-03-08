@@ -68,14 +68,14 @@ const Table = (props) => {
 
   const [offset, setOffset] = useState(0);
   const selectRoll = useRef();
-  // useEffect(() => {
-  //   const onScroll = () => {
-  //     setOffset(window.pageYOffset);
-  //   };
-  //   // clean up code
-  //   window.addEventListener("scroll", onScroll, { passive: true });
-  //   return () => window.removeEventListener("scroll", onScroll);
-  // }, []);
+  useEffect(() => {
+    const onScroll = () => {
+      setOffset(window.pageYOffset);
+    };
+    // clean up code
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
                                                                                                           
   return (
     <Grid templateColumns="repeat(7, 1fr)" textAlign="center" >
