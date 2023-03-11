@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { Box } from '@chakra-ui/react';
+import { Box, Flex } from '@chakra-ui/react';
+import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
+
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import './dataTime.scss';
@@ -31,9 +33,11 @@ const DateTime = () =>
 
 
   return (
-    <Box as='div' borderRadius='base' border='1px' borderColor='black' color='black' px={4} py={2} my={4} w={170}>
-      Ngày: <DatePicker dateFormat="dd/MM/yyyy" selected={startDate} onChange={handleChangeTime} />
-    </Box>
+    <Flex as='div' justify='end' align='center' color='black' my={4}>
+      <MdNavigateBefore id='icon'/>
+      <DatePicker dateFormat="dd/MM/yyyy" selected={startDate} onChange={handleChangeTime} />
+      <MdNavigateNext id='icon' style={{ position: 'absolute'}}/>
+    </Flex>
   );
 };
 

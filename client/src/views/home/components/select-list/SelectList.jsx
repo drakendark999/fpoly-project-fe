@@ -48,6 +48,31 @@ const SelectList = () => {
 
     // console.log(offset);
 
+    const [boxStyle, setBoxStyle] = useState({
+    position: "unset",
+  });
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const handleScroll = () => {
+    const scrollTop = window.pageYOffset;
+    // console.log(scrollTop);
+    if (scrollTop >= 260) {
+      setBoxStyle({
+        position: "fixed",
+        top: "0",
+      });
+    } else {
+      setBoxStyle({
+        position: "unset",
+      });
+    }
+  };
     return (
         <>
             <Flex direction="column" >
@@ -61,7 +86,7 @@ const SelectList = () => {
                     Tổng cộng: {teachers.length} GV2
                 </Text>
 
-                <Box h={750} overflowY="auto" top={offset ==0  ? `0` : offset> 181 ? `0` :`190px`} pos={offset > 0 ? `fixed` : "relative"} ref={selectRoll}>
+                <Box h={750} overflowY="auto" className="scroll" style={boxStyle}>
                     {teachers.map((e, index) => {
                         return <SelectBox key={index} datalist={e} />;
                     })}

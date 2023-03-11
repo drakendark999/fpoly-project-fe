@@ -1,5 +1,4 @@
 import React from 'react'
-import DateTime from '../date-time/DateTime';
 import ButtonRadio from '../button-radio/ButtonRadio';
 import { Flex } from '@chakra-ui/react';
 import ButtonCheckBox from '../button-checkbox/ButtonCheckBox';
@@ -25,8 +24,8 @@ const FormSelect = () => {
     { id: 3, name: 'Cơ bản', checked: false},
   ]
   return (
-    <Flex justify= "space-between" align="top" my={3}>
-      <DateTime />
+    <Flex justify= "space-between" align="top" mb={3}>
+      
       <div>
         <ButtonRadio data={toaNha} phanBiet={phanBiet[0]} title='Tòa nhà'/>
       </div>

@@ -1,14 +1,15 @@
 import React from 'react'
-import { Box,Text} from '@chakra-ui/react'
+import { Box, Text, Flex } from '@chakra-ui/react'
+import { SelectOption } from '../select-option/SelectOption'
 
-const ContentBox = (props) => {
-  
+const ContentBox = (props) =>
+{
   return (
-    <Box px={8} py={2} bg='#F69E7B' color='white' borderRadius='md'>
-        <Text fontSize='md'>{props.coso||props.hocky}</Text>
-        <Text fontSize='md'>{props.user||props.hockyh}</Text>
-    </Box>
-   
+    <Flex my={1}>
+      <Text textTransform='capitalize' minW='80px' fontSize='md'>{props.title} :</Text>
+      <Text ml={3}>{props.content}</Text>
+    </Flex>
+
   )
 }
 

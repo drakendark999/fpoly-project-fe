@@ -13,22 +13,33 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 
 import ButtonSave from "../button-save-database/ButtonSave";
 import TableImport from "../table/table-import/TableImport";
+import DateTime from '../date-time/DateTime';
 
-const Layout = () => {
+const Layout = () =>
+{
     return (
         <DndProvider backend={HTML5Backend}>
-            <Grid templateColumns="repeat(5, 1fr)" gap={4} mt={1}>
-                <GridItem colSpan={4}>
+            <Grid templateColumns="repeat(4, 1fr)" gap={4} mt={1}>
+                <GridItem colSpan={3}>
                     <Header />
+                    <Flex justify='space-between'>
+                        <TableImport />
+                        <DateTime/>
+                    </Flex>
                     <FormSelect />
                     <Table />
-                    {/* <Paginator arrayA={arrayA} itemsPerPage={32} /> */}
-                    <Flex alignItems="center">
-                        <TableImport />
+                    <Flex justify='end'>
                         <ButtonSave />
                     </Flex>
                 </GridItem>
-                <GridItem colSpan={1} borderLeft="1px" borderColor="black" ml={2} pl={2} py={2}>
+                <GridItem
+                    colSpan={1}
+                    borderLeft="1px"
+                    borderColor="black"
+                    ml={2}
+                    pl={2}
+                    py={2}
+                >
                     <SelectList />
                 </GridItem>
             </Grid>

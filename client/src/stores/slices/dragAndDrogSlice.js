@@ -20,6 +20,7 @@ const dragAndDrogSlice = createSlice({
         addGv2: (state, action) => {
             state.arrayA.find((e) => e.id == action.payload.id).GV2 = action.payload.name;
         },
+        
         editGv2: (state, action) => {
             state.arrayA.find((e) => e.id == action.payload.idSecond).GV2 = state.arrayA.find((e) => e.id == action.payload.idFirst).GV2;
             state.arrayA.find((e) => e.id == action.payload.idFirst).GV2 = "";
@@ -53,6 +54,7 @@ const dragAndDrogSlice = createSlice({
         builder
             .addCase(getAllLichThi2.fulfilled, (state, action) => {
                 state.arrayA = action.payload;
+                // console.log(action.payload);
             })
 
             // .addCase(fetchAllGV1.fulfilled, (state, action) => {
@@ -74,11 +76,12 @@ export const getAllLichThi2 = createAsyncThunk("lichThi2/getAll", async () => {
     return response.data;
 });
 
-export const fetchUpdateLichThi2 = createAsyncThunk("lichThi2/fetchUpdateLichThi2", async (data) => {
-   
+export const fetchUpdateLichThi2 = createAsyncThunk("lichThi2/fetchUpdateLichThi2", async (data) =>
+{
     const response = await axios.put(`${apiURL}/api/lichthi2/updateLichThi`, data);
    
     return data;
+
     // data.forEach(async (item) => {
     //     d.push(item);
     //     await axios.put(`${apiURL}/api/lichthi2/updateLichThi`, {

@@ -12,18 +12,18 @@ const SelectBox = (props) => {
       isDragging: !!monitor.isDragging(),
     }),
   }));
-  
+
   const styles = {
-    border: '2px dashed gray',
-    padding: '10px 20px',
-  }
+    border: "2px dashed gray",
+    padding: "10px 20px",
+  };
 
   if (isDragging) {
     styles.opacity = 0.5;
-    styles.transform = 'scale(0.8)';
-    styles.cursor = 'grabbing';
+    styles.transform = "scale(0.8)";
+    styles.cursor = "grabbing";
   } else {
-    styles.cursor = 'grab';
+    styles.cursor = "grab";
   }
 
   return (
@@ -46,13 +46,13 @@ const SelectBox = (props) => {
           <span>{data.BoMon}</span>
         </Text>
       </Flex>
-      {/* <Text id="caRanh" as="i" fontSize="sm" display="block">
-                Ca rảnh: {data.caRanh}
-            </Text> */}
       <Text id="hoTen" as="i" fontSize="sm" display="block" mt={1}>
         Họ tên: {data.hoVaTen}
       </Text>
-       <Text fontSize="sm" display="block" mt={1}>
+      <Text id="caRanh"  fontSize="sm" display="block">
+        Ca rảnh: <strong>1, 2, 5</strong>
+      </Text>
+      <Text fontSize="sm" display="block">
         Số ca thi đã tham gia: <strong>{data.count}</strong>
       </Text>
     </Box>

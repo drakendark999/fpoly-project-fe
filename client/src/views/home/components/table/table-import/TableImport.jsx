@@ -1,3 +1,4 @@
+import React, { useState, useRef } from "react";
 import {
   FormControl,
   Text,
@@ -6,13 +7,14 @@ import {
   Flex,
   Select,
   Button,
+  Box,
 } from "@chakra-ui/react";
+import { IoClose } from "react-icons/io5";
 import { ExcelRenderer } from "react-excel-renderer";
-import { useState } from "react";
 import { useDispatch } from "react-redux";
-import {addLichThi2} from "../../../../../stores/slices/lichThi2Slice";
-import * as XLSX from "xlsx"
-import { saveAs } from 'file-saver';
+import { addLichThi2 } from "../../../../../stores/slices/lichThi2Slice";
+import * as XLSX from "xlsx";
+import { saveAs } from "file-saver";
 
 const TableImport = () => {
   let [season, setSeason] = useState("fa");
@@ -25,11 +27,11 @@ const TableImport = () => {
     const buf = new ArrayBuffer(s.length);
     const view = new Uint8Array(buf);
     for (let i = 0; i < s.length; i++) {
-      view[i] = s.charCodeAt(i) & 0xFF;
+      view[i] = s.charCodeAt(i) & 0xff;
     }
     return buf;
-  }
-  
+  };
+
   let formatRemove = (str, characterToRemove) => {
     let re = new RegExp(characterToRemove.join("|"), "g");
     return str.replaceAll(re, "");
@@ -38,15 +40,19 @@ const TableImport = () => {
   let exportFile = () => {
     const wb = XLSX.utils.book_new();
     const ws = XLSX.utils.aoa_to_sheet(dataExport);
-    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-    const wbout = XLSX.write(wb, { type: 'binary', bookType: 'xlsx' });
-    const file = new Blob([s2ab(wbout)], { type: 'application/octet-stream' });
+    XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+    const wbout = XLSX.write(wb, { type: "binary", bookType: "xlsx" });
+    const file = new Blob([s2ab(wbout)], { type: "application/octet-stream" });
     saveAs(file, `Ca thi bị trùng ${kyThi}.xlsx`);
-  }
+  };
 
   let importFile = () => {
-    if(confirm('Thao tác này sẽ sẽ xóa dữ liệu lịch thi hiện tại & upload dữ liệu mới, bạn có chắc chắn?')) {
-        let lichThiUpload = dataImport.reduce((array, item) => {
+    if (
+      confirm(
+        "Thao tác này sẽ sẽ xóa dữ liệu lịch thi hiện tại & upload dữ liệu mới, bạn có chắc chắn?"
+      )
+    ) {
+      let lichThiUpload = dataImport.reduce((array, item) => {
         let arrCS = ["_T", "_F", "_P", "_2"];
         // Lọc rows trống và rows không có phòng thi
         // Xử lý chuỗi để add db
@@ -102,20 +108,37 @@ const TableImport = () => {
         return array;
       }, []);
 
-      let dataAccess = {lichThiUpload};
-      dispatch(addLichThi2(dataAccess))
-      
+      let dataAccess = { lichThiUpload };
+      dispatch(addLichThi2(dataAccess));
     }
-  }
+  };
 
   const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
+  const [selectedFile, setSelectedFile] = useState(null);
+  const fileInputRef = useRef();
+
+  const shortenFileName = (fileName) => {
+    if (fileName.length < 50) {
+      return fileName;
+    }
+
+    const start = fileName.slice(0, 25);
+    const end = fileName.slice(-25);
+    return `${start}...${end}`;
+  };
+
+  const handleFileSelect = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
+
+  const handleUpload = () => {
+    // console.log(selectedFile);
     console.log("Kỳ thi:", kyThi);
     setDataExport([]);
     setDataImport([]);
 
-    let file = e.target.files[0];
+    let file = selectedFile;
     let lichThi = [];
     let lichThiTrung = [];
     let lichThiImport = [];
@@ -186,67 +209,160 @@ const TableImport = () => {
         setDataExport(lichThiTrung);
       }
 
-      alert('Vui lòng confirm thông tin ca thi mà bạn uploads!')
+      // alert('Vui lòng confirm thông tin ca thi mà bạn uploads!')
+
+      // setSelectedFile(null);
+      // fileInputRef.current.value = null;
     });
   };
 
+  const cancelUpload = () => {
+    if (dataImport.length > 0) {
+      let result = confirm("Bạn muốn thay đổi file?");
+      if (result) {
+        dataImport.length = 0;
+        setSelectedFile(null);
+        fileInputRef.current.value = null;
+      }
+    } else {
+      setSelectedFile(null);
+      fileInputRef.current.value = null;
+    }
+  };
+
   return (
-    <FormControl p={2} display="flex" flexDirection="column" rowGap="2">
-      <Text as="b" display="block">
-        Thêm lịch thi bằng file Excel
+    <Box
+      as="fieldset"
+      border="1px solid black"
+      borderRadius="md"
+      textAlign="center"
+      mb="20px"
+      pb={2}
+      minW="460px"
+    >
+      <Text as="legend" p={2} mt={2} fontWeight={500} textAlign="center">
+        Thêm mới lịch thi bằng file Excel
       </Text>
-      <Flex alignItems="center" maxW="350">
-        <FormLabel width="100%" margin="0">
-          Chọn kì thi:
-        </FormLabel>
-        <Select
-          maxW="250"
-          variant="filled"
-          value={season}
-          onChange={(e) => setSeason(e.target.value)}
-        >
-          <option value="sp">Spring</option>
-          <option value="su">Summer</option>
-          <option value="fa">Fall</option>
-        </Select>
-        <Select
-          maxW="100"
-          variant="filled"
-          value={year}
-          onChange={(e) => setYear(e.target.value)}
-        >
-          <option value="22">2022</option>
-          <option value="23">2023</option>
-        </Select>
-      </Flex>
-      <Flex alignItems="center">
-        <FormLabel>Chọn file:</FormLabel>
+      <Box>
         <input
+          ref={fileInputRef}
+          onChange={handleFileSelect}
+          hidden
           type="file"
-          onChange={handleSubmit}
-          accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,
-          application/vnd.ms-excel"
+          accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
           style={{ padding: "10px" }}
         />
-      </Flex>
-      {dataImport.length ? (
-          <Flex alignItems="center" columnGap="2">
-            <Text>
-              Có tổng cộng <b color="blue">{dataImport.length}</b> ca thi hợp lệ:
-            </Text>
-            <Button colorScheme="blue" onClick={importFile}>Upload lên server</Button>
-          </Flex>
-      ) : ("")}
-      {dataExport.length ? (
-          <Flex alignItems="center" columnGap="2">
-            <Text>
-              Có tổng cộng <b color="red">{dataExport.length-1}</b> ca thi bị trùng:
-            </Text>
-            <Button colorScheme="red" onClick={exportFile}>Download file Excel</Button>
-          </Flex>
-      ) : ( "")}
 
-    </FormControl>
+        {dataImport.length ? (
+          <Box>
+            <Flex
+              mx={5}
+              mb={1}
+              p="18px 8px 8px"
+              justify="space-between"
+              boxShadow="sm"
+              rounded="md"
+              bg="white"
+            >
+              <Text mt={-2} mx={2}>
+                {shortenFileName(selectedFile.name)}
+              </Text>
+              <IoClose
+                onClick={cancelUpload}
+                color="red"
+                cursor="pointer"
+                style={{ position: "relative", bottom: "3px" }}
+              />
+            </Flex>
+            <Flex alignItems="center" columnGap="2" mx={5} my={2}>
+              <Text>
+                Có tổng cộng <b color="blue">{dataImport.length}</b> ca thi hợp
+                lệ:
+              </Text>
+              <Button colorScheme="blue" onClick={importFile}>
+                Upload lên server
+              </Button>
+            </Flex>
+            <Flex alignItems="center" columnGap="2" mx={5} my={2}>
+              <Text>
+                Có tổng cộng <b color="red">{dataExport.length - 1}</b> ca thi
+                bị trùng:
+              </Text>
+              <Button colorScheme="red" onClick={exportFile}>
+                Download file Excel
+              </Button>
+            </Flex>
+          </Box>
+        ) : !selectedFile ? (
+          <Button
+            size="sm"
+            w="90%"
+            border="2px dashed gray"
+            borderColor="gray"
+            borderRadius="md"
+            cursor="pointer"
+            // fontWeight="nomal"
+            mb={2}
+            // mx={4}
+            type="button"
+            bg="transparent"
+            onClick={() => fileInputRef.current.click()}
+          >
+            Chọn File
+          </Button>
+        ) : (
+          <div>
+            <Flex
+              mx={5}
+              mb={1}
+              p="10px 5px 5px"
+              justify="space-between"
+              boxShadow="sm"
+              rounded="md"
+              bg="white"
+            >
+              <Text mt={-2} mx={2}>
+                {shortenFileName(selectedFile.name)}
+              </Text>
+              <IoClose
+                onClick={cancelUpload}
+                color="red"
+                cursor="pointer"
+                style={{ position: "relative", bottom: "3px" }}
+              />
+            </Flex>
+            <Flex px={3} justify="space-around">
+              <Button
+                size="sm"
+                colorScheme="yellow"
+                bg="#FADA9D"
+                cursor="pointer"
+                // fontWeight="nomal"
+                my={2}
+                px={5}
+                type="button"
+                onClick={() => fileInputRef.current.click()}
+              >
+                Thay đổi file
+              </Button>
+              <Button
+                size="sm"
+                colorScheme="cyan"
+                bg="#95BDFF"
+                cursor="pointer"
+                // fontWeight="nomal"
+                my={2}
+                px={5}
+                type="button"
+                onClick={handleUpload}
+              >
+                Tải lên
+              </Button>
+            </Flex>
+          </div>
+        )}
+      </Box>
+    </Box>
   );
 };
 
