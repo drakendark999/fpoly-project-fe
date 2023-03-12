@@ -1,20 +1,16 @@
 import React, { useState, useRef } from "react";
 import {
-  FormControl,
   Text,
-  FormLabel,
-  Input,
   Flex,
-  Select,
   Button,
   Box,
 } from "@chakra-ui/react";
-import { IoClose } from "react-icons/io5";
+import { IoClose, IoDownloadOutline, IoCloudUploadOutline } from "react-icons/io5";
 import { ExcelRenderer } from "react-excel-renderer";
 import { useDispatch } from "react-redux";
 import { addLichThi2 } from "../../../../../stores/slices/lichThi2Slice";
 import * as XLSX from "xlsx";
-import { saveAs } from "file-saver";
+
 
 const TableImport = () => {
   let [season, setSeason] = useState("fa");
@@ -38,12 +34,38 @@ const TableImport = () => {
   };
 
   let exportFile = () => {
+    let dataHeaders = [
+      "STT",
+      "Mã môn",
+      "Tên môn đầy đủ",
+      "Bộ môn",
+      "Hình thức thi",
+      "Kỳ thi / Kiểm tra",
+      "CLASS",
+      "Ngày thi",
+      "Ca",
+      "Giờ thi",
+      "Số lượng SV",
+      "Phòng thi 1",
+      "GV chấm thi 1",
+      "Giảng viên chấm 2",
+      "Hạn nộp điểm quá trình",
+      "Đợt thi",
+      "Cơ sở",
+      "Ghi chú",
+      "Hạn nộp điểm cuối môn",
+      "IT hỗ trợ	",
+      "Trực server",
+      "Giám thị hành lang",
+      "Block",
+    ];
     const wb = XLSX.utils.book_new();
     const ws = XLSX.utils.aoa_to_sheet(dataExport);
+    // Thêm header
+    XLSX.utils.sheet_add_aoa(ws, [dataHeaders], { origin: "A1" });
     XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
-    const wbout = XLSX.write(wb, { type: "binary", bookType: "xlsx" });
-    const file = new Blob([s2ab(wbout)], { type: "application/octet-stream" });
-    saveAs(file, `Ca thi bị trùng ${kyThi}.xlsx`);
+    // Download file
+    XLSX.writeFile(wb, `Danh sách ca thi bị trùng ${kyThi}.xlsx`);
   };
 
   let importFile = () => {
@@ -172,47 +194,20 @@ const TableImport = () => {
         (c, v) => (v.length > 1 ? c.concat(v) : c),
         []
       );
+        // Định dạng ngày khi xuất excel
+      lichThiTrung.forEach((item) => {
+        if(typeof(item[7]) === 'number')   
+          item[7] = new Date(Date.UTC(0, 0, item[7] - 1)).toLocaleDateString("vi-VN")
+      });
+
+      // console.log(lichThiTrung);
       lichThiImport = checks.reduce(
         (c, v) => (v.length === 1 ? c.concat(v) : c),
         []
       );
+
       setDataImport(lichThiImport);
-
-      let dataHeaders = [
-        "STT",
-        "Mã môn",
-        "Tên môn đầy đủ",
-        "Bộ môn",
-        "Hình thức thi",
-        "Kỳ thi / Kiểm tra",
-        "CLASS",
-        "Ngày thi",
-        "Ca",
-        "Giờ thi",
-        "Số lượng SV",
-        "Phòng thi 1",
-        "GV chấm thi 1",
-        "Giảng viên chấm 2",
-        "Hạn nộp điểm quá trình",
-        "Đợt thi",
-        "Cơ sở",
-        "Ghi chú",
-        "Hạn nộp điểm cuối môn",
-        "IT hỗ trợ	",
-        "Trực server",
-        "Giám thị hành lang",
-        "Block",
-      ];
-
-      if (lichThiTrung.length) {
-        lichThiTrung.unshift(dataHeaders);
-        setDataExport(lichThiTrung);
-      }
-
-      // alert('Vui lòng confirm thông tin ca thi mà bạn uploads!')
-
-      // setSelectedFile(null);
-      // fileInputRef.current.value = null;
+      setDataExport(lichThiTrung);
     });
   };
 
@@ -279,8 +274,8 @@ const TableImport = () => {
                 Có tổng cộng <b color="blue">{dataImport.length}</b> ca thi hợp
                 lệ:
               </Text>
-              <Button colorScheme="blue" onClick={importFile}>
-                Upload lên server
+              <Button colorScheme="messenger"  onClick={importFile}>
+              <IoCloudUploadOutline fontSize="20px" style={{marginRight: '4px'}} /> Tải lên server
               </Button>
             </Flex>
             <Flex alignItems="center" columnGap="2" mx={5} my={2}>
@@ -288,8 +283,8 @@ const TableImport = () => {
                 Có tổng cộng <b color="red">{dataExport.length - 1}</b> ca thi
                 bị trùng:
               </Text>
-              <Button colorScheme="red" onClick={exportFile}>
-                Download file Excel
+              <Button background="#E53E3E" color="white" onClick={exportFile}>
+                 <IoDownloadOutline fontSize="20px" style={{marginRight: '4px'}} /> Tải file Excel
               </Button>
             </Flex>
           </Box>
