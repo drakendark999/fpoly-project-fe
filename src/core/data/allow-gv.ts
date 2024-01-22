@@ -1,0 +1,178 @@
+import { Subject } from '../libs/constants';
+
+export const allowGvBySubject = [
+  {
+    gv: 'Anhntq'.toLowerCase(),
+    cnbm: [Subject.TA],
+  },
+  {
+    gv: 'Nganv4'.toLowerCase(),
+    cnbm: [Subject.DIEN, Subject.CK],
+  },
+  {
+    gv: 'Tuanla2'.toLowerCase(),
+    cnbm: [Subject.CB],
+  },
+  {
+    gv: 'Huongnh2'.toLowerCase(),
+    cnbm: [Subject.DLNHKS],
+  },
+  {
+    gv: 'Nghiemdt2'.toLowerCase(),
+    cnbm: [Subject.KT],
+  },
+  {
+    gv: 'huynph'.toLowerCase(),
+    cnbm: [Subject.TMĐT],
+  },
+  {
+    gv: 'anhth30'.toLowerCase(),
+    cnbm: [Subject.TKĐH],
+  },
+  {
+    gv: 'LocTH5'.toLowerCase(),
+    cnbm: [
+      Subject.TMĐT,
+      Subject.TA,
+      Subject.TKĐH,
+      Subject.UDPM,
+      Subject.KT,
+      Subject.DLNHKS,
+      Subject.CB,
+      Subject.DIEN,
+      Subject.CK,
+      Subject.CNTT,
+    ],
+  },
+  {
+    gv: 'hienhtt'.toLowerCase(),
+    cnbm: [
+      Subject.TMĐT,
+      Subject.TA,
+      Subject.TKĐH,
+      Subject.UDPM,
+      Subject.KT,
+      Subject.DLNHKS,
+      Subject.CB,
+      Subject.DIEN,
+      Subject.CK,
+      Subject.CNTT,
+    ],
+  },
+  {
+    gv: 'khangch'.toLowerCase(),
+    cnbm: [
+      Subject.TMĐT,
+      Subject.TA,
+      Subject.TKĐH,
+      Subject.UDPM,
+      Subject.KT,
+      Subject.DLNHKS,
+      Subject.CB,
+      Subject.DIEN,
+      Subject.CK,
+      Subject.CNTT,
+    ],
+  },
+  {
+    gv: 'thamnnh'.toLowerCase(),
+    cnbm: [
+      Subject.TMĐT,
+      Subject.TA,
+      Subject.TKĐH,
+      Subject.UDPM,
+      Subject.KT,
+      Subject.DLNHKS,
+      Subject.CB,
+      Subject.DIEN,
+      Subject.CK,
+      Subject.CNTT,
+    ],
+  },
+  {
+    gv: 'phongtd'.toLowerCase(),
+    cnbm: [
+      Subject.TMĐT,
+      Subject.TA,
+      Subject.TKĐH,
+      Subject.UDPM,
+      Subject.KT,
+      Subject.DLNHKS,
+      Subject.CB,
+      Subject.DIEN,
+      Subject.CK,
+      Subject.CNTT,
+    ],
+  },
+  {
+    gv: 'huongtt'.toLowerCase(),
+    cnbm: [Subject.CNTT],
+  },
+  {
+    gv: 'longnv36'.toLowerCase(),
+    cnbm: [Subject.CNTT],
+  },
+  {
+    gv: 'manhvtps19587'.toLowerCase(),
+    cnbm: [Subject.CNTT],
+  },
+  {
+    gv: 'trithps19506'.toLowerCase(),
+    cnbm: [Subject.CNTT],
+  },
+  {
+    gv: 'phuckmps19413'.toLowerCase(),
+    cnbm: [
+      Subject.TMĐT,
+      Subject.TA,
+      Subject.TKĐH,
+      Subject.UDPM,
+      Subject.KT,
+      Subject.DLNHKS,
+      Subject.CB,
+      Subject.DIEN,
+      Subject.CK,
+      Subject.CNTT,
+    ],
+  },
+  {
+    gv: 'thuynntps19521'.toLowerCase(),
+    cnbm: [
+      Subject.TMĐT,
+      Subject.TA,
+      Subject.TKĐH,
+      Subject.UDPM,
+      Subject.KT,
+      Subject.DLNHKS,
+      Subject.CB,
+      Subject.DIEN,
+      Subject.CK,
+      Subject.CNTT,
+    ],
+  },
+];
+
+export const allowGv = [
+  'locth5',
+  'longnv36',
+  'phuckmps19413',
+  'thuynntps19521',
+  'manhvtps19587',
+  'trithps19506',
+  'bichntnps19558',
+  'AnhNTQ',
+  'huongtt',
+  'huongnh2',
+  'NghiemDT2',
+  'anhth30',
+  'SuongTN',
+  'TuanLA2',
+  'HuyNPH',
+  'NgaNV4',
+  'PhongTD',
+  'hienhtt',
+  'khangch',
+  'thamnnh',
+].map((e) => {
+  return e.toLowerCase();
+});

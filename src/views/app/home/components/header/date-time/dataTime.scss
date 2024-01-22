@@ -1,0 +1,27 @@
+#icon {
+    background-color: rgb(203, 231, 255);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+  
+  .react-datepicker-wrapper {
+    width: 65%;
+    z-index: 999;
+  
+    .react-datepicker__input-container {
+      // width: 80%;
+  
+      input {
+        // width: 100%;
+        width: 85%;
+        outline: none;
+        text-align: center;
+        padding: 5px 10px 5px 5px;
+      }
+    }
+  }
+  
+    .react-datepicker-popper[data-placement^=bottom]{
+      z-index: 100;
+    }
