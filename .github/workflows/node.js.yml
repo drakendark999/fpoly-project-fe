@@ -27,6 +27,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: cd ..
+    - run: git config --global user.email "${USER_EMAIL}"
+    - run: git config --global user.name "${{ secrets.USER_NAME }}"
     - run: git submodule update --init --recursive
     - run: git add .
     - run: git commit -m "Update submodule from main repo"
