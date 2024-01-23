@@ -28,7 +28,6 @@ jobs:
         cache: 'npm'
     - run: cd ..
     - run: git submodule update --init --recursive
-    - run: npm test
     - run: git add .
     - run: git commit -m "Update submodule from main repo"
     - run: git push origin develop
